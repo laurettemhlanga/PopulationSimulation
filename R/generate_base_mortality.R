@@ -1,29 +1,38 @@
-#' generate_base_mortality is a function that returns a matrix of probabilities of mortality for each age and time
-#' 
-#' @param age_step numeric, indicating how many age steps 
-#' @param birth_dates a vector of two numeric values, indicating the minimum and maximum birthdates 
-#' @param generate_mortality a string, which refers to the name of the user-defined or package default function for mortality as a function of age and time
-#' @return a matrix of column length \code{age_step} and row length \code{birth_dates}, variables which are supplied as arguments to \code{generate_mortality}
-#' @examples To be entered
-#' 
+#' generate_base_mortality
+#'
+#' a function that takes as arguments age and time and returns a numeric vector of length equivelent to the number of times indicated by the simulation
+#' representing a rate of mortality at the indicated age and time
+#' The generate_mortality function is required as an argument for the package's do_simulation function
+#' The function may be user defined and stored as an R object. Otherwise a default value - entered as "default" - is provided by the package
+#'
+#' @param t numeric, indicates time or times at which the mortality rate is desired
+#' @param constant numeric, indicates a constant rate of mortality
+#' @param age_min numeric, indicates minimum age to be included in the simulation
+#' @param age_max numeric, indicates maximum age to be included in the simulation
+#' @param exmin numeric, indicates minimum mortality, which is at age_min
+#' @param exfin numeric, indicates maximum/final mortality at age_max, unless otherwise specified by user defined function
+#' @return a numeric vector that represents the mortality rate at t.
 
-generate_base_mortality <- function(age_step,
-                                    birth_dates, 
-                                    generate_mortality
-){
-    
-  mortality_matrix  = matrix(NA, nrow = length(birth_dates) + age_step, ncol =  length(1:age_step))
-  times  = 0:length(birth_dates)
-  
-  for (aa in 1:age_step){
-    
-    mortality_matrix[times + aa, aa] =  generate_mortality(times + aa, aa)
-  }
-  return(mortality_matrix)
+#Option 1
+
+generate_base_mortality <- function(t, constant = 0.01, age_min = 1,
+                                    age_max = 50,
+                                    exmin =0,
+                                    exfin =0.01){
+
+  base_mortality = ifelse(t <= age_min, 0,
+                          ifelse(t <= age_max, exmin + ((exfin - exmin)/(age_max - age_min)) * (t - age_min),
+                                 0))
+
+  return(base_mortality)
 }
 
 
-# Example 
-mortality_matrix <- generate_base_mortality(2, 0:5, generate_mortality = Backgrnd_Mortality_var) 
 
-
+# Option # 2
+# generate_base_mortality <- function(t=seq(50,0.55), age = 0:49) {
+#
+#   base_mortality = exp(-(1/age)*t)*0.1
+#
+#   return(base_mortality)
+# }
