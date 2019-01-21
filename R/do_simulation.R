@@ -1,4 +1,4 @@
-# do_simiulation
+
 #' do_simulation
 #'
 #' a function that simulates an age and time structured population from a non-mechanistic model.
