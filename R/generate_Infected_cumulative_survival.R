@@ -3,7 +3,7 @@
 #' a function that returns an array of cumulative probabilities of survival -i.e. not dying by natural cause/excess mortality
 #'
 #' @param generate_Infected_cumulative_survival_array a survival probability matrix
-#' @return a array calculated from the generate_Infected_survival_array
+#' @return an array calculated from the generate_Infected_survival_array
 #' Values stored in an array are numeric-double, from 0-1, each value represents the  probability of surviving to **a/beyond???** specified age and time having been infected for "time since infection".
 #' @examples x <- generate_infected_cumulative_survival_matrix
 #' (matrix(seq(0.01, 0.16, 0.01), ncol = 2 , nrow = 8))
@@ -38,3 +38,11 @@ generate_infected_cumulative_survival_matrix <- function(infected_survival_rate_
 
 
 y <- generate_infected_cumulative_survival_matrix(infected_survival_rate_array)
+infected_cumulative_survival_matrix[, , 1] * infected_survival_rate_array[, , 1]
+infected_cumulative_survival_matrix[1, 1, 2] * infected_survival_rate_array[1, 1, 2]
+infected_cumulative_survival_matrix[1, 1, 3] * infected_survival_rate_array[1, 1, 3]
+
+
+infected_cumulative_survival_matrix[1, 2, 1] * infected_survival_rate_array[1, 2, 1]
+infected_cumulative_survival_matrix[1, 2, 2] * infected_survival_rate_array[1, 2, 2]
+infected_cumulative_survival_matrix[1, 2, 3] * infected_survival_rate_array[3, 1, 3]
