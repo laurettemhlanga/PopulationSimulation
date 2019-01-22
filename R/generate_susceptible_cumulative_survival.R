@@ -1,10 +1,10 @@
-#' generate_susceptible_cumulative_survival
+#' generate_susceptible_survival
 #'
 #' a function that returns a matrix of cumulative probabilities of survival -i.e. not dying and aquiring infection - for each age and time step of the simulation
 #'
-#' @param susceptible_survival_rate_matrix a survival probability matrix, as defined by the generate_susceptible_surv_rate function
-#' @return a matrix of column length age_steps and row length birth_dates, calculated from the susceptible_survival_rate_matrix
-#' Values stored in the matrix are numeric-double, from 0-1, which represent the cumulative probability of not dying and not aquiring infection among the susceptible population
+#' @param susceptible_survival_rate_matrix a survival probability matrix
+#' @return a matrix calculated from the susceptible_survival_rate_matrix
+#' Values stored in the matrix are numeric-double, from 0-1, which represent the  probability of surviving a specified age from birth in the susceptible population.
 #' @examples x <- generate_susceptible_cumulative_survival_matrix
 #' (matrix(seq(0.01, 0.16, 0.01), ncol = 2 , nrow = 8))
 
@@ -35,3 +35,9 @@ generate_susceptible_cumulative_survival_matrix <- function(susceptible_survival
   }
   return(susceptible_cumulative_survival_matrix)
 }
+
+
+susceptible_survival_rate_matrix <- matrix(seq(0.01, 0.24, 0.01), ncol = 3, nrow = 8)
+
+x <- generate_susceptible_cumulative_survival_matrix(matrix(seq(0.01, 0.24, 0.01), ncol = 3, nrow = 8))
+

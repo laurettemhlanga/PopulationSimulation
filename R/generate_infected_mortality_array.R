@@ -2,7 +2,7 @@
 #'
 #' a function that returns a matrix of probabilities of mortality for each age and time step of the simulation
 #'
-#' @param age_steps a number. Indicates the number of steps forward each age group will be aged in the simulation by the do_sim function
+#' @param age_steps denotes the number of steps forward each age group will be aged in the simulation by the do_sim function
 #' @param birth_dates a numeric vector of length min:max; indicates the range of ages to be included in simulation. Note that date format is not used.
 #' @param generate_base_mortality_fun a function which takes as arguments age and time and returns a numberic rate of mortality for each age and time included in the simulation.
 #' This function can be defined by user or can be selected from among several default options included in the package.
@@ -21,18 +21,23 @@ generate_infected_mortality_array <- function(age_steps, birth_dates,
                                               generate_base_mortality_fun)
 {
 
-  times  <-  0 : length(birth_dates)
+
+  times  <-  0:(max(birth_dates) - min(birth_dates))
   ages <- 0:age_steps
-  infected_mortality_array <-  array(NA, dim = c(length(times)+ age_steps, length(ages), length(ages)))
+  infected_mortality_array <-  array(NA, dim = c(length(times) + length(ages), length(ages), length(ages)))
 
   for (aa in ages){
     for (ta in ages){
 
-      infected_mortality_array[times + aa +1, aa + 1, ta + 1] = 1 - generate_base_mortality_fun(times + aa, aa) * generate_excess_mortality_tau_fun(times + aa, aa, ta)
-
+      infected_mortality_array[times + aa + 1, aa + 1, ta + 1] = exp(-(generate_base_mortality_fun(times + aa, aa) * generate_excess_mortality_tau_fun(times + aa, aa, ta)))
+        # R counts from 1 and hence 1 is added to account for the age 0
     }
   }
 
   return(infected_mortality_array)
 
 }
+
+x <- generate_infected_mortality_array (age_steps = 2, birth_dates = 1992:1995,
+                                       generate_excess_mortality_tau_fun = generate_excess_mortality_tau,
+                                       generate_base_mortality_fun = generate_base_mortality)
