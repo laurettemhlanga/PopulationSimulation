@@ -17,6 +17,7 @@
 #' generate_base_mortality_fun = generate_base_mortality)
 
 generate_infected_mortality_array <- function(age_steps, birth_dates,
+                                              delta = 1,
                                               generate_excess_mortality_tau_fun,
                                               generate_base_mortality_fun)
 {
@@ -29,7 +30,7 @@ generate_infected_mortality_array <- function(age_steps, birth_dates,
   for (aa in ages){
     for (ta in ages){
 
-      infected_mortality_array[times + aa + 1, aa + 1, ta + 1] = exp(-(generate_base_mortality_fun(times + aa, aa) * generate_excess_mortality_tau_fun(times + aa, aa, ta)))
+      infected_mortality_array[times + aa + 1, aa + 1, ta + 1] = exp(-(generate_base_mortality_fun(times + aa, aa) * generate_excess_mortality_tau_fun(times + aa, aa, ta)) * delta)
         # R counts from 1 and hence 1 is added to account for the age 0
     }
   }

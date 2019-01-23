@@ -15,7 +15,8 @@
 #'  infected_pop_counts = matrix(1:21, 7, 3))
 
 
-generate_infected_population  <- function(infected_mortality_matrix,infected_pop_counts)
+generate_infected_population  <- function(infected_mortality_matrix,
+                                          infected_pop_counts)
 {
 
   #the function simulates the infected population at time tt aged aa and were infected at age aa_0

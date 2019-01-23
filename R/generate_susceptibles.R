@@ -5,6 +5,12 @@
 #' @param cumulative_survival_matrix matrix of survival probabilities for each age and time.
 #' @param birth_counts vector of numberic values representing the number of  births and each time between time_1 and time_2.
 #' @return a matrix of the susceptible at specified ages and calculations. Numeric values in each cell of the matrix represent the number of individuals in the population who are alive and not infected
+#' @example
+#'
+#'
+#'
+#'
+#'
 
 generate_susceptibles <- function(cumulative_survival_matrix,
                                   birth_counts)
@@ -20,7 +26,7 @@ generate_susceptibles <- function(cumulative_survival_matrix,
   for (aa in seQ){
 
     if (aa >= 0){
-
+       # do we need the if statement seQ can be 0:max(delta_d)
       susceptible_pop_counts[delta_d == aa]  = cumulative_survival_matrix[delta_d == aa] * birth_counts[aa + 1] #(R strats counting at 1 i.e indexing birth_counts[0] yield an error)
 
     }else{
