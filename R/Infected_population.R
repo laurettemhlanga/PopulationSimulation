@@ -1,27 +1,83 @@
 #' generate_infected_mortality_array
 #'
-#' a function that returns a matrix of probabilities of mortality for each age and time step of the simulation
+#' a function that simulates the infected population from a the susceptibles, incidence and the probalility of surviving to a given age and time having been infected for a time "time_since_infection"
 #'
-#' @param age_steps denotes the number of steps forward each age group will be aged in the simulation by the do_sim function
-#' @param birth_dates a numeric vector of length min:max; indicates the range of ages to be included in simulation. Note that date format is not used.
-#' @param generate_base_mortality_fun a function which takes as arguments age and time and returns a numberic rate of mortality for each age and time included in the simulation.
-#' This function can be defined by user or can be selected from among several default options included in the package.
-#' The user-defined or package default function should be called by name when included as an argument in the generate_base_mortality_matrix function.
-#' @param generate_excess_mortality_tau_fun a function which takes as arguments age, time and tau - i.e. the time since infection among the infected population - and returns a numberic rate of mortality for each age and time included in the simulation
-#' This function can be defined by user or can be selected from among several default options included in the package.
-#' The user-defined or package default function should be called by name when included as an argument in the generate_base_mortality_matrix function.
-#' @return returns an array of dimensions time, age and time since infection
+#' @param incidence_fun denotes a  incidence function that yields the probabilities of getting infected at a given age and time.
+#' @param mortality_fun denotes a  moratlity function that yields the probabilities of not dying either from the condition or other natural causes of death.
+#' @param susceptible_fun denotes a function that calculates the number of people who where susceptible at a given age and time
+#' @return returns an array of dimensions time, age and "time_since_infection"
 #' @examples
 #' x <- generate_infected_mortality_array (age_steps = 2, birth_dates = 1992:1995,
 #' generate_excess_mortality_tau_fun = generate_excess_mortality_tau,
 #' generate_base_mortality_fun = generate_base_mortality)
+#'
+#'
+#'
 
-generate_infected_population_array <- function(mortality_fun,
-                                               susceptible_fun,
-                                               incidence_fun)
+
+
+
+generate_incidence_matrix <- function(age_steps,
+                                      birth_dates,
+                                      generate_incidence_fun)
 {
-   infected_population_array <-  array(NA, dim = dim(mortality_fun))
-   infected_population_array[ , , 1] <- incidence_fun()*mortality_fun
+
+  incidence_matrix  = matrix(NA, nrow = length(birth_dates) + age_steps, ncol =  length(1:age_steps))
+  times  = 0:length(birth_dates)
+
+  for (aa in 1:age_steps){
+
+    incidence_matrix[times + aa, aa] =  generate_incidence_fun(times + aa, aa)
+
+  }
+
+  return(incidence_matrix)
+}
+
+
+
+
+generate_susceptibles <- function(cumulative_survival_matrix,
+                                  birth_counts)
+{
+
+  delta_d <- row(cumulative_survival_matrix) - col(cumulative_survival_matrix)
+  susceptible_pop_counts  = matrix(NA, nrow = nrow(cumulative_survival_matrix), ncol =  ncol(cumulative_survival_matrix))
+
+  susceptible_pop_counts[(1:length(birth_counts)), ] =  birth_counts
+
+  seQ = min(delta_d):max(delta_d)
+
+  for (aa in seQ){
+
+    if (aa >= 0){
+      # do we need the if statement seQ can be 0:max(delta_d)
+      susceptible_pop_counts[delta_d == aa]  = cumulative_survival_matrix[delta_d == aa] * birth_counts[aa + 1] #(R strats counting at 1 i.e indexing birth_counts[0] yield an error)
+
+    }else{
+
+      susceptible_pop_counts[delta_d == aa] = NA
+
+    }
+  }
+  return(susceptible_pop_counts)
+
+}
+
+
+
+
+
+
+generate_infected_population_array <- function(incidence_fun,
+                                               mortality_fun,
+                                               susceptible_fun
+                                               )
+{
+
+  for (aa in 1:ncol())
+   infected_population_array <-  array(NA, dim = dim(mortality_matrix))
+   infected_population_array[ , , 1] <- incidence_fun()*mortality_fun()
 
    for(aa in bla){
 

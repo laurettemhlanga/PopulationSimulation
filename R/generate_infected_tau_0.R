@@ -8,8 +8,8 @@
 #' @param susceptible_pop_counts a matrix of incidence, as defined by the generate_incidence_matrix function
 #' @return a matrix of row length age_steps and column length birth_dates. Numeric values in each cell of the matrix
 #' represent the number of infected individuals in the population whose time since infection is 0
-#' @examples x <- generate_infected_tau_0 (incidence_matrix = matrix(rep(0.04, 4), 2, 2),
-#' susceptible_pop_counts = matrix(rep(100, 4), 2, 2))
+#' @examples x <- generate_infected_tau_0 (incidence_matrix = matrix(rep(seq(0.1, 1, 1/10), 10), 10, 10),
+#' susceptible_pop_counts = matrix(seq(100,1000, 10), 10, 10))
 
 
 generate_infected_tau_0 <- function(incidence_matrix,
