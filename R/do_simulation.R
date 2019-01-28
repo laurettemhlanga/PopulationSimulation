@@ -68,6 +68,12 @@ do_simiulation <- function (total_births,
   #
   # infected_pop_counts <- generate_infected_population (infected_tau_0_counts, infected_mortality_array) # do we need a matrix version of this
 
+
+  infected_Survival_probs <- generate_infected_mortality_array (age_steps = age_steps, birth_dates = birth_dates,
+                                                                generate_excess_mortality_tau_fun = generate_excess_mortality_tau,
+                                                                generate_base_mortality_fun = generate_base_mortality)
+
+
   prevalence <- infected_tau_0_counts/ (susceptible_pop_counts + infected_tau_0_counts)
   output <- list (infected_tau_0_counts, susceptible_pop_counts, prevalence)
 

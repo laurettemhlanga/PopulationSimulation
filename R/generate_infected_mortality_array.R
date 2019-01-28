@@ -23,14 +23,15 @@ generate_infected_mortality_array <- function(age_steps, birth_dates,
 {
 
 
-  times  <-  1:(max(birth_dates) - min(birth_dates))
-  ages <- 1:age_steps
-  infected_mortality_array <-  array(NA, dim = c(length(times) + length(ages), length(ages), length(ages)))
+  times  <- 0:(max(birth_dates) - min(birth_dates))
+  ages <- 0:age_steps
+  infected_mortality_array <-  array(NA, dim = c((length(times) + length(ages)-1), length(ages)-1, length(ages)-1))
+  #infected_mortality_array[1, , ] <- rep(1, ((nrow(infected_mortality_array) - ncol(infected_mortality_array)) + 1))
 
   for (aa in ages){
     for (ta in ages){
 
-      infected_mortality_array[times + aa + 1, aa + 1, ta + 1] = exp(-(generate_base_mortality_fun(times + aa, aa) * generate_excess_mortality_tau_fun(times + aa, aa, ta)) * delta)
+      infected_mortality_array[times + aa, aa, ta ] = exp(-(generate_base_mortality_fun(times + aa -1, aa - 1) * generate_excess_mortality_tau_fun(times + aa, aa, ta)) * delta)
         # R counts from 1 and hence 1 is added to account for the age 0
     }
   }
@@ -39,6 +40,7 @@ generate_infected_mortality_array <- function(age_steps, birth_dates,
 
 }
 
-infected_Survival_probs <- generate_infected_mortality_array (age_steps = 3, birth_dates = 1945:195,
+infected_survival_probs <- generate_infected_mortality_array (age_steps = 3, birth_dates = 1945:1950,
                                                      generate_excess_mortality_tau_fun = generate_excess_mortality_tau,
                                                      generate_base_mortality_fun = generate_base_mortality)
+dim(infected_Survival_probs)
