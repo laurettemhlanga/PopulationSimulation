@@ -37,6 +37,12 @@ generate_susceptible_cumulative_survival_matrix <- function(susceptible_survival
 }
 
 
+
+
+
+
+
+
 susceptible_survival_rate_matrix <- matrix(seq(0.01, 0.24, 0.01), ncol = 3, nrow = 8)
 
 x <- generate_susceptible_cumulative_survival_matrix(matrix(seq(0.01, 0.24, 0.01), ncol = 3, nrow = 8))

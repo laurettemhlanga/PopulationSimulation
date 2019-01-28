@@ -15,74 +15,47 @@
 #'
 
 
-
-
-generate_incidence_matrix <- function(age_steps,
-                                      birth_dates,
-                                      generate_incidence_fun)
+generate_infected_population_array <- function(susceptible_pop_counts,
+                                               incidence_prob,
+                                               survival_probability)
 {
 
-  incidence_matrix  = matrix(NA, nrow = length(birth_dates) + age_steps, ncol =  length(1:age_steps))
-  times  = 0:length(birth_dates)
 
-  for (aa in 1:age_steps){
+   infected_population_array <-  array(NA, dim = c(dim(survival_probability)[1], dim(survival_probability)[2],(dim(survival_probability)[3]+1)))
+   infected_population_array[ , , 1] <- incidence_prob * susceptible_pop_counts
 
-    incidence_matrix[times + aa, aa] =  generate_incidence_fun(times + aa, aa)
 
+
+   for (times in 1:nrow(susceptible_pop_counts)){
+
+     for(aa in 1:ncol(susceptible_pop_counts)){
+
+       for (ta in 2:aa){
+
+         if (any(times - (ta - 1) <= 0 | aa - (ta - 1) <= 0)){
+
+           infected_population_array[times, aa ,ta] <- 0
+
+         }else{
+
+            infected_population_array[times, aa ,ta] <- incidence_matrix[times - (ta - 1), aa - (ta - 1)] *  susceptible_pop_counts[times - (ta - 1), aa - (ta - 1)] * survival_probability[times - (ta - 1), aa - (ta - 1), (ta - 1)]
+
+         }
+
+        }
+     }
   }
 
-  return(incidence_matrix)
-}
-
-
-
-
-generate_susceptibles <- function(cumulative_survival_matrix,
-                                  birth_counts)
-{
-
-  delta_d <- row(cumulative_survival_matrix) - col(cumulative_survival_matrix)
-  susceptible_pop_counts  = matrix(NA, nrow = nrow(cumulative_survival_matrix), ncol =  ncol(cumulative_survival_matrix))
-
-  susceptible_pop_counts[(1:length(birth_counts)), ] =  birth_counts
-
-  seQ = min(delta_d):max(delta_d)
-
-  for (aa in seQ){
-
-    if (aa >= 0){
-      # do we need the if statement seQ can be 0:max(delta_d)
-      susceptible_pop_counts[delta_d == aa]  = cumulative_survival_matrix[delta_d == aa] * birth_counts[aa + 1] #(R strats counting at 1 i.e indexing birth_counts[0] yield an error)
-
-    }else{
-
-      susceptible_pop_counts[delta_d == aa] = NA
-
-    }
-  }
-  return(susceptible_pop_counts)
-
-}
-
-
-
-
-
-
-generate_infected_population_array <- function(incidence_fun,
-                                               mortality_fun,
-                                               susceptible_fun
-                                               )
-{
-
-  for (aa in 1:ncol())
-   infected_population_array <-  array(NA, dim = dim(mortality_matrix))
-   infected_population_array[ , , 1] <- incidence_fun()*mortality_fun()
-
-   for(aa in bla){
-
-  }
 
   return(infected_population_array)
 
 }
+
+
+infected_population_array[3,3 ,3] <- incidence_matrix[3 - (3 - 1), 3- (3- 1)] *  susceptible_pop_counts[3 - (3 - 1), 3- (3- 1)] * survival_probability[3 - (3 - 1), 3- (3- 1), (3 - 1)]
+
+generate_infected_population_array(susceptible_pop_counts = susceptible_pop_counts,
+                                   incidence_prob = incidence_matrix,
+                                   survival_probability = infected_survival_probs)
+
+
