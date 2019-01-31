@@ -30,7 +30,7 @@
 #'                         generate_birth_counts_fun = generate_birth_counts,
 #'                         generate_incidence_fun = generate_incidence,
 #'                         generate_base_mortality_fun = generate_base_mortality,
-#'                         generate_base_mortality_tau_fun = generate_excess_mortality_tau)
+#'                         generate_excess_mortality_tau_fun = generate_excess_mortality_tau)
 
 
 do_simiulation <- function (total_births,
