@@ -23,21 +23,24 @@ infected_population_a <- function(susceptible,
                                 mortality_fun)
 {
   infected_population_a <- array(NA, dim = c(nrow(susceptible), ncol(susceptible), ((dim(mortality_fun))[3] + 1)))
-  infected_population_a [ , ,1] <-  susceptible * incidence_fun
+  #infected_population_a [ , ,1] <-  susceptible * incidence_fun
 
   for (time in 0:nrow(susceptible)){
 
-    for (age in 0:ncol(susceptible)){
+    for (age in 1:ncol(susceptible)){
 
-      for (tau in 1:age){
+        taus = 1:age
 
-        if (time  - tau <= 0 || age - tau <= 0){
+        for (tau in taus){
 
-          infected_population_a[time, age, tau -1] <-  0
+        if (time  - tau < 0 || age - tau < 0){
+
+          infected_population_a[time, age, tau ] <-  NA
+
 
         }else{
 
-          infected_population_a[time, age, tau + 1] <-  susceptible[time - tau +1, age - tau ] *incidence_fun [time - tau , age- tau ] * mortality_fun[time, age, tau]
+          infected_population_a[time, age, tau + 1] <-  susceptible[time - tau, age - tau ] *incidence_fun [time - tau , age- tau ] * mortality_fun[time, age, tau]
           }
         }
 

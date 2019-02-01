@@ -36,6 +36,10 @@ generate_infected_cumulative_survival_matrix <- function(infected_survival_rate_
   return(infected_cumulative_survival_matrix)
 }
 
+##deserted because we not certain if the thought makes sense and if there is such in existance !!!
+
+
+
 
 y <- generate_infected_cumulative_survival_matrix(infected_survival_rate_array)
 infected_cumulative_survival_matrix[, , 1] * infected_survival_rate_array[, , 1]

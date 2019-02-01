@@ -21,3 +21,5 @@ generate_infected_tau_0 <- function(incidence_matrix,
 
   return(infected_tau_0)
 }
+
+# now that we allowing it to be called in the infecte[,,tau] function do we still need it
