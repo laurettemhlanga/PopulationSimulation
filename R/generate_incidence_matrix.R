@@ -17,14 +17,16 @@ generate_incidence_matrix <- function(age_steps,
                                       generate_incidence_fun)
 {
 
-  incidence_matrix  = matrix(NA, nrow = length(birth_dates) + age_steps, ncol =  length(1:age_steps))
-  times  = 0:length(birth_dates)
+  incidence_matrix <-  matrix(NA, nrow = length(birth_dates) + age_steps, ncol =  length(0:age_steps))
+  times  <-  0:(max(birth_dates) - min(birth_dates))
+  ages <-  0:age_steps
+  for (aa in ages){
 
-  for (aa in 1:age_steps){
-
-    incidence_matrix[times + aa, aa] =  generate_incidence_fun(times + aa, aa)
+    incidence_matrix[times + (aa + 1) , aa +1] =  generate_incidence_fun(times + aa, aa)
 
   }
 
   return(incidence_matrix)
 }
+
+incidence_m <- generate_incidence_matrix (age_steps = 3, birth_dates = 0:5, generate_incidence)

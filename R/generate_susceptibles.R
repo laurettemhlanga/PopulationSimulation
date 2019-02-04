@@ -6,7 +6,7 @@
 #' @param birth_counts vector of numberic values representing the number of  births and each time between time_1 and time_2.
 #' @return a matrix of the susceptible at specified ages and calculations. Numeric values in each cell of the matrix represent the number of individuals in the population who are alive and not infected
 #' @example
-#'
+#' susceptible_pop_counts <- generate_susceptibles(susceptible_cumulative_survival_matrix, birth_counts)
 #'
 #'
 #'
@@ -38,3 +38,10 @@ generate_susceptibles <- function(cumulative_survival_matrix,
   return(susceptible_pop_counts)
 
 }
+
+
+susceptible_pop_counts <- generate_susceptibles(cumulative_survival_matrix = survival_prob,
+                                                birth_counts = birth_count)
+
+
+

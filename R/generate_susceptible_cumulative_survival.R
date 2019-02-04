@@ -47,3 +47,51 @@ susceptible_survival_rate_matrix <- matrix(seq(0.01, 0.24, 0.01), ncol = 3, nrow
 
 x <- generate_susceptible_cumulative_survival_matrix(matrix(seq(0.01, 0.24, 0.01), ncol = 3, nrow = 8))
 
+
+#Option B embed the the  suscptible survival matrix within the    Cumulative survival rate and have one function
+
+
+
+susceptible_cumulative_survival_matrix <- function(incidence_matrix,
+                                                   base_mortality_matrix,
+                                                   delta = 1)
+
+{
+
+  susceptible_survival_rate_matrix = exp( - ((incidence_matrix * base_mortality_matrix) * delta))
+  #calculate the survival rate matrix
+
+  susceptible_cumulative_survival_matrix <- matrix(NA, ncol = ncol(susceptible_survival_rate_matrix), nrow = nrow(susceptible_survival_rate_matrix))
+
+  column_1 <- (nrow(susceptible_survival_rate_matrix) - ncol(susceptible_survival_rate_matrix))+1
+
+  susceptible_cumulative_survival_matrix[1: column_1, 1] = rep(1,  column_1)
+
+  for  (aa in 2:ncol(susceptible_survival_rate_matrix)){
+    for (tt in 2 : nrow(susceptible_survival_rate_matrix)){
+
+      if (!is.na(susceptible_survival_rate_matrix[tt, aa]) == T){
+
+        susceptible_cumulative_survival_matrix[tt , aa ] = susceptible_cumulative_survival_matrix[tt-1, aa - 1] * susceptible_survival_rate_matrix[tt - 1 , aa -1]
+
+      }else{
+        susceptible_cumulative_survival_matrix[tt, aa]  = NA
+
+      }
+
+    }
+  }
+  return(susceptible_cumulative_survival_matrix)
+}
+
+
+
+incidence_m <- generate_incidence_matrix (age_steps = 3, birth_dates = 0:5, generate_incidence)
+base_mortality_m <- generate_base_mortality_matrix(3, 0:5, generate_base_mortality_fun = generate_base_mortality)
+
+
+survival_prob <- susceptible_cumulative_survival_matrix(incidence_matrix = incidence_m,
+                                                        base_mortality_matrix = base_mortality_m,
+                                                        delta = 1)
+
+

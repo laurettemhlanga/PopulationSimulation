@@ -19,12 +19,13 @@ generate_base_mortality_matrix <- function(age_steps,
                                            generate_base_mortality_fun)
 {
 
-  mortality_matrix  = matrix(NA, nrow = length(birth_dates) + age_steps, ncol =  length(1:age_steps))
-  times  = 0:length(birth_dates)
+  mortality_matrix  = matrix(NA, nrow = length(birth_dates) + age_steps, ncol =  length(0:age_steps))
+  times  = 0:(max(birth_dates) - min(birth_dates))
+  for (aa in (0:age_steps)){
 
-  for (aa in 1:age_steps){
-
-    mortality_matrix[times + aa, aa] =  generate_base_mortality_fun(times + aa, aa)
+    mortality_matrix[times + (aa + 1), (aa + 1)] =  generate_base_mortality_fun(times + aa, aa)
   }
   return(mortality_matrix)
 }
+
+generate_base_mortality_matrix(3, 0:5, generate_base_mortality_fun = generate_base_mortality)
