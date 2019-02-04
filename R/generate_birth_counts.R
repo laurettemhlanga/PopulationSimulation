@@ -12,7 +12,10 @@
 #' @examples
 #' generate_birth_counts(1000, 1984:1990, 1)
 #' generate_birth_counts(10000, 2005 : 2018, 1)
-
+#'
+#' birth_count <- generate_birth_counts_fun (total_births = 1000,
+#'  birth_dates = 1945:1950,
+#'  delta = 1)
 
 generate_birth_counts <- function(total_births,
                                   birth_dates, delta){

@@ -33,16 +33,16 @@ generate_infected_population_array <- function(susceptible_pop_counts,
 
      for(aa in 1:ncol(susceptible_pop_counts)){
 
-       for (ta in 2:dim(infected_population_array)[3]){
+       for (ta in 1:ncol(susceptible_pop_counts)){
 
          if (any(times - (ta ) <= 0 || aa - (ta ) <=  0)){
 
-           infected_population_array[times, aa ,ta ] <- 0
+           infected_population_array[times, aa ,ta + 1] <- 0
 
          }else{
 
 
-           infected_population_array[times, aa ,ta ] <- incidence_matrix[times - (ta ), aa - (ta)] *
+           infected_population_array[times, aa ,ta + 1] <- incidence_matrix[times - (ta ), aa - (ta)] *
              susceptible_pop_counts[times - (ta ), aa - (ta )] *
              survival_probability[times - (ta ), aa - (ta ), (ta )]
 
@@ -62,9 +62,7 @@ generate_infected_population_array <- function(susceptible_pop_counts,
 
 
 
-Infected <- generate_infected_population_array(susceptible_pop_counts = susceptible_pop_counts,
-                                               incidence_prob = incidence_m,
-                                               survival_probability = infected_survival_probs)
+
 
 
 

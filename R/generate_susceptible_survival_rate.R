@@ -29,7 +29,7 @@
 
 #Option B_ 2019
 
-generate_susceptible_surv_rate <- function(incidence_matrix,
+susceptible_surv_rate <- function(incidence_matrix,
                                            base_mortality_matrix,
                                            delta = 1)
 {
@@ -41,13 +41,9 @@ generate_susceptible_surv_rate <- function(incidence_matrix,
 }
 
 
-x <- generate_susceptible_surv_rate (matrix(seq(0.01, 0.16, 0.01),
-                                            ncol = 2 , nrow = 8),
-                                     matrix(seq(0.01, 0.16, 0.01),
-                                            ncol = 2 , nrow = 8))
 
 
-# y <- generate_susceptible_surv_rate (matrix(seq(0.01, 0.16, 0.01),
+# y <- susceptible_surv_rate (matrix(seq(0.01, 0.16, 0.01),
 #                                             ncol = 2 , nrow = 8),
 #                                      matrix(seq(0.01, 0.16, 0.01),
 #                                             ncol = 2 , nrow = 8))
