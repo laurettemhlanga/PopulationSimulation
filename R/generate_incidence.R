@@ -28,3 +28,4 @@ generate_incidence <- function(t, constant = 0.05, age_min = 0,
 
   return(incidence)
 }
+
