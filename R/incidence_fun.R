@@ -1,4 +1,4 @@
-#' generate_incidence
+#' incidence_fun
 #'
 #' a function that takes as arguments age and time and returns a numeric vector of length 1
 #' representing a rate of incidence at the indicated age and time
@@ -16,7 +16,7 @@
 #' @return a numeric vector that represents the incidence rate at age and time.
 
 # Option 1
-generate_incidence <- function(t, constant = 0.05, age_min = 0,
+incidence_fun <- function(t, constant = 0.05, age_min = 0,
                                age_max = 50,  age_peak= 25,
                                Imin =0.01,  Ipeak =0.05,
                                Ifin =0.02)

@@ -1,19 +1,19 @@
-#' generate_infected_population_array
+#' infected_population_fun
 #'
 #' a function that simulates the infected population from a the susceptibles, incidence and the probalility of surviving to a given age and time having been infected for a time "time_since_infection"
 #'
-#' @param incidence_fun denotes a  incidence function that yields the probabilities of getting infected at a given age and time.
-#' @param mortality_fun denotes a  moratlity function that yields the probabilities of not dying either from the condition or other natural causes of death.
-#' @param susceptible_fun denotes a function that calculates the number of people who where susceptible at a given age and time
-#' @return returns an array of dimensions time, age and "time_since_infection"
+#' @param incidence_prob denotes a  incidence matrix that yields the probabilities of getting infected at a given age and time.
+#' @param survival_probability is the survival probability matrix associated with being infected at age a, time t, and for tau years.
+#' @param susceptible_pop_counts denotes a function that calculates the number of people who where susceptible at a given age and time
+#' @return returns an array of dimensions time, age and "time_since_infection - tau"
 #' @examples
-#' Infected <- generate_infected_population_array(susceptible_pop_counts = susceptible_pop_counts,
+#' Infected <- infected_population_fun(susceptible_pop_counts = susceptible_pop_counts,
 #'  incidence_prob = incidence_m,survival_probability = infected_survival_probs)
 #'
 #'
 
 
-generate_infected_population_array <- function(susceptible_pop_counts,
+infected_population_fun <- function(susceptible_pop_counts,
                                                incidence_prob,
                                                survival_probability)
 {
@@ -33,11 +33,11 @@ generate_infected_population_array <- function(susceptible_pop_counts,
 
       for (ta in 1:(dim(infected_population_array)[3] - 1)){
 
-        if (any(((times - ta ) <= 0 || (aa - ta ) <=  0)) ){
+        if (any((times - ta ) <= 0 || (aa - ta ) <=  0)){
 
 
           infected_population_array[times, aa ,ta  + 1 ] <-  ifelse(is.na(susceptible_pop_counts[times , aa]) == T, NA , 0)
-          #ensures the entries that have NA by design are maintained
+          #ensures the entries that have NA by design are maintained as NAs and all other entries 0
 
         }else{
 
@@ -45,6 +45,7 @@ generate_infected_population_array <- function(susceptible_pop_counts,
           infected_population_array[times, aa ,ta + 1 ] <- incidence_prob[(times - ta), (aa - ta)] *
             susceptible_pop_counts[(times - ta), (aa - ta )] *
             survival_probability[(times - ta ), (aa - ta ), ta]
+          #not sure if we should be subtracting the tau in survival probabilities
 
 
         }
@@ -58,10 +59,10 @@ generate_infected_population_array <- function(susceptible_pop_counts,
 
 }
 
-infected <- generate_infected_population_array(susceptible_pop_counts = susceptible_pop_counts,
-                                               incidence_prob = incidence_m,
-                                               survival_probability = infected_survival_probs)
-
+# infected <- infected_population_fun(susceptible_pop_counts = susceptible_pop_counts,
+#                                                incidence_prob = incidence_m,
+#                                                survival_probability = infected_survival_probs)
+#
 
 
 

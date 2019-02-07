@@ -1,4 +1,4 @@
-#' generate_base_mortality
+#' base_mortality_fun
 #'
 #' a function that takes as arguments age and time and returns a numeric vector of length equivelent to the number of times indicated by the simulation
 #' representing a rate of mortality at the indicated age and time
@@ -12,10 +12,11 @@
 #' @param exmin numeric, indicates minimum mortality, which is at age_min
 #' @param exfin numeric, indicates maximum/final mortality at age_max, unless otherwise specified by user defined function
 #' @return a numeric vector that represents the mortality rate at t.
+#'
 
 #Option 1
 
-generate_base_mortality <- function(t, constant = 0.01, age_min = 1,
+base_mortality_fun <- function(t, constant = 0.01, age_min = 1,
                                     age_max = 50,
                                     exmin =0,
                                     exfin =0.01){
@@ -30,7 +31,7 @@ generate_base_mortality <- function(t, constant = 0.01, age_min = 1,
 
 
 # Option # 2
-# generate_base_mortality <- function(t=seq(50,0.55), age = 0:49) {
+# base_mortality_fun <- function(t=seq(50,0.55), age = 0:49) {
 #
 #   base_mortality = exp(-(1/age)*t)*0.1
 #

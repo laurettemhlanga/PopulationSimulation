@@ -1,4 +1,4 @@
-#' generate_excess_mortality_tau
+#' excess_mortality_fun
 #'
 #' a function that takes as arguments age,time and tau - which indicates the average time since infection among the infected population - and returns a numeric vector of length equivelent to the number of times indicated by the simulation
 #' representing a rate of excess mortality -i.e. among infected population relative to non-infected population - at the indicated age and time
@@ -13,7 +13,7 @@
 #' @param exfin numeric, indicates maximum/final excess mortality at age_max, unless otherwise specified by user defined function
 #' @return a numeric vector that represents the excess mortality rate at age and time.
 
-generate_excess_mortality_tau <- function(t, ta, constant = 0.05, age_min = 0,
+excess_mortality_fun <- function(t, ta, constant = 0.05, age_min = 0,
                                           age_max = 50,
                                           exmin =0.01,
                                           exfin =0.05)

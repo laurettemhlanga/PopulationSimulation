@@ -1,5 +1,5 @@
 
-#' generate_base_mortality_matrix
+#'base_mortality_matrix_fun
 #'
 #' a function that returns a matrix of probabilities of mortality for each age and time step of the simulation
 #'
@@ -11,10 +11,10 @@
 #' @return a matrix of column length age_steps and row length birth_dates.
 #' Values stored in the matrix are numeric-double, from 0-1, which represent the probability of dying at each age and time
 #' @examples mortality_matrix <-
-#' generate_base_mortality_matrix(2, 0:5, generate_base_mortality_fun = generate_base_mortality)
+#'base_mortality_matrix_fun(3, 0:5, generate_base_mortality_fun = base_mortality_fun)
 
 
-generate_base_mortality_matrix <- function(age_steps,
+base_mortality_matrix_fun <- function(age_steps,
                                            birth_dates,
                                            generate_base_mortality_fun)
 {
@@ -27,5 +27,3 @@ generate_base_mortality_matrix <- function(age_steps,
   }
   return(mortality_matrix)
 }
-
-generate_base_mortality_matrix(3, 0:5, generate_base_mortality_fun = generate_base_mortality)

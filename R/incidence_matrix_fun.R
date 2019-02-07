@@ -1,4 +1,4 @@
-#' generate_incidence_matrix
+#' incidence_matrix_fun
 #'
 #' a function that returns a matrix of probabilities for each age and time step of the simulation
 #'
@@ -9,10 +9,10 @@
 #' The user-defined or package default function should be called by name when included as an argument in the generate_incidence_matrix function.
 #' @return a matrix of column length age_steps and row length birth_dates,
 #' Values stored in the matrix are numeric double, from 0-1, which represent the probability of becoming infected at age and time
-#' @examples y <- generate_incidence_matrix (age_steps = 2, birth_dates = 10:15, generate_incidence)
+#' @examples incidence_m <-incidence_matrix_fun(age_steps = 3, birth_dates = 0:5, generate_incidence)
 
 
-generate_incidence_matrix <- function(age_steps,
+incidence_matrix_fun <- function(age_steps,
                                       birth_dates,
                                       generate_incidence_fun)
 {
@@ -29,4 +29,3 @@ generate_incidence_matrix <- function(age_steps,
   return(incidence_matrix)
 }
 
-incidence_m <- generate_incidence_matrix (age_steps = 3, birth_dates = 0:5, generate_incidence)
