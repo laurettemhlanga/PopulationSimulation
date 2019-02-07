@@ -9,7 +9,7 @@
 #' The user-defined or package default function should be called by name when included as an argument in the generate_incidence_matrix function.
 #' @return a matrix of column length age_steps and row length birth_dates,
 #' Values stored in the matrix are numeric double, from 0-1, which represent the probability of becoming infected at age and time
-#' @examples incidence_m <-incidence_matrix_fun(age_steps = 3, birth_dates = 0:5, generate_incidence)
+#'
 
 
 incidence_matrix_fun <- function(age_steps,

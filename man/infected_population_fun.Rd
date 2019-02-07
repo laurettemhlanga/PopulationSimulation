@@ -20,9 +20,3 @@ returns an array of dimensions time, age and "time_since_infection - tau"
 \description{
 a function that simulates the infected population from a the susceptibles, incidence and the probalility of surviving to a given age and time having been infected for a time "time_since_infection"
 }
-\examples{
-Infected <- infected_population_fun(susceptible_pop_counts = susceptible_pop_counts,
- incidence_prob = incidence_m,survival_probability = infected_survival_probs)
-
-
-}

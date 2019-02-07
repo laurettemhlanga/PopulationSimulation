@@ -21,14 +21,3 @@ Values stored in the matrix are numeric-double, from 0-1, which represent the  p
 \description{
 a function that returns a matrix of cumulative probabilities of survival -i.e. not dying and aquiring infection - for each age and time step of the simulation
 }
-\examples{
-incidence_m <- incidence_matrix_fun(age_steps = 3, birth_dates = 0:5, generate_incidence)
-base_mortality_m <- base_mortality_matrix_fun(3, 0:5, generate_base_mortality_fun = generate_base_mortality)
-survival_prob <- susceptible_cumulative_survival_fun(incidence_matrix = incidence_m,
-base_mortality_matrix = base_mortality_m, delta = 1)
-
-
-
-
-
-}

@@ -23,7 +23,3 @@ Values stored in the matrix are numeric-double, from 0-1, which represent the pr
 \description{
 a function that returns a matrix of probabilities of mortality for each age and time step of the simulation
 }
-\examples{
-mortality_matrix <-
-base_mortality_matrix_fun(3, 0:5, generate_base_mortality_fun = base_mortality_fun)
-}

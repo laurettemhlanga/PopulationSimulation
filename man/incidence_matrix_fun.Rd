@@ -22,6 +22,3 @@ Values stored in the matrix are numeric double, from 0-1, which represent the pr
 \description{
 a function that returns a matrix of probabilities for each age and time step of the simulation
 }
-\examples{
-incidence_m <-incidence_matrix_fun(age_steps = 3, birth_dates = 0:5, generate_incidence)
-}

@@ -7,13 +7,6 @@
 #' @param delta the time step between consecurtive birth_dates
 #' @param birth_dates the calender dates of births.
 #' @return Returns a vector of bith counts  from the inputs total_births, delta and birth_dates of length min-birth_dates:max-birth_dates
-#' @examples
-#' generate_birth_counts(1000, 1984:1990, 1)
-#' generate_birth_counts(10000, 2005 : 2018, 1)
-#'
-#' birth_count <- birth_counts (total_births = 1000,
-#'  birth_dates = 1945:1950,
-#'  delta = 1)
 #'
 
 

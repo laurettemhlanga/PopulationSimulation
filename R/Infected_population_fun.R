@@ -6,9 +6,7 @@
 #' @param survival_probability is the survival probability matrix associated with being infected at age a, time t, and for tau years.
 #' @param susceptible_pop_counts denotes a function that calculates the number of people who where susceptible at a given age and time
 #' @return returns an array of dimensions time, age and "time_since_infection - tau"
-#' @examples
-#' Infected <- infected_population_fun(susceptible_pop_counts = susceptible_pop_counts,
-#'  incidence_prob = incidence_m,survival_probability = infected_survival_probs)
+#'
 #'
 #'
 

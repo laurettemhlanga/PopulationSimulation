@@ -10,8 +10,7 @@
 #' The user-defined or package default function should be called by name when included as an argument in the generate_base_mortality_matrix function
 #' @return a matrix of column length age_steps and row length birth_dates.
 #' Values stored in the matrix are numeric-double, from 0-1, which represent the probability of dying at each age and time
-#' @examples mortality_matrix <-
-#'base_mortality_matrix_fun(3, 0:5, generate_base_mortality_fun = base_mortality_fun)
+
 
 
 base_mortality_matrix_fun <- function(age_steps,

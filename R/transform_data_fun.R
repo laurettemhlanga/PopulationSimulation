@@ -8,14 +8,7 @@
 #' @param small_delta the time difference between consecutive dates of birth (if not specified defaults to 1).
 #' The user-defined or package default function should be called by name when included as an argument in the generate_base_mortality_matrix function.
 #' @return returns a matrix with a rectangular format, labelled rows and columns
-#' @examples
 #'
-#' x <- generate_susceptible_cumulative_survival_matrix(matrix(seq(0.01, 0.24, 0.01),
-#' ncol = 3,
-#' nrow = 8))
-#'
-#' new_data <- transform_data(age_max = 2,data_to_transform = x,
-#' date_of_birth = c(1986, 1991),small_delta = 1)
 #'
 #'
 
