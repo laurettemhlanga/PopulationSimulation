@@ -13,8 +13,9 @@
 
 
 incidence_matrix_fun <- function(age_steps,
-                                      birth_dates,
-                                      generate_incidence_fun)
+                                 birth_dates,
+                                 generate_incidence_fun,
+                                 delta)
 {
 
   incidence_matrix <-  matrix(NA, nrow = length(birth_dates) + age_steps, ncol =  length(0:age_steps))
@@ -22,7 +23,7 @@ incidence_matrix_fun <- function(age_steps,
   ages <-  0:age_steps
   for (aa in ages){
 
-    incidence_matrix[times + (aa + 1) , aa +1] =  generate_incidence_fun(times + aa, aa)
+    incidence_matrix[times + (aa + 1) , aa +1] =  generate_incidence_fun(times + (aa + 0.5 * delta), (aa + 0.5 * delta))
 
   }
 

@@ -24,7 +24,7 @@ base_mortality_matrix_fun <- function(age_steps,
   times  = 0:(max(birth_dates) - min(birth_dates))
   for (aa in (0:age_steps)){
 
-    mortality_matrix[times + (aa + 1), (aa + 1)] =  generate_base_mortality_fun(times + aa, aa)
+    mortality_matrix[times + (aa + 1), (aa + 1)] =  generate_base_mortality_fun(times + (aa + 0.5 * delta), (aa + 0.5 * delta))
   }
   return(mortality_matrix)
 }
