@@ -13,9 +13,12 @@
 #' The user-defined or package default function should be called by name when included as an argument in the generate_base_mortality_matrix function.
 #' @return returns an array of dimensions time, age and time since infection - tau
 #'
+#' @export
 #'
 #'
 #'
+
+
 
 infected_mortality_array_fun <- function(age_steps,
                                      birth_dates,

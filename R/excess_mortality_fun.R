@@ -12,6 +12,8 @@
 #' @param exmin numeric, indicates minimum excess mortality, which is at age_min
 #' @param exfin numeric, indicates maximum/final excess mortality at age_max, unless otherwise specified by user defined function
 #' @return a numeric vector that represents the excess mortality rate at age and time.
+#'
+#' @export
 
 excess_mortality_fun <- function(t, ta, constant = 0.05, age_min = 0,
                                           age_max = 50,

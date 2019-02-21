@@ -14,7 +14,8 @@
 #' @param Ipeak numeric, indicates maximum incidence at Ipeak
 #' @param Ifin numeric, indicates incidence at Ipeak
 #' @return a numeric vector that represents the incidence rate at age and time.
-
+#'
+#' @export
 # Option 1
 incidence_fun <- function(t, constant = 0.05, age_min = 0,
                                age_max = 50,  age_peak= 25,

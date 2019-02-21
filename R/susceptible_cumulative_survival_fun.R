@@ -12,7 +12,8 @@
 #'
 #'
 #'
-
+#'
+#' @export
 
 susceptible_cumulative_survival_fun <- function(incidence_matrix,
                                                    base_mortality_matrix,

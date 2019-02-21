@@ -9,7 +9,8 @@
 #'
 #'
 #'
-
+#'
+#' @export
 
 infected_population_fun <- function(susceptible_pop_counts,
                                                incidence_prob,

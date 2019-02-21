@@ -8,9 +8,8 @@
 #' @param birth_dates the calender dates of births.
 #' @return Returns a vector of bith counts  from the inputs total_births, delta and birth_dates of length min-birth_dates:max-birth_dates
 #'
-
-
-
+#'
+#' @export
 
 birth_rate_fun <- function(birth_dates, delta){
   times = seq(0, max(birth_dates) - min(birth_dates), delta)

@@ -13,8 +13,10 @@
 #' @param exfin numeric, indicates maximum/final mortality at age_max, unless otherwise specified by user defined function
 #' @return a numeric vector that represents the mortality rate at t.
 #'
+#' @export
 
 #Option 1
+
 
 base_mortality_fun <- function(t, constant = 0.01, age_min = 1,
                                     age_max = 50,

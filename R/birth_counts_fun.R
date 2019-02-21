@@ -12,8 +12,8 @@
 #'
 #'
 #'
-
-
+#'
+#' @export
 
 birth_counts_fun <- function(total_births,
                              birth_dates,

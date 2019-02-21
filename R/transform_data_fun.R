@@ -11,6 +11,8 @@
 #'
 #'
 #'
+#'
+#' @export
 
 transform_data <- function(age_max,
                            data_to_transform,

@@ -11,6 +11,10 @@
 #'
 #'
 #'
+#'
+#' @export
+#'
+#'
 
 susceptible_population_fun <- function(cumulative_survival_matrix,
                                   birth_counts)
