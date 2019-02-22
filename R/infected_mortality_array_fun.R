@@ -39,21 +39,21 @@ infected_mortality_array_fun <- function(age_steps,
 
   age_index <- 1:length(ages)
   time_index <- 0:(length(times)-1)
-  times_since_i <- 1:length(times_since_i)
+  times_since_i <- 2:length(ages)
 
   counter <- 1
 
   for (aa in age_index){
-    for (ta in age_index[-1]){
-
-      infected_mortality_array[times + aa + 1, aa + 1, ta ] =
-        exp(-(base_mortality(times + (ages[counter]+ 0.5 * delta), (ages[counter] + 0.5 * delta)) *
+    for (ta in times_since_i){
+#aa= 7; ta = 7
+      infected_mortality_array[time_index + aa, aa, ta - 1] =
+        exp(-(base_mortality(times + (ages[counter]+ 0.5 * delta), (ages[counter] + 0.5 * delta)) +
                 excess_mortality(times + (ages[counter]+ 0.5 * delta), (ages[counter] + 0.5 * delta), (times_since_i[counter] + 0.5 * delta))) * delta)
 
-      # R counts from 1 and hence 1 is added to account for the age 0
-      counter <- counter + 1
 
-       }
+    }
+
+    counter <- counter + 1
   }
 
   return(infected_mortality_array)
