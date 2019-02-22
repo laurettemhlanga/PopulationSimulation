@@ -20,12 +20,22 @@ incidence_matrix_fun <- function(age_steps,
                                  delta)
 {
 
-  incidence_matrix <-  matrix(NA, nrow = length(birth_dates) + age_steps, ncol =  length(0:age_steps))
-  times  <-  0:(max(birth_dates) - min(birth_dates))
-  ages <-  0:age_steps
-  for (aa in ages){
+  times  <-  seq(min(birth_dates), max(birth_dates), delta)
+  ages <-    seq(0, age_steps, delta)
+  incidence_matrix <-  matrix(NA, nrow = length(times) + (length(ages)-1), ncol =  length(ages))
 
-    incidence_matrix[times + (aa + 1) , aa +1] =  generate_incidence_fun(times + (aa + 0.5 * delta), (aa + 0.5 * delta))
+  counter <- 1
+
+  age_index <- 1:length(ages)
+  time_index <- 0:(length(times)-1)
+
+  for (aa in age_index){
+    #aa = 1
+
+    incidence_matrix[time_index + aa , aa ] =  generate_incidence_fun(times + (ages[counter]+ 0.5 * delta),
+                                                                         (ages[counter] + 0.5 * delta))
+
+    counter <- counter + 1
 
   }
 

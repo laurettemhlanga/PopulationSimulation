@@ -4,8 +4,7 @@
 \alias{transform_data}
 \title{transform_data}
 \usage{
-transform_data(age_max, data_to_transform, date_of_birth,
-  small_delta = 1)
+transform_data(age_max, data_to_transform, date_of_birth, delta = 1)
 }
 \arguments{
 \item{age_max}{denotes the maximum age reached by each cohort.}
@@ -14,7 +13,7 @@ transform_data(age_max, data_to_transform, date_of_birth,
 
 \item{date_of_birth}{a vector with two numbers giving the minimum and maximum calender dates.}
 
-\item{small_delta}{the time difference between consecutive dates of birth (if not specified defaults to 1).
+\item{delta}{the time difference between consecutive dates of birth (if not specified defaults to 1).
 The user-defined or package default function should be called by name when included as an argument in the generate_base_mortality_matrix function.}
 }
 \value{

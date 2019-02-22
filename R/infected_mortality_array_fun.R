@@ -28,19 +28,32 @@ infected_mortality_array_fun <- function(age_steps,
 {
 
 
-  times  <- 0:(max(birth_dates) - min(birth_dates))
-  ages <- 0:age_steps
+  times  <- seq(min(birth_dates), max(birth_dates), delta)
+  ages <- seq(0, age_steps, delta)
+  times_since_i <- seq(1, age_steps, delta)
+
   infected_mortality_array <-  array(NA, dim = c((length(times) + length(ages)-1), length(ages), length(ages[-1])))
   #infected_mortality_array[1, , ] <- rep(1, ((nrow(infected_mortality_array) - ncol(infected_mortality_array)) + 1))
 
-  for (aa in ages){
-    for (ta in ages[-1]){
+  #indexing the times and ages vector
+
+  age_index <- 1:length(ages)
+  time_index <- 0:(length(times)-1)
+  times_since_i <- 1:length(times_since_i)
+
+  counter <- 1
+
+  for (aa in age_index){
+    for (ta in age_index[-1]){
 
       infected_mortality_array[times + aa + 1, aa + 1, ta ] =
-        exp(-(base_mortality(times + (aa + (0.5 * delta)), (aa + (0.5 * delta))) *
-                excess_mortality(times + (aa + (0.5 * delta)), (aa + (0.5 * delta)), ta + (0.5 * delta))) * delta)
-        # R counts from 1 and hence 1 is added to account for the age 0
-    }
+        exp(-(base_mortality(times + (ages[counter]+ 0.5 * delta), (ages[counter] + 0.5 * delta)) *
+                excess_mortality(times + (ages[counter]+ 0.5 * delta), (ages[counter] + 0.5 * delta), (times_since_i[counter] + 0.5 * delta))) * delta)
+
+      # R counts from 1 and hence 1 is added to account for the age 0
+      counter <- counter + 1
+
+       }
   }
 
   return(infected_mortality_array)
