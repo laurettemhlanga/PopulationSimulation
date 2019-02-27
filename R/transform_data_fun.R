@@ -14,21 +14,14 @@
 #'
 #' @export
 
-transform_data <- function(age_max,
-                           data_to_transform,
-                           date_of_birth,
-                           delta = 1
-)
+transform_data <- function(data_to_transform)
   {
 
+  new_data <- matrix(NA, ncol = ncol(data_to_transform), nrow =  nrow(data_to_transform)-(ncol(data_to_transform)) + 1)
 
-  date_birth <- seq(min(date_of_birth), max(date_of_birth), delta)
-  age <- seq(0, age_max, delta)
-  new_data <- matrix(NA, ncol = length(age), nrow = length(date_birth))
+  matrix_index <- row(data_to_transform) - col(data_to_transform) #index each matrix entry
 
-  matrix_index <- row(data_to_transform) - col(data_to_transform)
-
-  matrix_index_seq <- 1:((nrow(data_to_transform) - ncol(data_to_transform)) + 1)
+  matrix_index_seq <- 1:((nrow(data_to_transform) - ncol(data_to_transform)) + 1) #create a vector of positive indices
 
   for (ii in matrix_index_seq){
 
@@ -37,9 +30,6 @@ transform_data <- function(age_max,
 
 
   }
-
-  colnames(new_data) <-  paste0(age)
-  rownames(new_data) <- paste0(date_birth)
 
   return(new_data)
 

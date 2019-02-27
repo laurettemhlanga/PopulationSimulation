@@ -17,3 +17,4 @@ birth_rate_fun <- function(birth_dates, delta){
 
   return(birth_rates)
 }
+
