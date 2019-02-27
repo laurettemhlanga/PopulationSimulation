@@ -12,9 +12,8 @@
 #' @export
 
 birth_rate_fun <- function(birth_dates, delta){
-  times = seq(0, max(birth_dates) - min(birth_dates), delta)
-  birth_rates = seq(times)/sum(times)
-
-  return(birth_rates)
+  
+births <- 
+  return(births)
 }
 

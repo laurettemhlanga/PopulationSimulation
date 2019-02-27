@@ -16,8 +16,8 @@
 #' @export
 
 susceptible_cumulative_survival_fun <- function(incidence_matrix,
-                                                   base_mortality_matrix,
-                                                   delta = 1)
+                                                base_mortality_matrix,
+                                                delta )
 
 {
 
@@ -44,7 +44,7 @@ susceptible_cumulative_survival_fun <- function(incidence_matrix,
 
     }
   }
-  return(susceptible_cumulative_survival_matrix)
+  return(transform_data(susceptible_cumulative_survival_matrix))
 }
 
 

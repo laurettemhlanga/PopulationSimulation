@@ -13,8 +13,8 @@
 #' @export
 
 infected_population_fun <- function(susceptible_pop_counts,
-                                               incidence_prob,
-                                               survival_probability)
+                                    incidence_prob,
+                                    survival_probability)
 {
 
   #adopt pevious matrix dimensions

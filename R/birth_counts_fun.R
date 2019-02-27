@@ -15,10 +15,9 @@
 #'
 #' @export
 
-birth_counts_fun <- function(total_births,
-                             birth_dates,
-                             delta,
-                             birthrate)
+birth_counts_fun <- function(t_1, t_2, 
+                             total_births,
+                             delta)
   {
 
   birth_counts =  birthrate(birth_dates, delta) * total_births

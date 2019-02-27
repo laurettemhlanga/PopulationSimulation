@@ -42,3 +42,25 @@ incidence_matrix_fun <- function(age_steps,
   return(incidence_matrix)
 }
 
+
+
+
+
+
+
+
+incidence_matrix_function <- function(incidence_matrix,
+                                      base_mortality_matrix,
+                                      delta)
+  {
+  
+ incidencce_adjusted <-  transform_data(incidence_matrix/(incidence_matrix + base_mortality_matrix)) *
+   (1 - susceptible_cumulative_survival_fun(incidence_matrix,
+                                            base_mortality_matrix,
+                                            delta))
+ return(incidencce_adjusted)
+  
+}
+
+
+
