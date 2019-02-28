@@ -16,11 +16,25 @@
 #' @export
 
 birth_counts_fun <- function(t_1, t_2, 
-                             total_births,
+                             birthrate,
                              delta)
   {
-
-  birth_counts =  birthrate(birth_dates, delta) * total_births
+  taim <- seq(t_1, t_2, delta)
+  
+  birth_counts <- as.vector(rep(NA, length(taim)))
+  
+  index_taim <- (1:length(taim))
+  
+  counter <- 1 
+  
+  for (i in  index_taim){
+    
+  birth_counts[i] =  birthrate(tiam + (0.5 * delta)) 
+  
+  counter <- counter + 1 
+  
+  }
 
   return(birth_counts)
 }
+
