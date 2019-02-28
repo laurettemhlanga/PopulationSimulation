@@ -29,7 +29,7 @@ birth_counts_fun <- function(t_1, t_2,
   
   for (i in  index_taim){
     
-  birth_counts[i] =  birthrate(tiam + (0.5 * delta)) 
+  birth_counts[i] =  birthrate(taim + (0.5 * delta)) 
   
   counter <- counter + 1 
   
@@ -37,4 +37,20 @@ birth_counts_fun <- function(t_1, t_2,
 
   return(birth_counts)
 }
+ 
+
+#option B 
+
+birth_counts_func <- function(t_1, t_2, 
+                             birthrate,
+                             delta)
+{
+  taim <- seq(t_1, t_2, delta)
+  
+  birth_counts <- sapply(taim + (0.5 * delta), FUN = birthrate)
+  
+  return(birth_counts)
+}
+
+
 

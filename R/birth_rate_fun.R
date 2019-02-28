@@ -18,7 +18,7 @@
 birth_rate_fun <- function(tiam)
   {
   
-births_rate <- 1000 
+  births_rate <- 1000 
   
   return(births_rate)
 }
