@@ -4,12 +4,10 @@
 \alias{birth_rate_fun}
 \title{birth_rate_fun}
 \usage{
-birth_rate_fun(birth_dates, delta)
+birth_rate_fun(tiam)
 }
 \arguments{
-\item{birth_dates}{the calender dates of births.}
-
-\item{delta}{the time step between consecurtive birth_dates}
+\item{tiam}{is a double/vector of times the birth rate is to be evaluated at.}
 }
 \value{
 Returns a vector of bith counts  from the inputs total_births, delta and birth_dates of length min-birth_dates:max-birth_dates

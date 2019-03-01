@@ -2,10 +2,7 @@
 #'
 #' a function that takes in a matrix with a pararellogram format and transforms it into a rectangular format and assigns column and row names.
 #'
-#' @param age_max denotes the maximum age reached by each cohort.
-#' @param date_of_birth a vector with two numbers giving the minimum and maximum calender dates.
 #' @param data_to_transform the matrix to be transformed
-#' @param delta the time difference between consecutive dates of birth (if not specified defaults to 1).
 #' The user-defined or package default function should be called by name when included as an argument in the generate_base_mortality_matrix function.
 #' @return returns a matrix with a rectangular format, labelled rows and columns
 #'

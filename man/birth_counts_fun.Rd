@@ -4,16 +4,16 @@
 \alias{birth_counts_fun}
 \title{birth_counts_fun}
 \usage{
-birth_counts_fun(total_births, birth_dates, delta, birthrate)
+birth_counts_fun(t_1, t_2, birthrate, delta)
 }
 \arguments{
-\item{total_births}{the total number of births between maximum and minimun birth_dates given.}
+\item{t_1}{start time of the simulation}
 
-\item{birth_dates}{the calender dates of births.}
-
-\item{delta}{the time step between consecurtive birth_dates}
+\item{t_2}{end time of the simulation}
 
 \item{birthrate}{a function  for the distribution of births in interval}
+
+\item{delta}{the time step between consecurtive birth_dates}
 }
 \value{
 Returns a vector of bith counts  from the inputs total_births, delta and birth_dates of length min-birth_dates:max-birth_dates

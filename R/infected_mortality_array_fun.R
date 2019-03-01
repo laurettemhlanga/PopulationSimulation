@@ -50,11 +50,13 @@ infected_mortality_array_fun <- function(age_steps,
         exp(-(base_mortality(times + (ages[counter]+ 0.5 * delta), (ages[counter] + 0.5 * delta)) +
                 excess_mortality(times + (ages[counter]+ 0.5 * delta), (ages[counter] + 0.5 * delta), (times_since_i[counter] + 0.5 * delta))) * delta)
 
-
+      #infected_mortality_array[time_index + aa, aa, ta - 1] <- transform_data(infected_mortality_array)
     }
 
     counter <- counter + 1
   }
+
+  for ( in (1:dim(infected_mortality_array)[3]))
 
   return(infected_mortality_array)
 

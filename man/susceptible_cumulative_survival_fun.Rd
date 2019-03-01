@@ -5,7 +5,7 @@
 \title{generate_susceptible_survival}
 \usage{
 susceptible_cumulative_survival_fun(incidence_matrix,
-  base_mortality_matrix, delta = 1)
+  base_mortality_matrix, delta)
 }
 \arguments{
 \item{incidence_matrix}{probability matrix of getting infected in the susceptible}

@@ -7,7 +7,7 @@
 incidence_matrix_fun(age_steps, birth_dates, generate_incidence_fun, delta)
 }
 \arguments{
-\item{age_steps}{numeric vector of length 1. Indicates the number of steps forward each age group will be aged in the simulation by the do_sim function}
+\item{age_steps}{the number of steps to age the population}
 
 \item{birth_dates}{a numeric vectors of length min:max; indicates the range of ages to be included in simulation. Note that date format is not used.}
 
