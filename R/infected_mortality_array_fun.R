@@ -56,7 +56,7 @@ infected_mortality_array_fun <- function(age_steps,
     counter <- counter + 1
   }
 
-  for ( in (1:dim(infected_mortality_array)[3]))
+  #for ( in (1:dim(infected_mortality_array)[3]))
 
   return(infected_mortality_array)
 

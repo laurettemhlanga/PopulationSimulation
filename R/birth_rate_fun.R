@@ -10,17 +10,17 @@
 #'
 #'
 #' @export
-#' 
-#' 
+#'
+#'
 
 # #' @param delta the time step between consecurtive birth_dates
 
-birth_rate_fun <- function(tiam)
-  {
-  
-  births_rate <- 1000 
-  
-  return(births_rate)
+constant_birth_rate_fun <- function(dates_as_float, constant_value = 1000)
+{
+  # births per year, evaluated at the list of dates in the vector 'dates_as_float'
+
+  return(rep(constant_value,length(dates_as_float)))
+
 }
 
 #birth_rate_fun(c(1,2))

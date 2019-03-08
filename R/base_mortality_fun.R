@@ -18,17 +18,41 @@
 #Option 1
 
 
-base_mortality_fun <- function(t, constant = 0.01, age_min = 1,
-                                    age_max = 50,
-                                    exmin =0,
-                                    exfin =0.01){
 
-  base_mortality = ifelse(t <= age_min, 0,
-                          ifelse(t <= age_max, exmin + ((exfin - exmin)/(age_max - age_min)) * (t - age_min),
-                                 0))
 
-  return(base_mortality)
+
+
+base_mortality_fun <- function(matrix_of_ages, matrix_of_times, constant = 0, age_min = 1,
+                               age_max = 50, exmin =0,exfin =0.01)
+  {
+  age <- matrix_of_ages
+
+  if (constant>0) {
+
+    return(matrix(rep(constant,ncol(age)*nrow(age)),  ncol = ncol(age), nrow = nrow(age) ))
+
+  } else {
+
+    base_mortality = ifelse(matrix_of_ages <= age_min, 0,
+                            ifelse(matrix_of_ages <= age_max, exmin + ((exfin - exmin)/(age_max - age_min)) * (matrix_of_ages - age_min),
+                                   0))
+
+    return(base_mortality)
+  }
 }
+
+
+# base_mortality_fun <- function(t, constant = 0.01, age_min = 1,
+#                                     age_max = 50,
+#                                     exmin =0,
+#                                     exfin =0.01){
+#
+#   base_mortality = ifelse(t <= age_min, 0,
+#                           ifelse(t <= age_max, exmin + ((exfin - exmin)/(age_max - age_min)) * (t - age_min),
+#                                  0))
+#
+#   return(base_mortality)
+# }
 
 
 

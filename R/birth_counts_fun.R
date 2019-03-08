@@ -41,15 +41,14 @@
 
 #option B
 
-birth_counts_fun <- function(t_1, t_2,
-                             birthrate,
-                             delta)
+birth_counts_fun <- function(dates_needing_birth_counts,
+                             birthrate,delta)
 {
-  taim <- seq(t_1, t_2, delta)
 
-  birth_counts <- sapply(taim + (0.5 * delta), FUN = birthrate)
+  return(birthrate(dates_needing_birth_counts + (0.5 * delta))*delta)
 
-  return(birth_counts)
+ # return(sapply(dates_needing_birth_counts + (0.5 * delta), FUN = birthrate)*delta)
+
 }
 
 
