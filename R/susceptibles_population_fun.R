@@ -16,6 +16,21 @@
 #'
 #'
 
+
+#option 2
+
+susceptible_population <- function(cumulative_survival_matrix,
+                                   birth_counts)
+  {
+
+  susceptible <- cumulative_survival_matrix * birth_counts
+
+  return(susceptible)
+}
+
+
+
+
 # susceptible_population_fun <- function(cumulative_survival_matrix,
 #                                   birth_counts)
 # {
@@ -47,16 +62,4 @@
 # susceptible_pop_counts <- susceptible_population_fun(cumulative_survival_matrix = survival_prob,
 #                                                 birth_counts = birth_count)
 #
-#option 2
-
-susceptible_population <- function(cumulative_survival_matrix,
-                                   birth_counts)
-  {
-
-  susceptible <- cumulative_survival_matrix * birth_counts
-
-  return(susceptible)
-}
-
-
 

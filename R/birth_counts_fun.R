@@ -4,16 +4,27 @@
 #'
 #' a function that returns a numeric vector of birth counts from the arguments of total births, a range of birth dates and an indicted birth rate
 #'
-#' @param t_1 start time of the simulation
-#' @param t_2 end time of the simulation
+#' @param dates_needing_birth_counts a vector of births dates to be assigned the birth count
 #' @param delta the time step between consecurtive birth_dates
-#' @param birthrate a function  for the distribution of births in interval
+#' @param birth_rate a function  for the distribution of births in interval
 #' @return Returns a vector of bith counts  from the inputs total_births, delta and birth_dates of length min-birth_dates:max-birth_dates
 #'
 #'
-#'
-#'
 #' @export
+
+
+
+birth_counts <- function(dates_needing_birth_counts,
+                             birth_rate, time_step)
+{
+
+  return(birth_rate(dates_needing_birth_counts)* time_step)
+
+ # return(sapply(dates_needing_birth_counts + (0.5 * delta), FUN = birthrate)*delta)
+
+}
+
+
 
 # birth_counts_fun <- function(t_1, t_2,
 #                              birthrate,
@@ -40,16 +51,4 @@
 #
 
 #option B
-
-birth_counts_fun <- function(dates_needing_birth_counts,
-                             birthrate,delta)
-{
-
-  return(birthrate(dates_needing_birth_counts + (0.5 * delta))*delta)
-
- # return(sapply(dates_needing_birth_counts + (0.5 * delta), FUN = birthrate)*delta)
-
-}
-
-
 

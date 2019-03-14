@@ -5,8 +5,9 @@
 #'
 #'
 
-#' @param tiam  is a double/vector of times the birth rate is to be evaluated at.
-#' @return Returns a vector of bith counts  from the inputs total_births, delta and birth_dates of length min-birth_dates:max-birth_dates
+#' @param dates_as_float  is a double/vector of times the birth rate is to be evaluated at.
+#' @param constant_value the number of births at a given birth date, given that it is constant through out the specified birth dates
+#' @return Returns a vector of birth counts  of the length of the birth dates
 #'
 #'
 #' @export
@@ -15,7 +16,7 @@
 
 # #' @param delta the time step between consecurtive birth_dates
 
-constant_birth_rate_fun <- function(dates_as_float, constant_value = 1000)
+constant_birth_rate <- function(dates_as_float, constant_value = 1000)
 {
   # births per year, evaluated at the list of dates in the vector 'dates_as_float'
 

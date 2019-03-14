@@ -5,8 +5,10 @@
 #' The generate_mortality function is required as an argument for the package's do_simulation function
 #' The function may be user defined and stored as an R object. Otherwise a default value - entered as "default" - is provided by the package
 #'
-#' @param t numeric, indicates time or times at which the mortality rate is desired
-#' @param constant numeric, indicates a constant rate of mortality
+#'
+#' @param matrix_of_times numeric, indicates time or times at which the incidence rate is desired
+#' @param matrix_of_ages  numeric, indicates age or ages at which the incidence rate is desired
+#' @param constant numeric, indicates a constant rate of mortality when
 #' @param age_min numeric, indicates minimum age to be included in the simulation
 #' @param age_max numeric, indicates maximum age to be included in the simulation
 #' @param exmin numeric, indicates minimum mortality, which is at age_min
@@ -22,24 +24,33 @@
 
 
 
-base_mortality_fun <- function(matrix_of_ages, matrix_of_times, constant = 0, age_min = 1,
-                               age_max = 50, exmin =0,exfin =0.01)
+time_indep_age_linear_base_mortality <- function(matrix_of_ages, matrix_of_times, constant = 0, age_min = 0,
+                               age_max = 50, mort_min = 0, mort_max = 0.01)
   {
   age <- matrix_of_ages
 
   if (constant>0) {
 
-    return(matrix(rep(constant,ncol(age)*nrow(age)),  ncol = ncol(age), nrow = nrow(age) ))
+    return(matrix(rep(constant, ncol(age) * nrow(age)),  ncol = ncol(age), nrow = nrow(age) ))
 
   } else {
 
     base_mortality = ifelse(matrix_of_ages <= age_min, 0,
-                            ifelse(matrix_of_ages <= age_max, exmin + ((exfin - exmin)/(age_max - age_min)) * (matrix_of_ages - age_min),
+                            ifelse(matrix_of_ages <= age_max, mort_min + ((mort_max - mort_min)/(age_max - age_min)) * (matrix_of_ages - age_min),
                                    0))
 
     return(base_mortality)
   }
 }
+
+#
+
+
+
+
+
+
+
 
 
 # base_mortality_fun <- function(t, constant = 0.01, age_min = 1,
