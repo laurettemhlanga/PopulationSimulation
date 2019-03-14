@@ -19,6 +19,9 @@ incidence_matrix <- function(max_age,
                              incidence,
                              time_step)
 {
+  # populates an incidence matrix function based on the incidence function supplied
+  # the maximum age, list of times and the required time-step. Note the approximation
+  # of being infected in the interval in question is calculated at mid point.
 
   times  <-  list_of_times
   age  <-    seq(0, max_age, time_step)

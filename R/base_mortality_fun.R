@@ -27,17 +27,22 @@
 time_indep_age_linear_base_mortality <- function(matrix_of_ages, matrix_of_times, constant = 0, age_min = 0,
                                age_max = 50, mort_min = 0, mort_max = 0.01)
   {
+
+  # calculates base mortality as a function of age and is constant in time. The base mortality resulting is a
+  # linear function. Note if a non zero value is provided for the variable constant then a
+  # constant base mortality is obtatined i.e.  base mortality (age, time) = constant.
+
   age <- matrix_of_ages
 
-  if (constant>0) {
+  if (constant > 0) {
 
-    return(matrix(rep(constant, ncol(age) * nrow(age)),  ncol = ncol(age), nrow = nrow(age) ))
+    return(matrix(rep(constant, ncol(age) * nrow(age)),  ncol = ncol(age), nrow = nrow(age)))
 
   } else {
 
     base_mortality = ifelse(matrix_of_ages <= age_min, 0,
-                            ifelse(matrix_of_ages <= age_max, mort_min + ((mort_max - mort_min)/(age_max - age_min)) * (matrix_of_ages - age_min),
-                                   0))
+                            ifelse(matrix_of_ages <= age_max,
+                                   mort_min + ((mort_max - mort_min)/(age_max - age_min)) * (matrix_of_ages - age_min), 0))
 
     return(base_mortality)
   }

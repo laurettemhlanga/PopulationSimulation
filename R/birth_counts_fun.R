@@ -18,14 +18,21 @@ birth_counts <- function(dates_needing_birth_counts,
                              birth_rate, time_step)
 {
 
+# calculates the initial number of birth counts = S(t, 0) at the specified times
+# the assumption  is all the births occurs at the stipulated time i.e B(t) * time step versus mid point
+# calculation
+
   return(birth_rate(dates_needing_birth_counts)* time_step)
 
- # return(sapply(dates_needing_birth_counts + (0.5 * delta), FUN = birthrate)*delta)
 
 }
 
 
 
+
+
+
+# Options
 # birth_counts_fun <- function(t_1, t_2,
 #                              birthrate,
 #                              delta)
@@ -51,4 +58,12 @@ birth_counts <- function(dates_needing_birth_counts,
 #
 
 #option B
+
+# birth_counts <- function(dates_needing_birth_counts,
+#                          birth_rate, time_step)
+# {
+#
+#    return(sapply(dates_needing_birth_counts + (0.5 * delta), FUN = birthrate)*delta)
+#
+# }
 

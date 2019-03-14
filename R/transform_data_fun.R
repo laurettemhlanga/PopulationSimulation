@@ -31,3 +31,16 @@ transform_data <- function(data_to_transform)
   return(new_data)
 
 }
+
+ignore <- function(...) NULL
+tee <- function(f, on_input = ignore, on_output = ignore) {
+  function(...) {
+    on_input(...)
+    output <- f(...)
+    on_output(output)
+    output
+  }
+}
+
+
+

@@ -23,6 +23,10 @@ base_mortality_matrix <- function(max_age,
                                   time_step)
 {
 
+  # populates an base mortality matrix function based on the base mortality function supplied
+  # the maximum age, list of times and the required time-step. Note the approximation
+  # of being infected in the interval in question is calculated at mid point.
+
   times <- list_of_times
   age <- seq(0, max_age, time_step)
   mortality_matrix <-  matrix(NA, nrow = length(times) + (length(age) -1), ncol =  length(age))
