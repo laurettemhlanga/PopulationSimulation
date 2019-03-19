@@ -32,15 +32,15 @@ transform_data <- function(data_to_transform)
 
 }
 
-ignore <- function(...) NULL
-tee <- function(f, on_input = ignore, on_output = ignore) {
-  function(...) {
-    on_input(...)
-    output <- f(...)
-    on_output(output)
-    output
-  }
-}
-
-
-
+# ignore <- function(...) NULL
+# tee <- function(f, on_input = ignore, on_output = ignore) {
+#   function(...) {
+#     on_input(...)
+#     output <- f(...)
+#     on_output(output)
+#     output
+#   }
+# }
+# 
+# 
+# 

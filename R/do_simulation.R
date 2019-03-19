@@ -25,12 +25,26 @@ Do_one_simulation <- function(first_birth_time = 1985, last_birth_time = 1990, t
   
   
   
-  survival_prob <- susceptible_cumulative_survival(incidence_matrix = incidence_m, base_mortality_matrix = base_mortality_m,
+  survival_prob <- susceptible_cumulative_survival(incidence_matrix = incidence_m, base_mortality = base_mortality_m,
                                                    time_step)
   
   
   susceptible_pop_counts <- susceptible_population(cumulative_survival_matrix = survival_prob,
                                                    birth_counts = birth_count)
+  
+  mod_incidence <-  incidence_matrix_exp(incidence_matrix = incidence_m,
+                                         base_mortality_matrix = base_mortality_m,
+                                         time_step = 1)
+  
+  probabiliy_surviving <-  probabiliy_surviving_infected(max_age,
+                                    list_of_times,
+                                    time_step,
+                                    excess_mortality = excess_mortality_fun,
+                                    base_mortality = time_indep_age_linear_base_mortality)
+  
+  
+  Cum_prob_survival_i <- cumulative_probability_surviving_infected(probabiliy_surviving)
+  
   
   return(susceptible_pop_counts)
   

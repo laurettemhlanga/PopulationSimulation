@@ -33,7 +33,7 @@ excess_mortality_fun <- function(matrix_of_ages, matrix_of_time, time_since_i,
 
   }else{
 
-     Ex_mort_tau <- ifelse(age - time_since_i >= 0, 2 ^ (-((age - time_since_i) / median_survival) ^ shape_parameter), NA)
+     Ex_mort_tau <-   2 ^ (-((age - time_since_i) / median_survival) ^ shape_parameter)
 
   }
 

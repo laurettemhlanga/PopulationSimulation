@@ -1,4 +1,4 @@
-#' incidence_matrix_fun
+#' incidence_matrix
 #'
 #' a function that returns a matrix of probabilities for each age and time step of the simulation
 #'

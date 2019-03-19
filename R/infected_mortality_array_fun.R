@@ -35,31 +35,30 @@ infected_mortality_array_fun <- function(max_age = 3,
   ages <- seq(0, max_age, delta)
   times_since_i <- seq(1, max_age, delta)
 
-  infected_mortality_array <-  array(NA, dim = c((length(times) + length(ages)-1), length(ages), length(ages)))
-  infected_mortality_array[, , 1] <- matrix(rep(1, (length(times) + length(ages)-1) * length(ages)),
-                                            nrow = (length(times) + length(ages)-1),
-                                            ncol = length(ages))
+  infected_mortality_array <-  array(NA, dim = c((length(times) + (length(ages) - 1)), length(ages), length(ages)))
+ 
+  
 
-  #indexing the times and ages vector
-
-  age_index <- 1:length(ages)
+  age_index <- 0:length(ages)
   time_index <- 0:(length(times)-1)
-  times_since_i <- 2:(length(ages))
+  times_since_index <- 2:(length(ages))
+  
+  
 
   counter <- 1
 
   for (aa in age_index){
-    for (ta in times_since_i){
-#aa= 7; ta = 7
+    for (ta in times_since_index){
+#aa= 1; ta = 7
       infected_mortality_array[time_index + aa, aa, ta - 1] =
         exp(-(base_mortality(times + (ages[counter]+ 0.5 * delta), (ages[counter] + 0.5 * delta)) +
                 excess_mortality(times + (ages[counter]+ 0.5 * delta), (ages[counter] + 0.5 * delta),
                                  (times_since_i[counter] + 0.5 * delta))) * delta)
-
+     
       #infected_mortality_array[time_index + aa, aa, ta - 1] <- transform_data(infected_mortality_array)
     }
-
     counter <- counter + 1
+   
   }
 
   # infected_mortality_array_2 <- array(NA, dim = c(length(times), length(ages), length(ages[-1])))
