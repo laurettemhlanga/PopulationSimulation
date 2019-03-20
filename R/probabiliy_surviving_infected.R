@@ -1,5 +1,5 @@
 
-#' probabiliy_surviving_array
+#'probability_surviving_array
 #'
 #' a function that returns a matrix of probabilities of mortality for each age and time step of the simulation
 #'
@@ -20,11 +20,11 @@
 #'
 
 
-probabiliy_surviving_infected <- function(max_age,
+probability_surviving_infected <- function(max_age,
                                           list_of_times,
                                           time_step,
-                                         excess_mortality,
-                                         base_mortality)
+                                          excess_mortality,
+                                          base_mortality)
 {
   # calculates the probability of surviving in the infected state after infection at time 
   # t - tau, age - tau  for a duration of tau years 
@@ -33,7 +33,7 @@ times  <- seq(min(list_of_times), max(list_of_times), time_step)
 ages <- seq(0, max_age, time_step)
 times_since_i <- seq(0, max_age, time_step)
 
-probabiliy_surviving_array <-  array(NA, dim = c(length(times) + max_age, length(ages), length(ages)))
+probability_surviving_array <-  array(NA, dim = c(length(times) + max_age, length(ages), length(ages)))
 
 
   for (aa in seq_along(ages)){
@@ -41,17 +41,20 @@ probabiliy_surviving_array <-  array(NA, dim = c(length(times) + max_age, length
       
       if (ages[aa] < times_since_i[ta]){
   
-        probabiliy_surviving_array[seq_along(times) + (aa - 1), aa, ta] <- 0      
+       probability_surviving_array[seq_along(times) + (aa - 1), aa, ta] <- 0      
         
        }else if (times_since_i[ta] == 0){
 
-        probabiliy_surviving_array[seq_along(times) + (aa - 1), aa, ta] <-  1
+       probability_surviving_array[seq_along(times) + (aa - 1), aa, ta] <-  1
 
       }else{
       
-       probabiliy_surviving_array[seq_along(times) + (aa - 1), aa, ta] <-  exp(-(base_mortality((times + (ages[aa] + (0.5 * time_step))), ages[aa] + ((0.5 * time_step))) + 
-                                                                                    excess_mortality((times + (ages[aa] + (0.5 * time_step)))- times_since_i[ta], 
-                                                                                                   (ages[aa] + (0.5 * time_step)) - times_since_i[ta], times_since_i[ta])) * time_step)
+      probability_surviving_array[seq_along(times) + (aa - 1), aa, ta] <-  exp(- 0.01)
+      
+      
+      # ((base_mortality((times + (ages[aa] + (0.5 * time_step))), ages[aa] + ((0.5 * time_step))) + 
+      #                                                                               excess_mortality((times + (ages[aa] + (0.5 * time_step)))- times_since_i[ta], 
+      #                                                                                              (ages[aa] + (0.5 * time_step)) - times_since_i[ta], times_since_i[ta])) * time_step)
       
          }
       
@@ -60,21 +63,21 @@ probabiliy_surviving_array <-  array(NA, dim = c(length(times) + max_age, length
 
 
 
-probabiliy_surviving_array_2 <- array(NA, dim = c((nrow(probabiliy_surviving_array) - ncol(probabiliy_surviving_array)) + 1, 
-                                                              dim(probabiliy_surviving_array)[2], dim(probabiliy_surviving_array)[3])) 
+probability_surviving_array_2 <- array(NA, dim = c((nrow(probability_surviving_array) - ncol(probability_surviving_array)) + 1, 
+                                                              dim(probability_surviving_array)[2], dim(probability_surviving_array)[3])) 
 
 for (ta in 1:dim(probabiliy_surviving_array)[3]){
   
-  probabiliy_surviving_array_2[ , , ta] <- transform_data(probabiliy_surviving_array[, , ta])
+ probability_surviving_array_2[ , , ta] <- transform_data(probability_surviving_array[, , ta])
 }
 
-return(probabiliy_surviving_array_2)
+return(probability_surviving_array_2)
 
 }
   
   
-y = probabiliy_surviving_infected(max_age = 3,
-                                  list_of_times = 1:5,
-                                  time_step = 1,
-                                  excess_mortality = excess_mortality_fun,
-                                  base_mortality = time_indep_age_linear_base_mortality)
+# y = probabiliy_surviving_infected(max_age = 3,
+#                                   list_of_times = 1:5,
+#                                   time_step = 1,
+#                                   excess_mortality = excess_mortality_fun,
+#                                   base_mortality = time_indep_age_linear_base_mortality)

@@ -24,6 +24,8 @@ excess_mortality_fun <- function(matrix_of_ages, matrix_of_time, time_since_i,
   # constant excess mortality is obtatined i.e.  excess mortality (age, time, time since infection) = constant.
 
   age <- matrix_of_ages
+  
+  times <- matrix_of_time
   # requires sensible thought
 
 
@@ -33,7 +35,7 @@ excess_mortality_fun <- function(matrix_of_ages, matrix_of_time, time_since_i,
 
   }else{
 
-     Ex_mort_tau <-   2 ^ (-((age - time_since_i) / median_survival) ^ shape_parameter)
+     Ex_mort_tau <-    2 ^ (-((age - time_since_i) / median_survival) ^ shape_parameter)
 
   }
 

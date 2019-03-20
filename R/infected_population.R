@@ -29,12 +29,12 @@ infected_population <- function(susceptible = susceptible_pop_counts,
       
       if (tau == 1){
         
-        infected_population_array[ , , tau] <- susceptible[ , aa ] * modified_incidence[ , aa] * cumulative_survival[, , tau]
+        infected_population_array[ , , tau] <- susceptible[ , ages ] * modified_incidence[ , ages] * cumulative_survival[, , tau]
     
       }else{
         
         
-        infected_population_array[ , , tau] <- susceptible[ , aa - tau ] * modified_incidence[ , aa - tau] * cumulative_survival[, , tau]
+        infected_population_array[ , , tau] <- susceptible[ , ages - tau ] * modified_incidence[ , ages - tau] * cumulative_survival[, , tau]
         
     }
     

@@ -14,7 +14,7 @@
 #
 
 
-cumulative_probability_surviving_infected <- function(probability_surviving_infected_array = y)
+cumulative_probability_surviving_infected <- function(probability_surviving_infected_array)
 {
   # calculates the cumulative probability of surviving in the infected state after infection at time 
   # t - tau, age - tau  for a duration of tau years. tt is constant as the matrix is being populated horizontally
