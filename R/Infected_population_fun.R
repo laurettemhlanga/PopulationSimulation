@@ -13,43 +13,39 @@
 #' @export
 
 infected_population_fun <- function(susceptible_pop_counts,
-                                    incidence_prob,
-                                    survival_probability)
+                                    incidence_prob = mod_incidence,
+                                    survival_probability = Cum_prob_survival_i)
 {
 
   #adopt pevious matrix dimensions
   infected_population_array <-  array(NA, dim = c(dim(survival_probability)[1],
                                                   dim(survival_probability)[2],
-                                                  (dim(survival_probability)[3]) + 1))
+                                                  (dim(survival_probability)[3])))
 
-  infected_population_array[ , , 1] <- incidence_prob * susceptible_pop_counts
-
-
-
-  for (times in 1:nrow(susceptible_pop_counts)){
+  #for (times in 1:(nrow(susceptible_pop_counts) - 1)){
 
     for(aa in 1:ncol(susceptible_pop_counts)){
 
-      for (ta in 1:(dim(infected_population_array)[3] - 1)){
+      for (ta in 1:(dim(infected_population_array)[3])){
 
-        if (any((times - ta ) <= 0 || (aa - ta ) <=  0)){
+        #if (any((times - ta ) <= 0 || (aa - ta ) <=  0)){
 
 
-          infected_population_array[times, aa ,ta  + 1 ] <-  ifelse(is.na(susceptible_pop_counts[times , aa]) == T, NA , 0)
+          #infected_population_array[times, aa ,ta  ] <-  ifelse(is.na(susceptible_pop_counts[times , aa]) == T, NA , 0)
           #ensures the entries that have NA by design are maintained as NAs and all other entries 0
 
-        }else{
+       # }else{
 
 
-          infected_population_array[times, aa ,ta + 1 ] <- incidence_prob[(times - ta), (aa - ta)] *
-            susceptible_pop_counts[(times - ta), (aa - ta )] *
-            survival_probability[(times - ta ), (aa - ta ), ta]
+          infected_population_array[ , aa ,ta  ] <- incidence_prob[, (aa - ta)] *
+            susceptible_pop_counts[ , (aa - ta )] *
+            survival_probability[ , aa , ta]
           #not sure if we should be subtracting the tau in survival probabilities
 
 
-        }
+        #}
 
-      }
+     # }
     }
   }
 
