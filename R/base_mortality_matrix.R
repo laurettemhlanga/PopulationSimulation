@@ -5,7 +5,7 @@
 #'
 #' @param max_age a number. Indicates the number of steps forward each age group will be aged in the simulation by the do_sim function
 #' @param list_of_times a numeric vector of length min:max; indicates the range ofage to be included in simulation. Note that date format is not used.
-#' @param generate_base_mortality_fun a function which takes as arguments age and time and returns a numberic rate of mortality for each age and time included in the simulation.
+#' @param base_mortality a function which takes as arguments age and time and returns a numberic rate of mortality for each age and time included in the simulation.
 #' This function can be defined by user or can be selected from among several default options included in the package.
 #' The user-defined or package default function should be called by name when included as an argument in the generate_base_mortality_matrix function
 #' @param time_step the time step between consecurtive list_of_times

@@ -4,14 +4,14 @@
 \alias{incidence_matrix_exp}
 \title{incidence_matrix_fun}
 \usage{
-incidence_matrix_exp(incidence_matrix, base_mortality_matrix, delta)
+incidence_matrix_exp(incidence_matrix, base_mortality_matrix, time_step)
 }
 \arguments{
 \item{incidence_matrix}{an incidence matrix}
 
 \item{base_mortality_matrix}{a mortality matrix}
 
-\item{delta}{the time step between consecurtive birth_dates}
+\item{time_step}{the time step between consecurtive birth_dates}
 }
 \value{
 a matrix of the probabiity of getting infected at a given age and time.

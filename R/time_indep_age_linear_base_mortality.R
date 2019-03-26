@@ -11,8 +11,8 @@
 #' @param constant numeric, indicates a constant rate of mortality when
 #' @param age_min numeric, indicates minimum age to be included in the simulation
 #' @param age_max numeric, indicates maximum age to be included in the simulation
-#' @param exmin numeric, indicates minimum mortality, which is at age_min
-#' @param exfin numeric, indicates maximum/final mortality at age_max, unless otherwise specified by user defined function
+#' @param mort_min  numeric, indicates minimum mortality, which is at age_min
+#' @param mort_max numeric, indicates maximum/final mortality at age_max, unless otherwise specified by user defined function
 #' @return a numeric vector that represents the mortality rate at t.
 #'
 #' @export

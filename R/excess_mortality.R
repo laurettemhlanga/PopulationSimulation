@@ -1,4 +1,4 @@
-#' excess_mortality_fun
+#' excess_mortality
 #'
 #' a function that takes as arguments age,time and tau - which indicates the average time since infection among the infected population - and returns a numeric vector of length equivelent to the number of times indicated by the simulation
 #' representing a rate of excess mortality -i.e. among infected population relative to non-infected population - at the indicated age and time
@@ -6,7 +6,7 @@
 #' The function may be user defined and stored as an R object. Otherwise a default value - entered as "default" - is provided by the package
 #' @param matrix_of_age numeric, indicates age
 #' @param matrix_of_time numeric, indicates average time
-#' @param matrix_of_time_since_i umeric, indicates time since infection among the infected poplation
+#' @param time_since_i umeric, indicates time since infection among the infected poplation
 #' @param constant numeric, indicates a constant rate of excess mortality
 #' @param shape_parameter numeric, indicates weibull shape parameter
 #' @param median_survival numeric, indicates median survival time of the infected individuals
@@ -14,7 +14,7 @@
 #'
 #' @export
 
-excess_mortality_fun <- function(matrix_of_ages, matrix_of_time, time_since_i,
+excess_mortality <- function(matrix_of_age, matrix_of_time, time_since_i,
                                  constant = 0, shape_parameter = 2,
                                  median_survival = 10.6)
 {
@@ -23,15 +23,15 @@ excess_mortality_fun <- function(matrix_of_ages, matrix_of_time, time_since_i,
   # mortality resulting is a weibull function. Note if a non zero value is provided for the variable constant then a
   # constant excess mortality is obtatined i.e.  excess mortality (age, time, time since infection) = constant.
 
-  age <- matrix_of_ages
-  
+  age <- matrix_of_age
+
   times <- matrix_of_time
   # requires sensible thought
 
 
   if (constant > 0) {
 
-    return(array(rep(constant, ncol(age) * nrow(age) * ncol(age)),  dimn = c(nrow(age), ncol(age), ncol(age))))
+    return(array(rep(constant, ncol(age) * nrow(age) * ncol(age)),  dim = c(nrow(age), ncol(age), ncol(age))))
 
   }else{
 

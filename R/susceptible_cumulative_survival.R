@@ -4,7 +4,7 @@
 #'
 #' @param incidence_matrix probability matrix of getting infected in the susceptible
 #' @param base_mortality_matrix probability matrix of dying among the susceptible
-#' @param delta the time or age difference between consecutive ages or time and it is uniform
+#' @param time_step the time or age difference between consecutive ages or time and it is uniform
 #' @return a matrix calculated from the susceptible_survival_rate_matrix
 #' Values stored in the matrix are numeric-double, from 0-1, which represent the  probability of surviving a specified age from birth in the susceptible population.
 #
@@ -35,7 +35,8 @@ susceptible_cumulative_survival <- function(incidence_matrix,
   for  (aa in 2:ncol(susceptible_cumulative_survival_matrix)){
 
 
-        susceptible_cumulative_survival_matrix[ , aa ] = susceptible_cumulative_survival_matrix[ , aa - 1] * susceptible_survival_rate_matrix[ , aa - 1]
+        susceptible_cumulative_survival_matrix[ , aa ] = susceptible_cumulative_survival_matrix[ , aa - 1] *
+          susceptible_survival_rate_matrix[ , aa - 1]
 
   }
   return(susceptible_cumulative_survival_matrix)

@@ -19,20 +19,20 @@ incidence_matrix_exp <- function(incidence_matrix,
                                  base_mortality_matrix,
                                  time_step)
 {
-  # calculates the incidence as a proportion of the net attrition rate, to avoid non conforming 
+  # calculates the incidence as a proportion of the net attrition rate, to avoid non conforming
   # matrices we paste 1 s to the matrix of incidence_matrix/(incidence_matrix + base_mortality_matrix))
-  
+
   attrition_rate <-  (1 - susceptible_cumulative_survival(incidence_matrix,
                                                           base_mortality_matrix,
                                                           time_step))
 
-  incidence_adjusted <-  (incidence_matrix/(incidence_matrix + base_mortality_matrix)) * attrition_rate[, -ncol(attrition_rate)] 
-   
+  incidence_adjusted <-  (incidence_matrix/(incidence_matrix + base_mortality_matrix)) * attrition_rate[, -ncol(attrition_rate)]
+
   return(incidence_adjusted)
 
 }
 
 
-mod = incidence_matrix_exp(incidence_matrix = incidence_m,
-                     base_mortality_matrix = base_mortality_m,
-                     time_step = 1)
+# mod = incidence_matrix_exp(incidence_matrix = incidence_m,
+#                      base_mortality_matrix = base_mortality_m,
+#                      time_step = 1)
