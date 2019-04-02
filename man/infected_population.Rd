@@ -4,9 +4,8 @@
 \alias{infected_population}
 \title{infected_population}
 \usage{
-infected_population(susceptible = susceptible_pop_counts[,
-  -ncol(susceptible_pop_counts)], incidence_matrix_mod = mod_incidence,
-  cumulative_infected_survival = Cum_prob_survival_i)
+infected_population(susceptible, incidence_matrix_mod,
+  cumulative_infected_survival)
 }
 \arguments{
 \item{susceptible}{the susceptible population counts}

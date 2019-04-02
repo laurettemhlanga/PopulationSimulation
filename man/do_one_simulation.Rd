@@ -5,8 +5,7 @@
 \title{do_one_simulation}
 \usage{
 do_one_simulation(first_birth_time, last_birth_time, time_step, max_age,
-  birth_rate = constant_birth_rate, base_mortality, incidence,
-  excess_mortality)
+  birth_rate, base_mortality, incidence, excess_mortality)
 }
 \arguments{
 \item{first_birth_time}{the number of steps to age the population}

@@ -4,8 +4,7 @@
 \alias{look_up}
 \title{lookup}
 \usage{
-look_up(data_structure = matrice, list_of_times = 1985:1990,
-  max_age = 3, time_step)
+look_up(data_structure, list_of_times, max_age, time_step)
 }
 \arguments{
 \item{data_structure}{the number of steps to age the population}
