@@ -23,8 +23,9 @@
 
 
 
-do_one_simulation <- function(first_birth_time, last_birth_time, time_step, max_age,
-                              birth_rate = constant_birth_rate, base_mortality,
+do_one_simulation <- function(first_birth_time, last_birth_time,
+                              time_step, max_age,
+                              birth_rate, base_mortality,
                               incidence ,
                               excess_mortality)
 {
@@ -44,7 +45,7 @@ do_one_simulation <- function(first_birth_time, last_birth_time, time_step, max_
 
 
 
-  survival_prob <- susceptible_cumulative_survival(incidence_matrix = incidence_m, base_mortality = base_mortality_m,
+  survival_prob <- susceptible_cumulative_survival(incidence_m, base_mortality_m,
                                                    time_step)
 
 
@@ -60,8 +61,8 @@ do_one_simulation <- function(first_birth_time, last_birth_time, time_step, max_
   probability_surviving <-  probability_surviving_infected(max_age,
                                     list_of_times,
                                     time_step,
-                                    excess_mortality = excess_mortality_fun,
-                                    base_mortality = time_indep_age_linear_base_mortality)
+                                    excess_mortality ,
+                                    base_mortality )
 
 
   cum_prob_survival_i <- cumulative_probability_surviving_infected(probability_surviving)

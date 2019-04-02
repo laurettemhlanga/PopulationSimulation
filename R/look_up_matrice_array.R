@@ -14,9 +14,9 @@
 #' @export
 
 
-look_up <- function(data_structure = matrice,
-                   list_of_times = 1985:1990,
-                   max_age = 3,
+look_up <- function(data_structure,
+                   list_of_times ,
+                   max_age ,
                    time_step)
   {
 
@@ -37,10 +37,10 @@ look_up <- function(data_structure = matrice,
 }
 
 
-lookup_array <- function(data_structure = do_one_simulation()$infected,
-                         list_of_times = 1985:1990,
-                         max_age = 3,
-                         time_step = 1)
+lookup_array <- function(data_structure,
+                         list_of_times,
+                         max_age,
+                         time_step)
 
   {
 
