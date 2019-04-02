@@ -1,4 +1,4 @@
-#' incidence_fun
+#' time_indept_age_tent_incidence
 #'
 #' a function that takes as arguments age and time and returns a numeric vector of length 1
 #' representing a rate of incidence at the indicated age and time

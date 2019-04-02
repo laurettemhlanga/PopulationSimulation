@@ -1,4 +1,4 @@
-#' generate_susceptible_survival
+#' susceptible_cumulative_survival
 #'
 #' a function that returns a matrix of cumulative probabilities of survival -i.e. not dying and aquiring infection - for each age and time step of the simulation
 #'

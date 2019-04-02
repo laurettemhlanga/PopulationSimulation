@@ -14,8 +14,6 @@
 #' @export
 
 
-loo
-
 look_up <- function(data_structure = matrice,
                    list_of_times = 1985:1990,
                    max_age = 3,
@@ -48,6 +46,7 @@ lookup_array <- function(data_structure = do_one_simulation()$infected,
 
   lookup_array_index <-  data.frame( date_of_birth = NULL,
                                age = NULL, time_since_infection = NULL)
+  ages = seq(0, max_age, time_step)
 
   for (index in 1:dim(data_structure)[3]){
 
@@ -66,7 +65,7 @@ lookup_array <- function(data_structure = do_one_simulation()$infected,
 }
 
 
-lookup_array()
+
 
 
 

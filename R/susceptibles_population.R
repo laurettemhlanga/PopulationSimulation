@@ -1,4 +1,4 @@
-#' susceptible_fun
+#' susceptible_population
 #'
 #' a function that returns a matrix of numeric values for age and time, representing the number of individuals within the population who are alive and not infected
 #'

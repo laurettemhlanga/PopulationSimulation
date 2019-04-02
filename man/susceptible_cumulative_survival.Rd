@@ -2,7 +2,7 @@
 % Please edit documentation in R/susceptible_cumulative_survival.R
 \name{susceptible_cumulative_survival}
 \alias{susceptible_cumulative_survival}
-\title{generate_susceptible_survival}
+\title{susceptible_cumulative_survival}
 \usage{
 susceptible_cumulative_survival(incidence_matrix, base_mortality_matrix,
   time_step)

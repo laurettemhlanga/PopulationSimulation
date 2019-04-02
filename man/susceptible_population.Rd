@@ -2,7 +2,7 @@
 % Please edit documentation in R/susceptibles_population.R
 \name{susceptible_population}
 \alias{susceptible_population}
-\title{susceptible_fun}
+\title{susceptible_population}
 \usage{
 susceptible_population(cumulative_survival_matrix, birth_counts)
 }
