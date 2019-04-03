@@ -59,33 +59,21 @@ do_one_simulation <- function(first_birth_time, last_birth_time,
   #remember this is last column shot for the (age + 1)not recorded !!
 
   probability_surviving <-  probability_surviving_infected(max_age,
-                                    list_of_times,
-                                    time_step,
-                                    excess_mortality ,
-                                    base_mortality )
+                                                           list_of_times,
+                                                           time_step,
+                                                           excess_mortality ,
+                                                           base_mortality )
 
 
   cum_prob_survival_i <- cumulative_probability_surviving_infected(probability_surviving)
 
 
   infected <-  infected_population(susceptible = susceptible_pop_counts[,-ncol(susceptible_pop_counts)],
-                                    incidence_matrix_mod = mod_incidence,
-                                    cumulative_infected_survival = cum_prob_survival_i)
+                                   incidence_matrix_mod = mod_incidence,
+                                   cumulative_infected_survival = cum_prob_survival_i)
 
 
   return(list(susceptible_count = susceptible_pop_counts,  infected_count = infected))
 
 
 }
-
-
-
-
-do_one_simulation(first_birth_time = 1985,
-                  last_birth_time = 1990,
-                  time_step = 1,
-                  max_age = 3,
-                  birth_rate = constant_birth_rate,
-                  base_mortality = time_indep_age_linear_base_mortality,
-                  incidence = time_indept_age_tent_incidence ,
-                  excess_mortality = time_indep_age_linear_excess_mortality)

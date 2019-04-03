@@ -48,9 +48,3 @@ incidence_matrix <- function(max_age,
 
 
 
-
-
-
-
-
-

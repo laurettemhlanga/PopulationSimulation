@@ -1,4 +1,4 @@
-#' do_one_simulation
+#' do_simulation
 #'
 #' A wrapper function that returns a a list of the the susceptible and infected population
 #'
@@ -23,7 +23,7 @@
 
 
 
-do_one_simulation <- function(first_birth_time, last_birth_time,
+do_simulation <- function(first_birth_time, last_birth_time,
                               time_step, max_age,
                               birth_rate, base_mortality,
                               incidence ,
