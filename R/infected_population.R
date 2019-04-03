@@ -16,7 +16,7 @@
 
 infected_population <- function(susceptible,
                                 incidence_matrix_mod,
-                               cumulative_infected_survival)
+                                cumulative_infected_survival)
 
 {
 
