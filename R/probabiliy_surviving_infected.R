@@ -45,19 +45,15 @@ probability_surviving_array <-  array(NA, dim = c(length(times) + max_age, lengt
        probability_surviving_array[seq_along(times) + (aa - 1), aa, ta] <- 0
 
        }
-      # else if (times_since_i[ta] == 0){
-      #
-      #  probability_surviving_array[seq_along(times) + (aa - 1), aa, ta] <-  1
-      #
-      # }
+
       else{
 
-      probability_surviving_array[seq_along(times) + (aa - 1), aa, ta] <-  exp(- 0.01)
+      probability_surviving_array[seq_along(times) + (aa - 1), aa, ta] <- ((base_mortality((times + (ages[aa] + (0.5 * time_step))), ages[aa] + ((0.5 * time_step))) +
+                                                                                    excess_mortality((matrix_of_times = times + (ages[aa] + (0.5 * time_step)))- times_since_i[ta],
+                                                                                                     matrix_of_ages = (ages[aa] + (0.5 * time_step)) - times_since_i[ta],
+                                                                                                    times_since_i = times_since_i[ta])) * time_step)
 
-
-      # ((base_mortality((times + (ages[aa] + (0.5 * time_step))), ages[aa] + ((0.5 * time_step))) +
-      #                                                                               excess_mortality((times + (ages[aa] + (0.5 * time_step)))- times_since_i[ta],
-      #                                                                                              (ages[aa] + (0.5 * time_step)) - times_since_i[ta], times_since_i[ta])) * time_step)
+        #exp(- 0.01)
 
          }
 
@@ -79,8 +75,8 @@ return(probability_surviving_array_2)
 }
 
 
-# y = probabiliy_surviving_infected(max_age = 3,
-#                                   list_of_times = 1:5,
-#                                   time_step = 1,
-#                                   excess_mortality = excess_mortality_fun,
-#                                   base_mortality = time_indep_age_linear_base_mortality)
+y = probability_surviving_infected(max_age = 3,
+                                  list_of_times = 1:5,
+                                  time_step = 1,
+                                  excess_mortality = time_indep_age_linear_excess_mortality,
+                                  base_mortality = time_indep_age_linear_base_mortality)
