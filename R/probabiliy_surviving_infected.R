@@ -26,7 +26,8 @@ probability_surviving_infected <- function(max_age,
                                            base_mortality)
 {
   # calculates the probability of surviving in the infected state after infection at time
-  # t - tau, age - tau  for a duration of tau years. Based on the excess and base mortality function an array of the respective survival probabilities
+  # t - tau, age - tau  for a duration of tau years. Based on the excess and base mortality
+  # function an array of the respective survival probabilities
   # for a given age, time and  time since infection is created.
 
   times  <- seq(min(list_of_times), max(list_of_times), time_step)
@@ -43,12 +44,14 @@ probability_surviving_infected <- function(max_age,
 
         probability_surviving_array[seq_along(times) + (aa - 1), aa, ta] <- 0
 
+        # try to think why you used seq_along(times)  what difference does it make to just use times ;)
+
 
       }
 
       else{
 
-        probability_surviving_array[seq_along(times) + (aa - 1), aa, ta] <- ((base_mortality((times + (ages[aa] + (0.5 * time_step))), ages[aa] + ((0.5 * time_step))) +
+        probability_surviving_array[seq_along(times) + (aa - 1), aa, ta] <- ((base_mortality((matrix_of_times = times + (ages[aa] + (0.5 * time_step))), matrix_of_ages = ages[aa] + ((0.5 * time_step))) +
                                                                                 excess_mortality((matrix_of_times = times + (ages[aa] + (0.5 * time_step)))- times_since_i[ta],
                                                                                                  matrix_of_ages = (ages[aa] + (0.5 * time_step)) - times_since_i[ta],
                                                                                                  times_since_i = times_since_i[ta])) * time_step)

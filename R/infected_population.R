@@ -20,10 +20,16 @@ infected_population <- function(susceptible,
 
 {
 
+# Calculates the number of people who are HIV infected at a given age and time for specific time
+# since infections, this results in a 3 dimensional data structure of equal dimension to the cumulative_infected_survival
+# The first infected[, , 1] is created from S(a, t) * Inc(a,t).For cases where age < 0  then infected[, aa , ts] <- NA and the rest
+# is derived from multiplying the number of people infected at age aa - tau and time - tau and the cumulative probability
+# of surviving in the infected population aged a at time t having been infected for tau years
 
   infected <- array(NA, dim = dim(cumulative_infected_survival))
 
   infected[, , 1] <- susceptible *  incidence_matrix_mod * cumulative_infected_survival[, , 1]
+
 
   for (aa in 1:dim(cumulative_infected_survival)[2]){
 
@@ -37,6 +43,8 @@ infected_population <- function(susceptible,
       }else{
 
         infected[, aa , ts] <-  infected[,aa - (ts-1), 1] * cumulative_infected_survival[ , aa, ts]
+        # ts - 1 so as to make sure the calculation starts from the least entry in the matrice that corresponds to the
+        # to the minimum age i the simulation.
         }
       }
   }
