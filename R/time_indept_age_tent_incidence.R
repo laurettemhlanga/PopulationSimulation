@@ -51,6 +51,60 @@ time_indept_age_tent_incidence <- function(matrix_of_ages, matrix_of_times, cons
 
 
 
+#' incidence_mahiane
+#'
+#' a function that takes as arguments age and time and returns a numeric vector of length 1
+#' representing a rate of incidence at the indicated age and time
+#' The generate_incidence function is required as an argument for the do_simulation function
+#' The function may be user defined and stored as an R object. Otherwise a default value - entered as "default" - is provided by the package
+#'
+#' @param matrix_of_times numeric, indicates time or times at which the incidence rate is desired
+#' @param matrix_of_ages  numeric, indicates age or ages at which the incidence rate is desired
+#' @param beta shape parameter for the log normal distribution
+#' @param sigm2 scale parameter for the log normal distribution
+#' @return a numeric vector that represents the incidence rate at age and time.
+#'
+#' @export
+#'
+
+
+# maximum_inc <- function()
+# {
+#
+#   return( ifelse(matrix_of_times <= 0, 0.006,
+#                  ifelse( matrix_of_times <= 18, 0.006 + 0.123 * (matrix_of_times - 12),
+#                          ifelse(matrix_of_times <= 24, 0.8,
+#                                 ifelse(matrix_of_times <= 31, 0.8 - (0.05 * (matrix_of_times -24)), 0)))))
+# }
+
+
+
+
+incidence_mahiane <- function(matrix_of_ages, matrix_of_times, age_debut = 0,
+                              beta = 2.3,
+                              sigm2 = 0.5)
+{
+
+
+  maximum_inc <- function()
+  {
+    #shape defining function for the incidence.
+    ifelse(matrix_of_times <= 0, 0.006,
+           ifelse( matrix_of_times <= 18, 0.006 + 0.123 * (matrix_of_times - 12),
+                   ifelse(matrix_of_times <= 24, 0.8,
+                          ifelse(matrix_of_times <= 31, 0.8 - (0.05 * (matrix_of_times -24)), 0))))
+  }
+
+
+  # to get reasonable prevalence multiply the realised incidence by 0.1
+
+  norm_fac <- sqrt(2 * pi* sigm2) *(exp((beta - ((sigm2)/2)) * maximum_inc()))
+
+  incidence <- 0.1 * ((norm_fac / ((matrix_of_ages - age_debut) * sqrt(2 * pi * sigm2))) *
+                        exp(-(((log(matrix_of_ages - age_debut) - beta)^2) / (2 * sigm2))))
+
+  return(incidence)
+}
 
 
 
