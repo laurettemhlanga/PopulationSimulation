@@ -58,24 +58,4 @@ time_indep_age_linear_base_mortality <- function(matrix_of_ages, matrix_of_times
 
 
 
-# base_mortality_fun <- function(t, constant = 0.01, age_min = 1,
-#                                     age_max = 50,
-#                                     exmin =0,
-#                                     exfin =0.01){
-#
-#   base_mortality = ifelse(t <= age_min, 0,
-#                           ifelse(t <= age_max, exmin + ((exfin - exmin)/(age_max - age_min)) * (t - age_min),
-#                                  0))
-#
-#   return(base_mortality)
-# }
 
-
-
-# Option # 2
-# base_mortality_fun <- function(t=seq(50,0.55), age = 0:49) {
-#
-#   base_mortality = exp(-(1/age)*t)*0.1
-#
-#   return(base_mortality)
-# }

@@ -53,6 +53,49 @@ time_indep_age_linear_excess_mortality  <- function(matrix_of_ages, matrix_of_ti
 
 
 
+#' survival_prob_infected_mahiane
+#'
+#' a function that takes as arguments age,time and tau - which indicates the average time since infection among the infected population - and returns a numeric vector of length equivelent to the number of times indicated by the simulation
+#' representing a rate of excess mortality -i.e. among infected population relative to non-infected population - at the indicated age and time
+#' The generate_mortality function is required as an argument for the package's do_simulation function
+#' The function may be user defined and stored as an R object. Otherwise a default value - entered as "default" - is provided by the package
+#'
+#' @param matrix_of_times numeric, indicates time or times at which the incidence rate is desired
+#' @param matrix_of_ages  numeric, indicates age or ages at which the incidence rate is desired
+#' @param times_since_i umeric, indicates time since infection among the infected poplation
+#' @param shape numeric, indicates minimum age to be included in the simulation
+#' @param max_survival  numeric, indicates minimum mortality, which is at age_min
+#' @param min_survival numeric, indicates maximum/final mortality at age_max, unless otherwise specified by user defined function
+#' @param age_max numeric, indicates maximum age to be included in the simulation
+#' @param age_min umeric, indicates minimum age to be included in the simulation
+#' @return a numeric vector that represents the mortality rate at t.
+#'
+#' @export
+
+
+
+
+
+
+survival_prob_infected_mahiane <- function(matrix_of_ages,
+                                   matrix_of_times,
+                                   times_since_i,
+                                   shape = 2,
+                                   max_survival = 16, min_survival = 6.6,
+                                   age_max = 50, age_min = 0)
+{
+
+  scale <- max_survival -
+    ((max_survival - min_survival)/(age_min - age_max)) * matrix_of_ages
+
+  probability <-  exp(-(times_since_i/scale) ^ shape)
+
+  return(probability)
+
+}
+
+
+
 
 
 

@@ -60,6 +60,7 @@ time_indept_age_tent_incidence <- function(matrix_of_ages, matrix_of_times, cons
 #'
 #' @param matrix_of_times numeric, indicates time or times at which the incidence rate is desired
 #' @param matrix_of_ages  numeric, indicates age or ages at which the incidence rate is desired
+#' @param age_debut age at which individuals get HIV infected
 #' @param beta shape parameter for the log normal distribution
 #' @param sigm2 scale parameter for the log normal distribution
 #' @return a numeric vector that represents the incidence rate at age and time.
