@@ -12,7 +12,7 @@ do_one_simulation(first_birth_time, last_birth_time, time_step, max_age,
 
 \item{last_birth_time}{a numeric vectors of length min:max; indicates the range of age to be included in simulation. Note that date format is not used.}
 
-\item{time_step}{the time step between consecurtivelist_of_times}
+\item{time_step}{the time step between consecurtive list_of_birth_times}
 
 \item{max_age}{maximum age each birth cohort is to be aged}
 
@@ -27,7 +27,7 @@ This function can be defined by user or can be selected from among several defau
 The user-defined or package default function should be called by name when included as an argument in the generate_incidence_matrix function.}
 }
 \value{
-a matrix of column length max_age and row lengthlist_of_times,
+a matrix of column length max_age and row length list_of_birth_times,
 Values stored in the matrix are numeric double, from 0-1, which represent the probability of becoming infected at age and time
 }
 \description{

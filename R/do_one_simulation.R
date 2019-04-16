@@ -4,7 +4,7 @@
 #'
 #' @param first_birth_time the number of steps to age the population
 #' @param last_birth_time a numeric vectors of length min:max; indicates the range of age to be included in simulation. Note that date format is not used.
-#' @param time_step the time step between consecurtivelist_of_times
+#' @param time_step the time step between consecurtive list_of_birth_times
 #' @param max_age maximum age each birth cohort is to be aged
 #' @param birth_rate the birth rate in the hypothetival population
 #' @param base_mortality mortality function due to natural causes as a function of age and time
@@ -13,7 +13,7 @@
 #' This function can be defined by user or can be selected from among several default options included in the package.
 #' The user-defined or package default function should be called by name when included as an argument in the generate_incidence_matrix function.
 #'
-#' @return a matrix of column length max_age and row lengthlist_of_times,
+#' @return a matrix of column length max_age and row length list_of_birth_times,
 #' Values stored in the matrix are numeric double, from 0-1, which represent the probability of becoming infected at age and time
 #'
 #'
@@ -32,16 +32,16 @@ do_one_simulation <- function(first_birth_time, last_birth_time,
 
   #wrapper function to the functions in Population simulation project.
 
-  list_of_times <- seq(first_birth_time, last_birth_time, time_step )
+  list_of_birth_times <- seq(first_birth_time, last_birth_time, time_step )
 
-  birth_count <- birth_counts(dates_needing_birth_counts = list_of_times,
+  birth_count <- birth_counts(dates_needing_birth_counts = list_of_birth_times,
                               birth_rate = birth_rate, time_step = time_step)
 
+  incidence_m <- incidence_matrix(max_age, list_of_birth_times, incidence, time_step)
 
-  incidence_m <- incidence_matrix(max_age, list_of_times, incidence, time_step)
 
-
-  base_mortality_m <- base_mortality_matrix(max_age, list_of_times, base_mortality, time_step)
+  base_mortality_m <- base_mortality_matrix(max_age, list_of_birth_times,
+                                            base_mortality, time_step)
 
 
 
@@ -59,7 +59,7 @@ do_one_simulation <- function(first_birth_time, last_birth_time,
   #remember this is last column shot for the (age + 1)not recorded !!
 
   probability_surviving <-  probability_surviving_infected(max_age,
-                                                           list_of_times,
+                                                           list_of_birth_times,
                                                            time_step,
                                                            excess_mortality ,
                                                            base_mortality )

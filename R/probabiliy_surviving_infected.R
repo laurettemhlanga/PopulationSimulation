@@ -3,7 +3,7 @@
 #' a function that returns a matrix of probabilities of mortality for each age and time step of the simulation
 #'
 #' @param max_age denotes the number of steps forward each age group will be aged in the simulation by the do_sim function
-#' @param list_of_times a numeric vector of length min:max; indicates the range of ages to be included in simulation. Note that date format is not used.
+#' @param list_of_birth_times a numeric vector of length min:max; indicates the range of ages to be included in simulation. Note that date format is not used.
 #' @param time_step the time or age difference between to consecutive times or ages i.e it is uniform in all values supplied
 #' @param base_mortality a function which takes as arguments age and time and returns a numberic rate of mortality for each age and time included in the simulation.
 #' This function can be defined by user or can be selected from among several default options included in the package.
@@ -20,7 +20,7 @@
 
 
 probability_surviving_infected <- function(max_age,
-                                           list_of_times,
+                                           list_of_birth_times,
                                            time_step,
                                            excess_mortality,
                                            base_mortality)
@@ -30,11 +30,11 @@ probability_surviving_infected <- function(max_age,
   # function an array of the respective survival probabilities
   # for a given age, time and  time since infection is created.
 
-  times  <- seq(min(list_of_times), max(list_of_times), time_step)
+  birth_times  <- seq(min(list_of_birth_times), max(list_of_birth_times), time_step)
   ages <- seq(0, max_age, time_step)
   times_since_i <- seq(0, max_age, time_step)
 
-  probability_surviving_array <-  array(NA, dim = c(length(times) + max_age, length(ages), length(ages)))
+  probability_surviving_array <-  array(NA, dim = c(length(birth_times) + max_age, length(ages), length(ages)))
 
 
   for (aa in seq_along(ages)){
@@ -42,7 +42,7 @@ probability_surviving_infected <- function(max_age,
 
       if (ages[aa] < times_since_i[ta]){
 
-        probability_surviving_array[seq_along(times) + (aa - 1), aa, ta] <- 0
+        probability_surviving_array[seq_along(birth_times) + (aa - 1), aa, ta] <- 0
 
         # try to think why you used seq_along(times)  what difference does it make to just use times ;)
 
@@ -51,8 +51,9 @@ probability_surviving_infected <- function(max_age,
 
       else{
 
-        probability_surviving_array[seq_along(times) + (aa - 1), aa, ta] <- ((base_mortality((matrix_of_times = times + (ages[aa] + (0.5 * time_step))), matrix_of_ages = ages[aa] + ((0.5 * time_step))) +
-                                                                                excess_mortality((matrix_of_times = times + (ages[aa] + (0.5 * time_step)))- times_since_i[ta],
+        probability_surviving_array[seq_along(birth_times) + (aa - 1), aa, ta] <- ((base_mortality((matrix_of_times = birth_times + (ages[aa] + (0.5 * time_step))),
+                                                                                             matrix_of_ages = ages[aa] + ((0.5 * time_step))) +
+                                                                                excess_mortality((matrix_of_times = birth_times + (ages[aa] + (0.5 * time_step)))- times_since_i[ta],
                                                                                                  matrix_of_ages = (ages[aa] + (0.5 * time_step)) - times_since_i[ta],
                                                                                                  times_since_i = times_since_i[ta])) * time_step)
 
@@ -71,7 +72,7 @@ probability_surviving_infected <- function(max_age,
 
   for (ta in 1:dim(probability_surviving_array)[3]){
 
-    probability_surviving_array_2[ , , ta] <- transform_data(probability_surviving_array[, , ta])
+    probability_surviving_array_2[ , , ta] <- compress_age_time_matrix(probability_surviving_array[, , ta])
   }
 
   return(probability_surviving_array_2)
@@ -81,7 +82,7 @@ probability_surviving_infected <- function(max_age,
 
 
 # y = probability_surviving_infected(max_age = 3,
-#                                   list_of_times = 1:5,
+#                                   list_of_birth_times = 1:5,
 #                                   time_step = 1,
 #                                   excess_mortality = time_indep_age_linear_excess_mortality,
 #                                   base_mortality = time_indep_age_linear_base_mortality)

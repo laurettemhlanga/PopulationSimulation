@@ -4,13 +4,13 @@
 \alias{probability_surviving_infected}
 \title{probability_surviving_array}
 \usage{
-probability_surviving_infected(max_age, list_of_times, time_step,
+probability_surviving_infected(max_age, list_of_birth_times, time_step,
   excess_mortality, base_mortality)
 }
 \arguments{
 \item{max_age}{denotes the number of steps forward each age group will be aged in the simulation by the do_sim function}
 
-\item{list_of_times}{a numeric vector of length min:max; indicates the range of ages to be included in simulation. Note that date format is not used.}
+\item{list_of_birth_times}{a numeric vector of length min:max; indicates the range of ages to be included in simulation. Note that date format is not used.}
 
 \item{time_step}{the time or age difference between to consecutive times or ages i.e it is uniform in all values supplied}
 

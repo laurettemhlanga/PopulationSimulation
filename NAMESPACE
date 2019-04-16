@@ -2,6 +2,7 @@
 
 export(base_mortality_matrix)
 export(birth_counts)
+export(compress_age_time_matrix)
 export(constant_birth_rate)
 export(cumulative_probability_surviving_infected)
 export(do_one_simulation)
@@ -16,4 +17,3 @@ export(susceptible_population)
 export(time_indep_age_linear_base_mortality)
 export(time_indep_age_linear_excess_mortality)
 export(time_indept_age_tent_incidence)
-export(transform_data)
