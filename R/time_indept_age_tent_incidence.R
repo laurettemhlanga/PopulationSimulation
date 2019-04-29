@@ -110,22 +110,5 @@ incidence_mahiane <- function(matrix_of_ages, matrix_of_times, age_debut = 0,
 
 
 
-# Option 1
-# tent_incidence_fun <- function(age, constant = 0, age_min = 0,
-#                                age_max = 50,  age_peak= 25,
-#                                Imin =0.01,  Ipeak =0.05,
-#                                Ifin =0.02)
-# {
-#
-#   if (constant>0) {
-#     return(matrix(rep(constant,ncol(age)*nrow(age)),  ncol = ncol(age), nrow = nrow(age) ))
-#   } else {
-#   incidence = ifelse(age <= age_min, 0,
-#                      ifelse(age <= age_peak, Imin + ((Ipeak - Imin)/(age_peak - age_min)) * (age - age_min),
-#                             ifelse(age <= age_max, Ipeak + ((Ifin - Ipeak )/(age_max - age_peak)) * (age - age_peak), 0)))
-#
-#   return(incidence)
-#   }
-# }
 
 

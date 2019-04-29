@@ -21,6 +21,8 @@ susceptible_cumulative_survival <- function(incidence_matrix,
                                             time_step)
 
 {
+  # calculates the probability of survival in the susceptibles pop, which is eventually used to estimate the cumulative probabilty
+  # of surviving in the susceptibles from birth till current time.
 
   susceptible_survival_rate_matrix = exp( - ((incidence_matrix +  base_mortality_matrix) * time_step))
 

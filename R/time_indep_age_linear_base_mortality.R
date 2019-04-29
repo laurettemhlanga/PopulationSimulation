@@ -1,4 +1,4 @@
-#' base_mortality_fun
+#' time_indep_age_linear_base_mortality
 #'
 #' a function that takes as arguments age and time and returns a numeric vector of length equivelent to the number of times indicated by the simulation
 #' representing a rate of mortality at the indicated age and time

@@ -42,7 +42,7 @@ probability_surviving_infected <- function(max_age,
 
       if (ages[aa] < times_since_i[ta]){
 
-        probability_surviving_array[seq_along(birth_times) + (aa - 1), aa, ta] <- 0
+        probability_surviving_array[seq_along(birth_times) + (aa - 1), aa, ta] <- NA
 
         # try to think why you used seq_along(times)  what difference does it make to just use times ;)
 
@@ -51,11 +51,11 @@ probability_surviving_infected <- function(max_age,
 
       else{
 
-        probability_surviving_array[seq_along(birth_times) + (aa - 1), aa, ta] <- ((base_mortality((matrix_of_times = birth_times + (ages[aa] + (0.5 * time_step))),
+        probability_surviving_array[seq_along(birth_times) + (aa - 1), aa, ta] <- exp(-((base_mortality((matrix_of_times = birth_times + (ages[aa] + (0.5 * time_step))),
                                                                                              matrix_of_ages = ages[aa] + ((0.5 * time_step))) +
-                                                                                excess_mortality((matrix_of_times = birth_times + (ages[aa] + (0.5 * time_step)))- times_since_i[ta],
-                                                                                                 matrix_of_ages = (ages[aa] + (0.5 * time_step)) - times_since_i[ta],
-                                                                                                 times_since_i = times_since_i[ta])) * time_step)
+                                                                                excess_mortality((matrix_of_times = birth_times + (ages[aa] + (0.5 * time_step))),
+                                                                                                 matrix_of_ages = (ages[aa] + (0.5 * time_step)),
+                                                                                                 times_since_i = times_since_i[ta])) * time_step))
 
 
         #exp(- 0.01)

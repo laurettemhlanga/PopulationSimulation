@@ -2,7 +2,7 @@
 % Please edit documentation in R/time_indep_age_linear_base_mortality.R
 \name{time_indep_age_linear_base_mortality}
 \alias{time_indep_age_linear_base_mortality}
-\title{base_mortality_fun}
+\title{time_indep_age_linear_base_mortality}
 \usage{
 time_indep_age_linear_base_mortality(matrix_of_ages, matrix_of_times,
   constant = 0, age_min = 0, age_max = 50, mort_min = 0,
