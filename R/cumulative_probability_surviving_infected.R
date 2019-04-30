@@ -22,7 +22,11 @@ cumulative_probability_surviving_infected <- function(probability_surviving_infe
 
   cumulative_probability_surviving_array <-  array(NA, dim = dim(probability_surviving_infected_array))
 
-  cumulative_probability_surviving_array[, , 1] = probability_surviving_infected_array[, , 1]
+  length_of_1vector <- dim(probability_surviving_infected_array)[1] * dim(probability_surviving_infected_array)[2]
+
+  cumulative_probability_surviving_array[, , 1] = matrix(rep(1, length_of_1vector))
+  #
+    #probability_surviving_infected_array[, , 1]
 
   times <- dim(probability_surviving_infected_array)[1]
 
@@ -31,7 +35,7 @@ cumulative_probability_surviving_infected <- function(probability_surviving_infe
       for (ta in 2:dim(probability_surviving_infected_array)[3]){
 
 
-        cumulative_probability_surviving_array[ tt, aa , ta] <-   cumulative_probability_surviving_array[tt, aa - 1 , ta - 1] * probability_surviving_infected_array[ tt, aa , ta]
+        cumulative_probability_surviving_array[ tt, aa , ta] <-   cumulative_probability_surviving_array[tt, aa - 1 , ta - 1] * probability_surviving_infected_array[tt, aa - 1 , ta - 1]
 
 
       }
