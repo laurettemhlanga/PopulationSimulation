@@ -20,7 +20,11 @@ cumulative_probability_surviving_infected <- function(probability_surviving_infe
   # t - tau, age - tau  for a duration of tau years. tt is constant as the matrix is being populated horizontally
   # (when the third loop is effected).
 
-  cumulative_probability_surviving_array <-  array(NA, dim = dim(probability_surviving_infected_array))
+  dimcpsi <- c(dim(probability_surviving_infected_array)[1],
+               dim(probability_surviving_infected_array)[2],
+               dim(probability_surviving_infected_array)[3] + 1)
+
+  cumulative_probability_surviving_array <-  array(NA, dim = dimcpsi)
 
   length_of_1vector <- dim(probability_surviving_infected_array)[1] * dim(probability_surviving_infected_array)[2]
 
@@ -28,14 +32,14 @@ cumulative_probability_surviving_infected <- function(probability_surviving_infe
   #
     #probability_surviving_infected_array[, , 1]
 
-  times <- dim(probability_surviving_infected_array)[1]
+  #times <- dim(probability_surviving_infected_array)[1]
 
-  for(tt in 1:dim(probability_surviving_infected_array)[1] ){
-    for (aa in 2:dim(probability_surviving_infected_array)[2] ){
-      for (ta in 2:dim(probability_surviving_infected_array)[3]){
+  for(tt in 1:dim(cumulative_probability_surviving_array)[1] ){
+    for (aa in 1:dim(cumulative_probability_surviving_array)[2] ){
+      for (ta in 2:dim(cumulative_probability_surviving_array)[3]){
 
 
-        cumulative_probability_surviving_array[ tt, aa , ta] <-   cumulative_probability_surviving_array[tt, aa - 1 , ta - 1] * probability_surviving_infected_array[tt, aa - 1 , ta - 1]
+        cumulative_probability_surviving_array[ tt, aa , ta] <-   cumulative_probability_surviving_array[tt, aa  , ta - 1] * probability_surviving_infected_array[tt, aa , ta - 1]
 
 
       }
@@ -50,7 +54,7 @@ cumulative_probability_surviving_infected <- function(probability_surviving_infe
 
 
 
-#Cum_prob_survival_i <- cumulative_probability_surviving_infected(y)
+Cum_prob_survival_i <- cumulative_probability_surviving_infected(probability_surviving_infected_array = y)
 
 
 

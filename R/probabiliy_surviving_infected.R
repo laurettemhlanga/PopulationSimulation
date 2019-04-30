@@ -25,16 +25,16 @@ probability_surviving_infected <- function(max_age,
                                            excess_mortality,
                                            base_mortality)
 {
-  # calculates the probability of surviving in the infected state after infection at time
-  # t , age  for a duration of tau years. Based on the excess and base mortality
+  # calculates the probability of surviving in the infected state at time
+  # tt , age  aa for a duration of tau years. Based on the excess and base mortality
   # function an array of the respective survival probabilities
   # for a given age, time and  time since infection is created.
 
   birth_times  <- seq(min(list_of_birth_times), max(list_of_birth_times), time_step)
   ages <- seq(0, max_age, time_step)
-  times_since_i <- seq(0, max_age, time_step)
+  times_since_i <- seq(0, max_age, time_step)[-1]
 
-  probability_surviving_array <-  array(NA, dim = c(length(birth_times) + max_age, length(ages), length(ages)))
+  probability_surviving_array <-  array(NA, dim = c(length(birth_times) + max_age, length(ages), length(ages)-1))
 
 
   for (aa in seq_along(ages)){
@@ -57,7 +57,7 @@ probability_surviving_infected <- function(max_age,
                                                                                                  matrix_of_ages = (ages[aa] + (0.5 * time_step)),
                                                                                                  times_since_i = times_since_i[ta])) * time_step))
         #exp(- 0.01)
-
+#
       }
 
     }
@@ -79,9 +79,9 @@ probability_surviving_infected <- function(max_age,
 
 
 
-# y = probability_surviving_infected(max_age = 3,
-#                                   list_of_birth_times = 1:5,
-#                                   time_step = 1,
-#                                   excess_mortality = time_indep_age_linear_excess_mortality,
-#                                   base_mortality = time_indep_age_linear_base_mortality)
+y = probability_surviving_infected(max_age = 3,
+                                  list_of_birth_times = 1:5,
+                                  time_step = 1,
+                                  excess_mortality = time_indep_age_linear_excess_mortality,
+                                  base_mortality = time_indep_age_linear_base_mortality)
 
