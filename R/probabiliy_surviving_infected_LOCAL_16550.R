@@ -82,6 +82,6 @@ probability_surviving_infected <- function(max_age,
 # y = probability_surviving_infected(max_age = 3,
 #                                   list_of_birth_times = 1:5,
 #                                   time_step = 1,
-#                                   excess_mortality = excess_mahiane,
+#                                   excess_mortality = time_indep_age_linear_excess_mortality,
 #                                   base_mortality = time_indep_age_linear_base_mortality)
 

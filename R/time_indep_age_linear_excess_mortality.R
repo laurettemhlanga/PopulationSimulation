@@ -77,7 +77,7 @@ time_indep_age_linear_excess_mortality  <- function(matrix_of_ages, matrix_of_ti
 
 
 
-survival_prob_infected_mahiane <- function(matrix_of_ages,
+excess_mahiane <- function(matrix_of_ages,
                                    matrix_of_times,
                                    times_since_i,
                                    shape = 2,
@@ -88,9 +88,9 @@ survival_prob_infected_mahiane <- function(matrix_of_ages,
   scale <- max_survival -
     ((max_survival - min_survival)/(age_min - age_max)) * matrix_of_ages
 
-  probability <-  exp(-(times_since_i/scale) ^ shape)
+  excess_mortality <-  (times_since_i / scale) ^ shape
 
-  return(probability)
+  return(excess_mortality)
 
 }
 
