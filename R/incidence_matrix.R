@@ -41,8 +41,5 @@ incidence_matrix <- function(max_age,list_of_birth_times,incidence,time_step)
 }
 
 
-# incidence_matrix(max_age = 25,
-#                  list_of_times = 1:5,
-#                  incidence = incidence_mahiane,
-#                  time_step = 1)
+
 

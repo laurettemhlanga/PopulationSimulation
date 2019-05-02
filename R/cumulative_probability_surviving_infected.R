@@ -54,7 +54,7 @@ cumulative_probability_surviving_infected <- function(probability_surviving_infe
 
 
 
-Cum_prob_survival_i <- cumulative_probability_surviving_infected(probability_surviving_infected_array = y)
+#Cum_prob_survival_i <- cumulative_probability_surviving_infected(probability_surviving_infected_array = y)
 
 
 
