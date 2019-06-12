@@ -35,6 +35,7 @@ do_one_simulation <- function(first_birth_time, last_birth_time,
   list_of_birth_times <- seq(first_birth_time,
                              last_birth_time,
                              time_step)
+  time_step = time_step
 
   birth_count <- birth_counts(dates_needing_birth_counts = list_of_birth_times,
                               birth_rate = birth_rate, time_step = time_step)
@@ -74,7 +75,7 @@ do_one_simulation <- function(first_birth_time, last_birth_time,
 
 
 
-  infected <-  infected_population(susceptible = susceptible_pop_counts[,-ncol(susceptible_pop_counts)],
+  infected <-  infected_population(susceptible = susceptible_pop_counts, #[,-ncol(susceptible_pop_counts)],
                                    incidence_mat = incidence_m,
                                    cumulative_infected_survival = cum_prob_survival_i)
 

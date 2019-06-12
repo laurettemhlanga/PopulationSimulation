@@ -27,7 +27,7 @@ susceptible_cumulative_survival <- function(incidence_matrix,
   susceptible_survival_rate_matrix = exp( - ((incidence_matrix +  base_mortality_matrix) * time_step))
 
 
-  susceptible_cumulative_survival_matrix <- matrix(NA, ncol = ncol(susceptible_survival_rate_matrix) + 1,
+  susceptible_cumulative_survival_matrix <- matrix(NA, ncol = ncol(susceptible_survival_rate_matrix),
                                                    nrow = nrow(susceptible_survival_rate_matrix))
 
 
