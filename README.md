@@ -1,12 +1,12 @@
 # PopulationSimulation
 
 The functions are still under development. These functions work together to simulate an age and time structured pupolation. The major function requires user specified functions which are; 
--birth rate , 
--incidence, 
--base mortality, 
--excess mortality, 
--time step (delta), and 
--aging step (the age to which each birth cohort is aged to). 
+ * birth rate , 
+ * incidence, 
+ * base mortality, 
+ * excess mortality, 
+ * time step (delta), and 
+ * aging step (the age to which each birth cohort is aged to). 
 
 The output is an age and time structured population for the specified times and ages. Subdivided into susceptible and infected (specified by time since infection) groups and from it the prevalence can be calculated. 
 
