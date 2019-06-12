@@ -4,13 +4,13 @@
 \alias{infected_population}
 \title{infected_population}
 \usage{
-infected_population(susceptible, incidence_matrix_mod,
+infected_population(susceptible, incidence_mat,
   cumulative_infected_survival)
 }
 \arguments{
 \item{susceptible}{the susceptible population counts}
 
-\item{incidence_matrix_mod}{the normalised incidence with respect to the exponetial used in approximating the probability of surving infection or death in the susceptible state}
+\item{incidence_mat}{the normalised incidence with respect to the exponetial used in approximating the probability of surving infection or death in the susceptible state}
 
 \item{cumulative_infected_survival}{the survival probability of  being aged a at time t having been infected for tau years.}
 }

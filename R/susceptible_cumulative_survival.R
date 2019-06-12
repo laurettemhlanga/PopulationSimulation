@@ -34,11 +34,11 @@ susceptible_cumulative_survival <- function(incidence_matrix,
 
   susceptible_cumulative_survival_matrix[, 1] = rep(1,  nrow(susceptible_cumulative_survival_matrix))
 
-  for  (aa in 2:ncol(susceptible_cumulative_survival_matrix)){
+  for  (age in 2:ncol(susceptible_cumulative_survival_matrix)){
 
 
-        susceptible_cumulative_survival_matrix[ , aa ] = susceptible_cumulative_survival_matrix[ , aa - 1] *
-          susceptible_survival_rate_matrix[ , aa - 1]
+        susceptible_cumulative_survival_matrix[ , age ] = susceptible_cumulative_survival_matrix[ , age - 1] *
+          susceptible_survival_rate_matrix[ , age - 1]
 
   }
   return(susceptible_cumulative_survival_matrix)
@@ -89,15 +89,15 @@ susceptible_cumulative_survival <- function(incidence_matrix,
 #
 #   susceptible_cumulative_survival_matrix[1: column_1, 1] = rep(1,  column_1)
 #
-#   for  (aa in 2:ncol(susceptible_survival_rate_matrix)){
+#   for  (age in 2:ncol(susceptible_survival_rate_matrix)){
 #     for (tt in 2 : nrow(susceptible_survival_rate_matrix)){
 #
-#       if (!is.na(susceptible_survival_rate_matrix[tt, aa]) == T){
+#       if (!is.na(susceptible_survival_rate_matrix[tt, age]) == T){
 #
-#         susceptible_cumulative_survival_matrix[tt , aa ] = susceptible_cumulative_survival_matrix[tt-1, aa - 1] * susceptible_survival_rate_matrix[tt - 1 , aa -1]
+#         susceptible_cumulative_survival_matrix[tt , age ] = susceptible_cumulative_survival_matrix[tt-1, age - 1] * susceptible_survival_rate_matrix[tt - 1 , age -1]
 #
 #       }else{
-#         susceptible_cumulative_survival_matrix[tt, aa]  = NA
+#         susceptible_cumulative_survival_matrix[tt, age]  = NA
 #
 #       }
 #
@@ -123,15 +123,15 @@ susceptible_cumulative_survival <- function(incidence_matrix,
 #
 #   susceptible_cumulative_survival_matrix[1: column_1, 1] = rep(1,  column_1)
 #
-#   for  (aa in 2:ncol(susceptible_survival_rate_matrix)){
+#   for  (age in 2:ncol(susceptible_survival_rate_matrix)){
 #     for (tt in 2 : nrow(susceptible_survival_rate_matrix)){
 #
-#       if (!is.na(susceptible_survival_rate_matrix[tt, aa]) == T){
+#       if (!is.na(susceptible_survival_rate_matrix[tt, age]) == T){
 #
-#         susceptible_cumulative_survival_matrix[tt , aa ] = susceptible_cumulative_survival_matrix[tt-1, aa - 1] * susceptible_survival_rate_matrix[tt - 1 , aa -1]
+#         susceptible_cumulative_survival_matrix[tt , age ] = susceptible_cumulative_survival_matrix[tt-1, age - 1] * susceptible_survival_rate_matrix[tt - 1 , age -1]
 #
 #       }else{
-#         susceptible_cumulative_survival_matrix[tt, aa]  = NA
+#         susceptible_cumulative_survival_matrix[tt, age]  = NA
 #
 #       }
 #

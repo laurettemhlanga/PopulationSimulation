@@ -4,7 +4,7 @@
 #' a function that returns a matrix of probabilities of mortality for each age and time step of the simulation
 #'
 #' @param susceptible the susceptible population counts
-#' @param  incidence_matrix_mod the normalised incidence with respect to the exponetial used in approximating the probability of surving infection or death in the susceptible state
+#' @param  incidence_mat the normalised incidence with respect to the exponetial used in approximating the probability of surving infection or death in the susceptible state
 #' @param cumulative_infected_survival the survival probability of  being aged a at time t having been infected for tau years.
 #' @return returns an array of dimensions time t , age a and time since infection - tau
 #'
@@ -15,42 +15,46 @@
 
 
 infected_population <- function(susceptible,
-                                incidence_matrix_mod,
+                                incidence_mat,
                                 cumulative_infected_survival)
 
 {
 
 # Calculates the number of people who are HIV infected at a given age and time for specific time
 # since infections, this results in a 3 dimensional data structure of equal dimension to the cumulative_infected_survival
-# The first infected[, , 1] is created from S(a, t) * Inc(a,t).For cases where age < 0  then infected[, aa , ts] <- NA and the rest
-# is derived from multiplying the number of people infected at age aa - tau and time - tau and the cumulative probability
+# The first infected[, , 1] is created from S(a, t) * Inc(a,t).For cases where age < 0  then infected[, age , ts] <- NA and the rest
+# is derived from multiplying the number of people infected at age age - tau and time - tau and the cumulative probability
 # of surviving in the infected population aged a at time t having been infected for tau years
 
   infected <- array(NA, dim = dim(cumulative_infected_survival))
 
-  infected[, , 1] <- susceptible *  incidence_matrix_mod * cumulative_infected_survival[, , 1]
+  infected[, , 1] <- susceptible *  incidence_mat * cumulative_infected_survival[, , 1]
 
 
-  for (aa in 1:dim(cumulative_infected_survival)[2]){
+  for (age in 1:dim(cumulative_infected_survival)[2]){
 
-    for (ts in 2:dim(cumulative_infected_survival)[3]){
+    for (time_since_infection in 2:dim(cumulative_infected_survival)[3]){
 
 
-      if (aa - ts < 0 ){
+      if (age - time_since_infection < 0 ){
 
-        infected[, aa , ts] <- NA
+        infected[, age , time_since_infection] <- NA
 
       }else{
 
-        infected[, aa , ts] <-  infected[,aa - (ts-1), 1] * cumulative_infected_survival[ , aa, ts]
-        # ts - 1 so as to make sure the calculation starts from the least entry in the matrice that corresponds to the
-        # to the minimum age i the simulation.
-        }
+        infected[, age , time_since_infection] <-  infected[, age - (time_since_infection-1), 1] *
+          cumulative_infected_survival[ , age, time_since_infection]
+
       }
-  }
+     }
+    }
 
   return(infected)
-}
+  }
+
+# I <- infected_population(susceptible = susceptible_pop_counts,
+#                          incidence_mat = incidence_m,
+#                          cumulative_infected_survival = cum_prob_survival_i)
 
 
 

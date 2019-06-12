@@ -17,7 +17,7 @@
 cumulative_probability_surviving_infected <- function(probability_surviving_infected_array)
 {
   # calculates the cumulative probability of surviving in the infected state after infection at time
-  # t - tau, age - tau  for a duration of tau years. tt is constant as the matrix is being populated horizontally
+  # t - tau, age - tau  for a duration of tau years. time is constant as the matrix is being populated horizontally
   # (when the third loop is effected).
 
   dimcpsi <- c(dim(probability_surviving_infected_array)[1],
@@ -29,32 +29,27 @@ cumulative_probability_surviving_infected <- function(probability_surviving_infe
   length_of_1vector <- dim(probability_surviving_infected_array)[1] * dim(probability_surviving_infected_array)[2]
 
   cumulative_probability_surviving_array[, , 1] = matrix(rep(1, length_of_1vector))
-  #
-    #probability_surviving_infected_array[, , 1]
-
-  #times <- dim(probability_surviving_infected_array)[1]
-
-  for(tt in 1:dim(cumulative_probability_surviving_array)[1] ){
-    for (aa in 1:dim(cumulative_probability_surviving_array)[2] ){
-      for (ta in 2:dim(cumulative_probability_surviving_array)[3]){
 
 
-        cumulative_probability_surviving_array[ tt, aa , ta] <-   cumulative_probability_surviving_array[tt, aa  , ta - 1] * probability_surviving_infected_array[tt, aa , ta - 1]
+  #for(time in 1:dim(cumulative_probability_surviving_array)[1] ){
+    for (age in 2:dim(cumulative_probability_surviving_array)[2] ){
+      for (time_since_infection in 2:dim(cumulative_probability_surviving_array)[3]){
+
+
+        cumulative_probability_surviving_array[ , age, time_since_infection] <- cumulative_probability_surviving_array[ , age -1, time_since_infection - 1] *
+          probability_surviving_infected_array[ , age, time_since_infection - 1]
 
 
       }
     }
-
-  }
-
+ # }
   return(cumulative_probability_surviving_array)
-
 }
 
 
 
 
-#Cum_prob_survival_i <- cumulative_probability_surviving_infected(probability_surviving_infected_array = y)
+#cum_prob_survival_i <- cumulative_probability_surviving_infected(probability_surviving_infected_array = y)
 
 
 

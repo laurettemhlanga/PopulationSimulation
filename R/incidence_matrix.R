@@ -14,7 +14,7 @@
 #'
 #' @export
 
-incidence_matrix <- function(max_age,list_of_birth_times,incidence,time_step)
+incidence_matrix <- function(max_age, list_of_birth_times,incidence, time_step)
 {
   # populates an incidence matrix function based on the incidence function supplied
   # the maximum age, list of times and the required time-step. Note the approximation
@@ -27,13 +27,13 @@ incidence_matrix <- function(max_age,list_of_birth_times,incidence,time_step)
   age_index <- 1:length(ages)
   birth_time_index <- 1:(length(birth_times))
 
-  for (aa in age_index){
+  for (age in age_index){
 
-    incidence_matrix[birth_time_index + (aa -1), aa ] =  incidence( matrix_of_ages = ages[aa] + 0.5 * time_step ,
-                                                        matrix_of_times = birth_times + (ages[aa]+ 0.5 * time_step))
+    incidence_matrix[birth_time_index + (age -1), age ] =  incidence( matrix_of_ages = ages[age] + 0.5 * time_step ,
+                                                        matrix_of_times = birth_times + (ages[age]+ 0.5 * time_step))
 
-#    incidence_matrix_b[birth_time_index + (aa -1), aa ] =  incidence(matrix_of_ages = (aa - 0.5) * time_step,
-#                                                                     matrix_of_times = birth_times + (aa - 0.5)* time_step)
+#    incidence_matrix_b[birth_time_index + (age -1), age ] =  incidence(matrix_of_ages = (age - 0.5) * time_step,
+#                                                                     matrix_of_times = birth_times + (age - 0.5)* time_step)
   }
 #  testmatrix <- incidence_matrix - incidence_matrix_b
 #  testmatrix

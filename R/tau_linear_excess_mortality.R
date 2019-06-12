@@ -7,48 +7,54 @@
 #'
 #' @param matrix_of_times numeric, indicates time or times at which the incidence rate is desired
 #' @param matrix_of_ages  numeric, indicates age or ages at which the incidence rate is desired
-#' @param constant numeric, indicates a constant rate of mortality when
-#' @param age_min numeric, indicates minimum age to be included in the simulation
-#' @param age_max numeric, indicates maximum age to be included in the simulation
-#' @param mort_min  numeric, indicates minimum mortality, which is at age_min
-#' @param mort_max numeric, indicates maximum/final mortality at age_max, unless otherwise specified by user defined function
+#' @param value_of_tau numeric, indicates a constant rate of mortality when
+#' @param intercept numeric, indicates minimum age to be included in the simulation
+#' @param slope numeric, indicates maximum age to be included in the simulation
 #' @return a numeric vector that represents the mortality rate at t.
-#' @param times_since_i umeric, indicates time since infection among the infected poplation
+#'
 #'
 #'
 #' @export
 
-time_indep_age_linear_excess_mortality  <- function(matrix_of_ages, matrix_of_times,
-                                                    constant = 0, age_min = 0, times_since_i,
-                                                    age_max = 50, mort_min = 0.01,
-                                                    mort_max = 0.05)
+tau_linear_excess_mortality  <- function(matrix_of_ages, matrix_of_times, value_of_tau,
+                                                    intercept = 0.05,
+                                                    slope = 0.1)
 {
 
   # calculates excess mortality as a function of age and  time since infection and ignores time (based on williams_2014). The excess
   # mortality resulting is a weibull function. Note if a non zero value is provided for the variable constant then a
   # constant excess mortality is obtatined i.e.  excess mortality (age, time, time since infection) = constant.
 
-  age <- matrix_of_ages
-
-  times <- matrix_of_times
+  tau <- value_of_tau
+  ncols <- ncol(matrix_of_ages)
+  nrows <- nrow(matrix_of_ages)
   # requires sensible thought
 
+  if (is.matrix(matrix_of_ages) == T){
 
-  if (constant > 0) {
-
-    return(array(rep(constant, ncol(age) * nrow(age) * ncol(age)),  dim = c(nrow(age), ncol(age), ncol(age))))
-
+    ex_mort_tau <-  matrix(rep(intercept + (slope * tau) , ncols *nrows),
+                         ncol = ncols,
+                         nrow = nrows)
   }else{
 
-    Ex_mort_tau <-   (ifelse(matrix_of_ages <= age_min, 0,
-                             ifelse(matrix_of_ages <= age_max,
-                                    (mort_min + ((mort_max - mort_min)/(age_max - age_min)) * (matrix_of_ages - age_min)) * times_since_i, 0)))
+    ex_mort_tau <- intercept + (slope * tau)}
 
-    # multiplying by time since infection not meaning full think of a better time since  excess mortality function
-  }
-
-  return(Ex_mort_tau)
+  return(ex_mort_tau)
 }
+
+
+
+# tau_linear_excess_mortality(matrix_of_ages = 5,
+#                             matrix_of_times = 4,
+#                             value_of_tau = 2,
+#                             intercept = 0.1,
+#                             slope = 0.5)
+
+
+
+
+
+
 
 
 

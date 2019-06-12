@@ -32,44 +32,46 @@ do_one_simulation <- function(first_birth_time, last_birth_time,
 
   #wrapper function to the functions in Population simulation project.
 
-  list_of_birth_times <- seq(first_birth_time, last_birth_time, time_step )
+  list_of_birth_times <- seq(first_birth_time = first_birth_time,
+                             last_birth_time = last_birth_time,
+                             time_step = time_step)
 
   birth_count <- birth_counts(dates_needing_birth_counts = list_of_birth_times,
                               birth_rate = birth_rate, time_step = time_step)
 
-  incidence_m <- incidence_matrix(max_age, list_of_birth_times, incidence, time_step)
+  incidence_m <- incidence_matrix(max_age = max_age,
+                                  list_of_birth_times = list_of_birth_times,
+                                  incidence = incidence, time_step = time_step)
 
 
-  base_mortality_m <- base_mortality_matrix(max_age, list_of_birth_times,
-                                            base_mortality, time_step)
+  base_mortality_m <- base_mortality_matrix(max_age = max_age, list_of_birth_times = list_of_birth_times,
+                                            base_mortality = base_mortality, time_step = time_step)
+
+  survival_prob <- susceptible_cumulative_survival(incidence_matrix = incidence_m,
+                                                   base_mortality_matrix = base_mortality_m,
+                                                   time_step = time_step)
 
 
+  excess_mortality_a = wedge_excess_mortality_array(max_age = max_age,
+                                                    list_of_birth_times = list_of_birth_times,
+                                                    excess_mortality = excess_mortality,
+                                                    time_step = time_step)
 
-  survival_prob <- susceptible_cumulative_survival(incidence_m, base_mortality_m,
-                                                   time_step)
+  cum_prob_survival_i <- cumulative_probability_surviving_infected(excess_mortality_a)
+
+
 
 
   susceptible_pop_counts <- susceptible_population(cumulative_survival_matrix = survival_prob,
                                                    birth_counts = birth_count)
 
-  mod_incidence <-  incidence_matrix_exp(incidence_matrix = incidence_m,
-                                         base_mortality_matrix = base_mortality_m,
-                                         time_step = 1)
-
-  #remember this is last column shot for the (age + 1)not recorded !!
-
-  probability_surviving <-  probability_surviving_infected(max_age,
-                                                           list_of_birth_times,
-                                                           time_step,
-                                                           excess_mortality ,
-                                                           base_mortality )
 
 
-  cum_prob_survival_i <- cumulative_probability_surviving_infected(probability_surviving)
+
 
 
   infected <-  infected_population(susceptible = susceptible_pop_counts[,-ncol(susceptible_pop_counts)],
-                                   incidence_matrix_mod = mod_incidence,
+                                   incidence_mat = incidence_m,
                                    cumulative_infected_survival = cum_prob_survival_i)
 
 
