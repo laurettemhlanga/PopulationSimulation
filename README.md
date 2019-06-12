@@ -1,8 +1,6 @@
 # PopulationSimulation
 
-
-Population Simulation Platform
-The functions are still under development. These functions serve a purpose of simulating an age and time structured pupolation. The major function requires user specified functions and other variables which are; 
+The functions are still under development. These functions work together to simulate an age and time structured pupolation. The major function requires user specified functions which are; 
 -birth rate , 
 -incidence, 
 -base mortality, 
@@ -10,6 +8,8 @@ The functions are still under development. These functions serve a purpose of si
 -time step (delta), and 
 -aging step (the age to which each birth cohort is aged to). 
 
-The output is an age and time structured population for the specified times and ages. subdivided into susceptible and infected groups and from it the prevalence can be calculated. 
+The output is an age and time structured population for the specified times and ages. Subdivided into susceptible and infected (specified by time since infection) groups and from it the prevalence can be calculated. 
 
-The inherent assumption is the incidence and mortality are functions of age and times, birth rate is a function is a function of time. do_one_simulation calls all the 
+The inherent assumption is that incidence and mortality are functions of age and times, birth rate is a function of time. The function do_one_simulation calls all the other functions to yield the output of interest - infected and susceptible populations. the aggregate population at every time step is approximated using the method of lines.
+
+
