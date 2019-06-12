@@ -32,9 +32,9 @@ do_one_simulation <- function(first_birth_time, last_birth_time,
 
   #wrapper function to the functions in Population simulation project.
 
-  list_of_birth_times <- seq(first_birth_time = first_birth_time,
-                             last_birth_time = last_birth_time,
-                             time_step = time_step)
+  list_of_birth_times <- seq(first_birth_time,
+                             last_birth_time,
+                             time_step)
 
   birth_count <- birth_counts(dates_needing_birth_counts = list_of_birth_times,
                               birth_rate = birth_rate, time_step = time_step)
@@ -57,7 +57,11 @@ do_one_simulation <- function(first_birth_time, last_birth_time,
                                                     excess_mortality = excess_mortality,
                                                     time_step = time_step)
 
-  cum_prob_survival_i <- cumulative_probability_surviving_infected(excess_mortality_a)
+  infected_survival_prob <- probability_of_surviving_infected(wedge_of_excess_mortality_array = excess_mortality_a,
+                                                              matrix_of_base_mortality = base_mortality_m ,
+                                                              time_step = time_step)
+
+  cum_prob_survival_i <- cumulative_probability_surviving_infected(infected_survival_prob)
 
 
 
