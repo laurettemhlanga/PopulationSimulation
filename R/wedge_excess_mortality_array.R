@@ -3,10 +3,10 @@
 #'
 #' a function that returns a matrix of probabilities of mortality for each age and time step of the simulation
 #'
-#' @param max_age the optomal age each birth cohort is aged to
-#' @param list_of_birth_times the birth dates of each of the birth cohort
+#' @param max_age the optimal age each birth cohort is reaches
+#' @param list_of_birth_times a numeric vectors of length min:max; indicates the range of ages to be included in simulation. Note that date format is not used.
 #' @param excess_mortality the excess mortality function
-#' @param time_step the time difference between two consective times
+#' @param time_step the time step between consecurtivelist_of_birth_times
 #' @return returns an array of dimensions time, age and time since infection - tau, which is essentially the probability of surviving in the given time space.
 #'
 #' @export
@@ -25,8 +25,8 @@ wedge_excess_mortality_array <- function(max_age,
                                          time_step)
   {
   # populates an excess_mortality_array function based on the excess_mortality function supplied
-  # the maximum age, list of times, timsinceinfection (tau) and the required time-step. Note the approximation
-  # of being infected in the interval in question is calculated at mid point.
+  # the maximum age, list of times, timesinceinfection (tau) and the required time-step. Note the approximation
+  # is for being infected in the interval in question is calculated at mid point.
 
   ages  <- seq(0, max_age, time_step)
   #taus <- seq(1, max_age, time_step)

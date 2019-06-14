@@ -1,17 +1,17 @@
 #' do_one_simulation
 #'
-#' A wrapper function that returns a a list of the the susceptible and infected population
+#' A wrapper function that returns a list of the the susceptible and infected population
 #'
-#' @param first_birth_time the number of steps to age the population
-#' @param last_birth_time a numeric vectors of length min:max; indicates the range of age to be included in simulation. Note that date format is not used.
-#' @param time_step the time step between consecurtive list_of_birth_times
-#' @param max_age maximum age each birth cohort is to be aged
-#' @param birth_rate the birth rate in the hypothetival population
-#' @param base_mortality mortality function due to natural causes as a function of age and time
-#' @param incidence a function which takes as arguments age and time and returns a numberic rate of incidence for each age and time included in the simulation.
-#' @param excess_mortality mortality function due to the disease causes as a function of age and time
-#' This function can be defined by user or can be selected from among several default options included in the package.
-#' The user-defined or package default function should be called by name when included as an argument in the generate_incidence_matrix function.
+#' @param first_birth_time the minimum date of birth for the birth cohorts
+#' @param last_birth_time the maximum date of birth for the birth cohorts
+#' @param time_step the time step between consecurtive dates or the length of the time between date of births of cohorts
+#' @param max_age maximum age each birth cohort is aged
+#' @param birth_rate the birth rate in the hypothetical population at the specified times
+#' @param base_mortality a function that specifies  the rate of occurence of natural deaths with arguments age and time.
+#' @param incidence a function that specifies  the rate of occurence of the infections with arguments age and time.
+#' @param excess_mortality a function that specifies  the rate of occurence ofdisease induced deaths with arguments age and time.
+#'
+#'
 #'
 #' @return a matrix of column length max_age and row length list_of_birth_times,
 #' Values stored in the matrix are numeric double, from 0-1, which represent the probability of becoming infected at age and time
@@ -30,12 +30,13 @@ do_one_simulation <- function(first_birth_time, last_birth_time,
                               excess_mortality)
 {
 
-  #wrapper function to the functions in Population simulation project.
+  # The function do_one_simulation takes user defined functions of
+  # the rates stated or the user can use the rates that come with the package.
+  # The user-defined or package default function should be called by name when included as an argument.
 
   list_of_birth_times <- seq(first_birth_time,
                              last_birth_time,
                              time_step)
-  time_step = time_step
 
   birth_count <- birth_counts(dates_needing_birth_counts = list_of_birth_times,
                               birth_rate = birth_rate, time_step = time_step)
@@ -45,12 +46,14 @@ do_one_simulation <- function(first_birth_time, last_birth_time,
                                   incidence = incidence, time_step = time_step)
 
 
-  base_mortality_m <- base_mortality_matrix(max_age = max_age, list_of_birth_times = list_of_birth_times,
-                                            base_mortality = base_mortality, time_step = time_step)
+  base_mortality_m <- base_mortality_matrix(max_age = max_age,
+                                            list_of_birth_times = list_of_birth_times,
+                                            base_mortality = base_mortality,
+                                            time_step = time_step)
 
-  survival_prob <- susceptible_cumulative_survival(incidence_matrix = incidence_m,
-                                                   base_mortality_matrix = base_mortality_m,
-                                                   time_step = time_step)
+  susceptible_survival_prob <- susceptible_cumulative_survival(incidence_matrix = incidence_m,
+                                                               base_mortality_matrix = base_mortality_m,
+                                                               time_step = time_step)
 
 
   excess_mortality_a = wedge_excess_mortality_array(max_age = max_age,
@@ -67,20 +70,17 @@ do_one_simulation <- function(first_birth_time, last_birth_time,
 
 
 
-  susceptible_pop_counts <- susceptible_population(cumulative_survival_matrix = survival_prob,
+  susceptible_pop_counts <- susceptible_population(cumulative_survival_matrix = susceptible_survival_prob,
                                                    birth_counts = birth_count)
 
 
 
+  infected_pop_counts <-  infected_population(susceptible = susceptible_pop_counts,
+                                              incidence_mat = incidence_m,
+                                              cumulative_infected_survival = cum_prob_survival_i)
 
 
-
-  infected <-  infected_population(susceptible = susceptible_pop_counts, #[,-ncol(susceptible_pop_counts)],
-                                   incidence_mat = incidence_m,
-                                   cumulative_infected_survival = cum_prob_survival_i)
-
-
-  return(list(susceptible_count = susceptible_pop_counts,  infected_count = infected))
+  return(list(susceptible_count = susceptible_pop_counts,  infected_count = infected_pop_counts))
 
 
 }
