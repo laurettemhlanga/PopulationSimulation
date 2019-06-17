@@ -1,10 +1,9 @@
 
-#' birth_rate_fun
+#' constant_birth_rate
 #'
 #' a function that returns a numeric vector of birth counts from the arguments of total births, a range of birth dates and an indicted birth rate
 #'
 #'
-
 #' @param dates_as_float  is a double/vector of times the birth rate is to be evaluated at.
 #' @param constant_value the number of births at a given birth date, given that it is constant through out the specified birth dates
 #' @return Returns a vector of birth counts  of the length of the birth dates

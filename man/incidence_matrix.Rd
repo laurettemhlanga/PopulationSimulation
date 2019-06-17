@@ -7,19 +7,19 @@
 incidence_matrix(max_age, list_of_birth_times, incidence, time_step)
 }
 \arguments{
-\item{max_age}{the number of steps to age the population}
+\item{max_age}{The maximuma age attained by each birth cohort (aging steps).}
 
-\item{list_of_birth_times}{a numeric vectors of length min:max; indicates the range of age to be included in simulation. Note that date format is not used.}
+\item{list_of_birth_times}{a numeric vectors indicating the birth dates in simulation. Note that date format is not used.}
 
 \item{incidence}{a function which takes as arguments age and time and returns a numberic rate of incidence for each age and time included in the simulation.
 This function can be defined by user or can be selected from among several default options included in the package.
 The user-defined or package default function should be called by name when included as an argument in the generate_incidence_matrix function.}
 
-\item{time_step}{the time step between consecurtivelist_of_birth_times}
+\item{time_step}{the time step between consecurtive birth dates in the vector list_of_birth_times}
 }
 \value{
-a matrix of column length max_age and row lengthlist_of_birth_times,
-Values stored in the matrix are numeric double, from 0-1, which represent the probability of becoming infected at age and time
+a matrix of column length of date birthas,
+ Values stored in the matrix are numeric double, from 0-1, which represent the incidence rate at given age and time
 }
 \description{
 a function that returns a matrix of probabilities for each age and time step of the simulation

@@ -8,19 +8,19 @@ base_mortality_matrix(max_age, list_of_birth_times, base_mortality,
   time_step)
 }
 \arguments{
-\item{max_age}{the number of steps to ages the population}
+\item{max_age}{The maximum age attained by each birth cohort (aging steps).}
 
-\item{list_of_birth_times}{a numeric vectors of length min:max; indicates the range of ages to be included in simulation. Note that date format is not used.}
+\item{list_of_birth_times}{a numeric vectors indicating the birth dates in simulation. Note that date format is not used.}
 
-\item{base_mortality}{a function which takes as arguments ages and time and returns a numberic rate of mortality for each ages and time included in the simulation.
-This function can be defined by user or can be selected from among several default options included in the package.
-The user-defined or package default function should be called by name when included as an argument in the generate_base_mortality_matrix function}
+\item{base_mortality}{a function which takes as arguments age and time and returns a numberic rate of mortality for each age and time included in the simulation.
+This function can be defined by user or can be selected from several default options included in the package.
+The user-defined or package default function should be called by name when included as an argument in the base_mortality_matrix function}
 
-\item{time_step}{the time step between consecurtivelist_of_birth_times}
+\item{time_step}{the time step between consecurtive birth dates in the vector list_of_birth_times}
 }
 \value{
-a matrix of column length max_age and row lengthlist_of_birth_times,
-Values stored in the matrix are numeric double, from 0-1, which represent the probability of becoming infected at ages and time
+a matrix of column length max_age and row length list_of_birth_times,
+Values stored in the matrix are numeric double, from 0-1, which represent the natural mortality rate at given age and time
 }
 \description{
 a function that returns a matrix of probabilities of mortality for each ages and time step of the simulation

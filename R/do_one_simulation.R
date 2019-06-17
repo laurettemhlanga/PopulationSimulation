@@ -5,7 +5,7 @@
 #' @param first_birth_time the minimum date of birth for the birth cohorts
 #' @param last_birth_time the maximum date of birth for the birth cohorts
 #' @param time_step the time step between consecurtive dates or the length of the time between date of births of cohorts
-#' @param max_age maximum age each birth cohort is aged
+#' @param max_age maximum age attained by each birth cohort
 #' @param birth_rate the birth rate in the hypothetical population at the specified times
 #' @param base_mortality a function that specifies  the rate of occurence of natural deaths with arguments age and time.
 #' @param incidence a function that specifies  the rate of occurence of the infections with arguments age and time.

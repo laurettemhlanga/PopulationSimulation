@@ -8,13 +8,13 @@ wedge_excess_mortality_array(max_age, list_of_birth_times,
   excess_mortality, time_step)
 }
 \arguments{
-\item{max_age}{the optomal age each birth cohort is aged to}
+\item{max_age}{the optimal age each birth cohort is reaches}
 
-\item{list_of_birth_times}{the birth dates of each of the birth cohort}
+\item{list_of_birth_times}{a numeric vectors of length min:max; indicates the range of ages to be included in simulation. Note that date format is not used.}
 
 \item{excess_mortality}{the excess mortality function}
 
-\item{time_step}{the time difference between two consective times}
+\item{time_step}{the time step between consecurtivelist_of_birth_times}
 }
 \value{
 returns an array of dimensions time, age and time since infection - tau, which is essentially the probability of surviving in the given time space.

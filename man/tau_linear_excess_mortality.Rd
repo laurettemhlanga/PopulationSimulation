@@ -2,7 +2,7 @@
 % Please edit documentation in R/tau_linear_excess_mortality.R
 \name{tau_linear_excess_mortality}
 \alias{tau_linear_excess_mortality}
-\title{time_indep_age_linear_excess_mortality}
+\title{tau_linear_excess_mortality}
 \usage{
 tau_linear_excess_mortality(matrix_of_ages, matrix_of_times, value_of_tau,
   intercept = 0.05, slope = 0.1)
@@ -22,8 +22,10 @@ tau_linear_excess_mortality(matrix_of_ages, matrix_of_times, value_of_tau,
 a numeric vector that represents the mortality rate at t.
 }
 \description{
-a function that takes as arguments age,time and tau - which indicates the average time since infection among the infected population - and returns a numeric vector of length equivelent to the number of times indicated by the simulation
-representing a rate of excess mortality -i.e. among infected population relative to non-infected population - at the indicated age and time
-The generate_mortality function is required as an argument for the package's do_simulation function
+a function that takes as arguments age,time and tau (which indicates the average time since infection among the infected population)
+and returns a numeric vector with length equivelent to the number of times indicated by the simulation
+representing the excess mortality rate  induced by being infected
+}
+\details{
 The function may be user defined and stored as an R object. Otherwise a default value - entered as "default" - is provided by the package
 }

@@ -24,8 +24,9 @@ wedge_excess_mortality_array <- function(max_age,
                                          excess_mortality,
                                          time_step)
   {
-  # populates an excess_mortality_array function based on the excess_mortality function supplied
-  # the maximum age, list of times, timesinceinfection (tau) and the required time-step. Note the approximation
+  # populates an an array with excess_mortality rates based on the excess_mortality function supplied
+  # the maximum age, list of times, timesinceinfection (tau - depending on the maximum age of each cohort and does exceed the max age)
+  # and the required time-step. Note the approximation
   # is for being infected in the interval in question is calculated at mid point.
 
   ages  <- seq(0, max_age, time_step)

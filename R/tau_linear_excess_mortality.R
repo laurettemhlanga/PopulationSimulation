@@ -1,8 +1,9 @@
-#' time_indep_age_linear_excess_mortality
+#' tau_linear_excess_mortality
 #'
-#' a function that takes as arguments age,time and tau - which indicates the average time since infection among the infected population - and returns a numeric vector of length equivelent to the number of times indicated by the simulation
-#' representing a rate of excess mortality -i.e. among infected population relative to non-infected population - at the indicated age and time
-#' The generate_mortality function is required as an argument for the package's do_simulation function
+#' a function that takes as arguments age,time and tau (which indicates the average time since infection among the infected population)
+#' and returns a numeric vector with length equivelent to the number of times indicated by the simulation
+#' representing the excess mortality rate  induced by being infected
+#'
 #' The function may be user defined and stored as an R object. Otherwise a default value - entered as "default" - is provided by the package
 #'
 #' @param matrix_of_times numeric, indicates time or times at which the incidence rate is desired
@@ -21,9 +22,9 @@ tau_linear_excess_mortality  <- function(matrix_of_ages, matrix_of_times, value_
                                                     slope = 0.1)
 {
 
-  # calculates excess mortality as a function of age and  time since infection and ignores time (based on williams_2014). The excess
-  # mortality resulting is a weibull function. Note if a non zero value is provided for the variable constant then a
-  # constant excess mortality is obtatined i.e.  excess mortality (age, time, time since infection) = constant.
+# calculates the excess mortality rate as a linear function of the time since infcetion
+# user provides the matrix of ages and matrix of times and the time since infection is taken in a value at  time
+# user has to supply what they believe the intercept and slope is.
 
   tau <- value_of_tau
   ncols <- ncol(matrix_of_ages)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/constant_birth_rate.R
 \name{constant_birth_rate}
 \alias{constant_birth_rate}
-\title{birth_rate_fun}
+\title{constant_birth_rate}
 \usage{
 constant_birth_rate(dates_as_float, constant_value = 1000)
 }

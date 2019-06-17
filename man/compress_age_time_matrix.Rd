@@ -4,14 +4,13 @@
 \alias{compress_age_time_matrix}
 \title{compress_age_time_matrix}
 \usage{
-compress_age_time_matrix(age_time_matrix = incidence_matrix)
+compress_age_time_matrix(age_time_matrix)
 }
 \arguments{
-\item{age_time_matrix}{the matrix to be transformed
-The user-defined or package default function should be called by name when included as an argument in the generate_base_mortality_matrix function.}
+\item{age_time_matrix}{the matrix to be transformed}
 }
 \value{
-returns a matrix with a rectangular format, labelled rows and columns
+returns a matrix with a rectangular format
 }
 \description{
 a function that takes in a matrix with a pararellogram format and transforms it into a rectangular format and assigns column and row names.

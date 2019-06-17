@@ -28,9 +28,9 @@ time_indep_age_linear_base_mortality <- function(matrix_of_ages, matrix_of_times
                                age_max = 50, mort_min = 0, mort_max = 0.01)
   {
 
-  # calculates base mortality as a function of age and is constant in time. The base mortality resulting is a
-  # linear function. Note if a non zero value is provided for the variable constant then a
-  # constant base mortality is obtatined i.e.  base mortality (age, time) = constant.
+  # calculates base mortality rate as a function of age and is constant in time. The base mortality resulting is a
+  # linear function of age. Note if a non zero value is provided for the variable constant then a
+  # constant base mortality rate is obtatined i.e.  base mortality (age, time) = constant.
 
   age <- matrix_of_ages
 

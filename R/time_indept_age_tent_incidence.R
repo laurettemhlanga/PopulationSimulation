@@ -24,8 +24,8 @@ time_indept_age_tent_incidence <- function(matrix_of_ages, matrix_of_times, cons
                                Imin =0.01,  Ipeak =0.05,
                                Ifin =0.02)
 {
-  # calculates incidence as a function of age and is constant in time. The incidence distribution resulting
-  # is a tent/triangular function, with the tip of the tent at age_peak. Note if a non zero value is provided
+  # calculates incidence rate as a function of age and time constant. The incidence rate distribution
+  # has a tent/triangular function, with the tip of the tent at age_peak. Note if a non zero value is provided
   # for the variable constant then a constant incidence is obtatined i.e. incidence(age, time) = constant.
 
 

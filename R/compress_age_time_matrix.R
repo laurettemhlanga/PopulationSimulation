@@ -3,17 +3,16 @@
 #' a function that takes in a matrix with a pararellogram format and transforms it into a rectangular format and assigns column and row names.
 #'
 #' @param age_time_matrix the matrix to be transformed
-#' The user-defined or package default function should be called by name when included as an argument in the generate_base_mortality_matrix function.
-#' @return returns a matrix with a rectangular format, labelled rows and columns
+#'
+#' @return returns a matrix with a rectangular format
 #'
 #'
 #'
 #'
 #' @export
 
-compress_age_time_matrix <- function(age_time_matrix = incidence_matrix)
+compress_age_time_matrix <- function(age_time_matrix )
   {
-
 
   number_of_rows_new_data <- nrow(age_time_matrix)-(ncol(age_time_matrix)) + 1
   #matrix_index_seq <- 1:((nrow(age_time_matrix) - ncol(age_time_matrix)) + 1) #create a vector of positive indices

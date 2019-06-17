@@ -7,12 +7,13 @@
 susceptible_population(cumulative_survival_matrix, birth_counts)
 }
 \arguments{
-\item{cumulative_survival_matrix}{matrix of survival probabilities in the susceptible for each age and time.}
+\item{cumulative_survival_matrix}{matrix of cumulative survival probabilities in the susceptible from birth till the specified age and time.}
 
-\item{birth_counts}{vector of numberic values representing the number of  births at each time between time_1 and time_2.}
+\item{birth_counts}{vector of numberic values representing the total birth counts for each birth count..}
 }
 \value{
-a matrix of the susceptible at specified ages and calculations. Numeric values in each cell of the matrix represent the number of individuals in the population who are alive and not infected
+a matrix of the susceptible population at a specified age and time.
+number in each cell of the matrix represent the number of individuals in the population who are alive and un-infected
 }
 \description{
 a function that returns a matrix of numeric values for age and time, representing the number of individuals within the population who are alive and not infected

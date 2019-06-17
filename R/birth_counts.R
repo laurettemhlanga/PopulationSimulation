@@ -5,9 +5,9 @@
 #' a function that returns a numeric vector of birth counts from the arguments of total births, a range of birth dates and an indicted birth rate
 #'
 #' @param dates_needing_birth_counts a vector of births dates to be assigned the birth count
-#' @param time_step the time step between consecurtive birth_dates
-#' @param birth_rate a function  for the distribution of births in interval
-#' @return Returns a vector of bith counts  from the inputs total_births, delta and birth_dates of length min-birth_dates:max-birth_dates
+#' @param time_step the time step between consecurtive birth dates in the vector list_of_birth_times
+#' @param birth_rate a function  for the distribution of births in the interval
+#' @return Returns a vector of bith counts
 #'
 #'
 #' @export

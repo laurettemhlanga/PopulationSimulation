@@ -8,15 +8,16 @@ susceptible_cumulative_survival(incidence_matrix, base_mortality_matrix,
   time_step)
 }
 \arguments{
-\item{incidence_matrix}{probability matrix of getting infected in the susceptible}
+\item{incidence_matrix}{matrix of  incidence rates for specified ages and times}
 
-\item{base_mortality_matrix}{probability matrix of dying among the susceptible}
+\item{base_mortality_matrix}{matrix of  natural mortality rates for specified ages and times}
 
-\item{time_step}{the time or age difference between consecutive ages or time and it is uniform}
+\item{time_step}{the time step between consecurtive dates or the length of the time between date of births of cohorts}
 }
 \value{
-a matrix calculated from the susceptible_survival_rate_matrix
-Values stored in the matrix are numeric-double, from 0-1, which represent the  probability of surviving a specified age from birth in the susceptible population.
+a matrix of cumulative probabilities (from birth till age a at time t) of surviving in the susceptible population without being infected or dying from natural death  .
+Values stored in the matrix are numeric-double, from 0-1, which represent
+the  probability of surviving a specified age from birth in the susceptible population.
 }
 \description{
 a function that returns a matrix of cumulative probabilities of survival -i.e. not dying and aquiring infection - for each age and time step of the simulation

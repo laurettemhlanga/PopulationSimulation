@@ -2,9 +2,10 @@
 #'
 #' a function that returns a matrix of numeric values for age and time, representing the number of individuals within the population who are alive and not infected
 #'
-#' @param cumulative_survival_matrix matrix of survival probabilities in the susceptible for each age and time.
-#' @param birth_counts vector of numberic values representing the number of  births at each time between time_1 and time_2.
-#' @return a matrix of the susceptible at specified ages and calculations. Numeric values in each cell of the matrix represent the number of individuals in the population who are alive and not infected
+#' @param cumulative_survival_matrix matrix of cumulative survival probabilities in the susceptible from birth till the specified age and time.
+#' @param birth_counts vector of numberic values representing the total birth counts for each birth count..
+#' @return a matrix of the susceptible population at a specified age and time.
+#' number in each cell of the matrix represent the number of individuals in the population who are alive and un-infected
 #'
 #'
 #'
@@ -17,11 +18,12 @@
 #'
 
 
-#option 2
-
 susceptible_population <- function(cumulative_survival_matrix,
                                    birth_counts)
   {
+
+  # multiplies the birth counts with the cumulative probability of surviving infection/death in the
+  # susceptible population at a specified time to yield the susceptibles at a given age and time
 
   susceptible <- cumulative_survival_matrix * birth_counts
 

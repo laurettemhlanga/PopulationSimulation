@@ -8,28 +8,26 @@ do_one_simulation(first_birth_time, last_birth_time, time_step, max_age,
   birth_rate, base_mortality, incidence, excess_mortality)
 }
 \arguments{
-\item{first_birth_time}{the number of steps to age the population}
+\item{first_birth_time}{the minimum date of birth for the birth cohorts}
 
-\item{last_birth_time}{a numeric vectors of length min:max; indicates the range of age to be included in simulation. Note that date format is not used.}
+\item{last_birth_time}{the maximum date of birth for the birth cohorts}
 
-\item{time_step}{the time step between consecurtive list_of_birth_times}
+\item{time_step}{the time step between consecurtive dates or the length of the time between date of births of cohorts}
 
-\item{max_age}{maximum age each birth cohort is to be aged}
+\item{max_age}{maximum age attained by each birth cohort}
 
-\item{birth_rate}{the birth rate in the hypothetival population}
+\item{birth_rate}{the birth rate in the hypothetical population at the specified times}
 
-\item{base_mortality}{mortality function due to natural causes as a function of age and time}
+\item{base_mortality}{a function that specifies  the rate of occurence of natural deaths with arguments age and time.}
 
-\item{incidence}{a function which takes as arguments age and time and returns a numberic rate of incidence for each age and time included in the simulation.}
+\item{incidence}{a function that specifies  the rate of occurence of the infections with arguments age and time.}
 
-\item{excess_mortality}{mortality function due to the disease causes as a function of age and time
-This function can be defined by user or can be selected from among several default options included in the package.
-The user-defined or package default function should be called by name when included as an argument in the generate_incidence_matrix function.}
+\item{excess_mortality}{a function that specifies  the rate of occurence ofdisease induced deaths with arguments age and time.}
 }
 \value{
 a matrix of column length max_age and row length list_of_birth_times,
 Values stored in the matrix are numeric double, from 0-1, which represent the probability of becoming infected at age and time
 }
 \description{
-A wrapper function that returns a a list of the the susceptible and infected population
+A wrapper function that returns a list of the the susceptible and infected population
 }
