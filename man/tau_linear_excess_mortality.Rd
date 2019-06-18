@@ -5,7 +5,7 @@
 \title{tau_linear_excess_mortality}
 \usage{
 tau_linear_excess_mortality(matrix_of_ages, matrix_of_times, value_of_tau,
-  intercept = 0.05, slope = 0.1)
+  intercept = 0.05, slope = 0)
 }
 \arguments{
 \item{matrix_of_ages}{numeric, indicates age or ages at which the incidence rate is desired}

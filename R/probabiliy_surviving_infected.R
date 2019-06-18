@@ -34,9 +34,9 @@ probability_of_surviving_infected <- function(wedge_of_excess_mortality_array,
 
 
 
-# probability_of_surviving_infected(wedge_of_excess_mortality_array = y,
-#                                matrix_of_base_mortality = m,
-#                                time_step = 1)
+# dim(probability_of_surviving_infected(wedge_of_excess_mortality_array = y,
+#                                matrix_of_base_mortality = matrix(rep(0.1,20), 5, 4),
+#                                time_step = 1))
 
 
 

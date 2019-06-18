@@ -31,7 +31,7 @@ wedge_excess_mortality_array <- function(max_age,
 
   ages  <- seq(0, max_age, time_step)
   #taus <- seq(1, max_age, time_step)
-  taus <- ages[-1]
+  taus <- ages[-c(1,length(ages))]
 
   excess_mort_array <-  array(NA, dim = c(length(list_of_birth_times) + (length(ages)-1), length(ages), length(taus)))
 
@@ -76,7 +76,7 @@ wedge_excess_mortality_array <- function(max_age,
 
 
 
-# y = excess_mortality_array(max_age = 3,
+# y = wedge_excess_mortality_array(max_age = 3,
 #                        list_of_birth_times = 1:5,
 #                        excess_mortality = tau_linear_excess_mortality,
 #                        time_step  = 1)

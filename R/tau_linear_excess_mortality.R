@@ -19,7 +19,7 @@
 
 tau_linear_excess_mortality  <- function(matrix_of_ages, matrix_of_times, value_of_tau,
                                                     intercept = 0.05,
-                                                    slope = 0.1)
+                                                    slope = 0)
 {
 
 # calculates the excess mortality rate as a linear function of the time since infcetion
@@ -45,11 +45,11 @@ tau_linear_excess_mortality  <- function(matrix_of_ages, matrix_of_times, value_
 
 
 
-# tau_linear_excess_mortality(matrix_of_ages = 5,
-#                             matrix_of_times = 4,
-#                             value_of_tau = 2,
-#                             intercept = 0.1,
-#                             slope = 0.5)
+tau_linear_excess_mortality(matrix_of_ages = 5,
+                            matrix_of_times = 4,
+                            value_of_tau = 2,
+                            intercept = 0.1,
+                            slope = 0.5)
 
 
 

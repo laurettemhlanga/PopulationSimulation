@@ -77,7 +77,8 @@ do_one_simulation <- function(first_birth_time, last_birth_time,
 
   infected_pop_counts <-  infected_population(susceptible = susceptible_pop_counts,
                                               incidence_mat = incidence_m,
-                                              cumulative_infected_survival = cum_prob_survival_i)
+                                              base_mortality_mat =  base_mortality_m,
+                                              cumulative_infected_survival = cum_prob_survival_i, time_step )
 
 
   return(list(susceptible_count = susceptible_pop_counts,  infected_count = infected_pop_counts))

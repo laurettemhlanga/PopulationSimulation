@@ -4,15 +4,20 @@
 \alias{infected_population}
 \title{infected_population}
 \usage{
-infected_population(susceptible, incidence_mat,
-  cumulative_infected_survival)
+infected_population(susceptible, incidence_mat, base_mortality_mat,
+  cumulative_infected_survival, time_step)
 }
 \arguments{
 \item{susceptible}{the susceptible population counts}
 
-\item{incidence_mat}{the normalised incidence with respect to the exponetial used in approximating the probability of surving infection or death in the susceptible state}
+\item{incidence_mat}{associated incidence rates}
+
+\item{base_mortality_mat}{associated excess mortality survivial rates
+the probability of surving infection or death in the susceptible state}
 
 \item{cumulative_infected_survival}{the survival probability of  being aged a at time t having been infected for tau years.}
+
+\item{time_step}{the time or age difference between to consecutive times or ages the probability of surving infection or death in the susceptible statemi.e it is uniform in all values supplied}
 }
 \value{
 returns an array of dimensions time t , age a and time since infection - tau
