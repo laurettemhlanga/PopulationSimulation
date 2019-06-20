@@ -30,8 +30,7 @@ cumulative_probability_surviving_infected <- function(probability_surviving_infe
 
   #first_column <- rep(NA, length(dim(probability_surviving_infected_array)[1]))
 
-  cumulative_probability_surviving_array[, , 1] = matrix(c(rep(NA, (dim(probability_surviving_infected_array)[1])),
-                                                           rep(1, (length_of_1vector - (dim(probability_surviving_infected_array)[1])))))
+  cumulative_probability_surviving_array[, , 1] = matrix(rep(1, (length_of_1vector)))
 
 
   #for(time in 1:dim(cumulative_probability_surviving_array)[1] ){

@@ -4,12 +4,15 @@
 \alias{susceptible_population}
 \title{susceptible_population}
 \usage{
-susceptible_population(cumulative_survival_matrix, birth_counts)
+susceptible_population(cumulative_survival_matrix, birth_counts,
+  pmtct_birthcount)
 }
 \arguments{
 \item{cumulative_survival_matrix}{matrix of cumulative survival probabilities in the susceptible from birth till the specified age and time.}
 
-\item{birth_counts}{vector of numberic values representing the total birth counts for each birth count..}
+\item{birth_counts}{vector of numberic values representing the total birth counts for each birth count.}
+
+\item{pmtct_birthcount}{number of newborns infected}
 }
 \value{
 a matrix of the susceptible population at a specified age and time.

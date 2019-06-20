@@ -4,7 +4,8 @@
 #' a function that returns a matrix of probabilities of mortality for each age and time step of the simulation
 #'
 #' @param susceptible the susceptible population counts
-#' @param  incidence_mat associated incidence rates
+#' @param incidence_mat associated incidence rates
+#' @param pmtct_birthcount number of newborns infected
 #' @param time_step the time or age difference between to consecutive times or ages the probability of surving infection or death in the susceptible statemi.e it is uniform in all values supplied
 #' @param cumulative_infected_survival the survival probability of  being aged a at time t having been infected for tau years.
 #' @param base_mortality_mat associated excess mortality survivial rates
@@ -19,6 +20,7 @@
 
 infected_population <- function(susceptible,
                                 incidence_mat,
+                                pmtct_birthcount,
                                 base_mortality_mat,
                                 cumulative_infected_survival,
                                 time_step)
@@ -35,6 +37,7 @@ infected_population <- function(susceptible,
 
   infected[, , 1] <- susceptible *  incidence_mat * time_step * exp(-base_mortality_mat *time_step) * cumulative_infected_survival[, , 1]
 
+  infected[, 1, 1] <-  pmtct_birthcount
 
   for (age in 1:dim(cumulative_infected_survival)[2]){
 
@@ -48,8 +51,7 @@ infected_population <- function(susceptible,
       }else{
 
         infected[, age , time_since_infection] <-  infected[, age - (time_since_infection-1), 1] *
-          cumulative_infected_survival[ , age, time_since_infection] * time_step
-
+          cumulative_infected_survival[ , age, time_since_infection]
       }
      }
     }

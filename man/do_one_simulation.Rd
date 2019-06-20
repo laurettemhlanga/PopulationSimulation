@@ -5,7 +5,8 @@
 \title{do_one_simulation}
 \usage{
 do_one_simulation(first_birth_time, last_birth_time, time_step, max_age,
-  birth_rate, base_mortality, incidence, excess_mortality)
+  birth_rate, pmtct_birth_rate, base_mortality, incidence,
+  excess_mortality)
 }
 \arguments{
 \item{first_birth_time}{the minimum date of birth for the birth cohorts}
@@ -17,6 +18,8 @@ do_one_simulation(first_birth_time, last_birth_time, time_step, max_age,
 \item{max_age}{maximum age attained by each birth cohort}
 
 \item{birth_rate}{the birth rate in the hypothetical population at the specified times}
+
+\item{pmtct_birth_rate}{the birth rate newborns who are infecteds.}
 
 \item{base_mortality}{a function that specifies  the rate of occurence of natural deaths with arguments age and time.}
 

@@ -12,4 +12,5 @@ LazyData: true
 RoxygenNote: 6.1.1
 Suggests: 
     testthat,
-    roxygen2
+    roxygen2, 
+    abind 

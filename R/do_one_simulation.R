@@ -7,6 +7,7 @@
 #' @param time_step the time step between consecurtive dates or the length of the time between date of births of cohorts
 #' @param max_age maximum age attained by each birth cohort
 #' @param birth_rate the birth rate in the hypothetical population at the specified times
+#' @param pmtct_birth_rate the birth rate newborns who are infecteds.
 #' @param base_mortality a function that specifies  the rate of occurence of natural deaths with arguments age and time.
 #' @param incidence a function that specifies  the rate of occurence of the infections with arguments age and time.
 #' @param excess_mortality a function that specifies  the rate of occurence ofdisease induced deaths with arguments age and time.
@@ -25,7 +26,9 @@
 
 do_one_simulation <- function(first_birth_time, last_birth_time,
                               time_step, max_age,
-                              birth_rate, base_mortality,
+                              birth_rate,
+                              pmtct_birth_rate,
+                              base_mortality,
                               incidence ,
                               excess_mortality)
 {
@@ -40,6 +43,9 @@ do_one_simulation <- function(first_birth_time, last_birth_time,
 
   birth_count <- birth_counts(dates_needing_birth_counts = list_of_birth_times,
                               birth_rate = birth_rate, time_step = time_step)
+
+  pmtct_birth_count <- pmtct_birthcounts(dates_needing_birth_counts = list_of_birth_times, birth_count = birth_count,
+                                         pmtct_birth_rate = pmtct_birth_rate, time_step = time_step)
 
   incidence_m <- incidence_matrix(max_age = max_age,
                                   list_of_birth_times = list_of_birth_times,
@@ -71,14 +77,17 @@ do_one_simulation <- function(first_birth_time, last_birth_time,
 
 
   susceptible_pop_counts <- susceptible_population(cumulative_survival_matrix = susceptible_survival_prob,
-                                                   birth_counts = birth_count)
+                                                   birth_counts = birth_count,
+                                                   pmtct_birthcount = pmtct_birth_count)
 
 
 
   infected_pop_counts <-  infected_population(susceptible = susceptible_pop_counts,
+                                              pmtct_birthcount = pmtct_birth_count,
                                               incidence_mat = incidence_m,
                                               base_mortality_mat =  base_mortality_m,
-                                              cumulative_infected_survival = cum_prob_survival_i, time_step )
+                                              cumulative_infected_survival = cum_prob_survival_i,
+                                              time_step  = time_step)
 
 
   return(list(susceptible_count = susceptible_pop_counts,  infected_count = infected_pop_counts))

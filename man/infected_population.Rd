@@ -4,13 +4,15 @@
 \alias{infected_population}
 \title{infected_population}
 \usage{
-infected_population(susceptible, incidence_mat, base_mortality_mat,
-  cumulative_infected_survival, time_step)
+infected_population(susceptible, incidence_mat, pmtct_birthcount,
+  base_mortality_mat, cumulative_infected_survival, time_step)
 }
 \arguments{
 \item{susceptible}{the susceptible population counts}
 
 \item{incidence_mat}{associated incidence rates}
+
+\item{pmtct_birthcount}{number of newborns infected}
 
 \item{base_mortality_mat}{associated excess mortality survivial rates
 the probability of surving infection or death in the susceptible state}
