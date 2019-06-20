@@ -35,7 +35,7 @@ infected_population <- function(susceptible,
 
   infected <- array(NA, dim = dim(cumulative_infected_survival))
 
-  infected[, , 1] <- susceptible *  incidence_mat * time_step * exp(-base_mortality_mat *time_step) * cumulative_infected_survival[, , 1]
+  infected[, -1, 1] <- (susceptible *  incidence_mat * time_step * exp(-base_mortality_mat *time_step) * cumulative_infected_survival[, , 1])[, -dim(cumulative_infected_survival)[2]]
 
   infected[, 1, 1] <-  pmtct_birthcount
 

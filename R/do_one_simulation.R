@@ -90,7 +90,10 @@ do_one_simulation <- function(first_birth_time, last_birth_time,
                                               time_step  = time_step)
 
 
-  return(list(susceptible_count = susceptible_pop_counts,  infected_count = infected_pop_counts))
+  population <- compact_population(susceptible = susceptible_pop_counts, infected = infected_pop_counts)
+
+
+  return(population)
 
 
 }

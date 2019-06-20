@@ -2,6 +2,7 @@
 
 export(base_mortality_matrix)
 export(birth_counts)
+export(compact_population)
 export(compress_age_time_matrix)
 export(constant_birth_rate)
 export(constant_pmtct_rate)
