@@ -29,7 +29,8 @@ infected_population <- function(susceptible,
 
 # Calculates the number of people who are HIV positive  at a given age and time for specific time
 # since infections, this results in a 3 dimensional data structure of equal dimension to the cumulative_infected_survival
-# The first infected[, , 1] is created from S(a, t) * Inc(a,t).For cases where age - tau < 0  the calculation defaults to  infected[, age , ts] <- NA and the rest
+# The first infected[, , 1] is created from S(a, t) * Inc(a,t).For cases where age - tau < 0  the calculation defaults to
+# infected[, age , ts] <- NA and the rest
 # is derived from multiplying the number of people infected at  age - tau and time - tau and the cumulative probability
 # of surviving in the infected population aged a at time t having been infected for tau years
 
