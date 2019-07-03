@@ -1,4 +1,3 @@
-
 Package: PopulationSimulation
 Type: Package
 Title: Population Simulation
@@ -13,3 +12,6 @@ RoxygenNote: 6.1.1
 Suggests: 
     testthat,
     roxygen2
+Imports: 
+    dplyr,
+    stats
