@@ -20,7 +20,7 @@ incidence_matrix <- function(max_age, list_of_birth_times, incidence, time_step)
   # the maximum age, list of times and the required time-step. Note the approximation
   # of being infected in the interval in question is calculated at mid point.
 
-  ages  <- seq(0, max_age, time_step)
+  ages  <- seq(time_step, max_age, time_step)
   incidence_matrix <-  matrix(NA, nrow = length(list_of_birth_times) + (length(ages)-1), ncol =  length(ages))
 # incidence_matrix_b <-  matrix(NA, nrow = length(list_of_birth_times) + (length(ages)-1), ncol =  length(ages))  #counter <- 1
   age_index <- 1:length(ages)

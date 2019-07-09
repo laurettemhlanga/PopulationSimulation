@@ -29,7 +29,7 @@ base_mortality_matrix <- function(max_age,
   # of being infected in the interval in question is calculated at mid point.
 
 
-  ages <- seq(0, max_age, time_step)
+  ages <- seq(time_step, max_age, time_step)
   mortality_matrix <-  matrix(NA, nrow = length(list_of_birth_times) + (length(ages) -1), ncol =  length(ages))
 
 

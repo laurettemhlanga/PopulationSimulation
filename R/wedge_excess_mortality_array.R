@@ -29,7 +29,7 @@ wedge_excess_mortality_array <- function(max_age,
   # and the required time-step. Note the approximation
   # is for being infected in the interval in question is calculated at mid point.
 
-  ages  <- seq(0, max_age, time_step)
+  ages  <- seq(time_step, max_age, time_step)
   #taus <- seq(1, max_age, time_step)
   taus <- ages[-1]
 

@@ -24,39 +24,49 @@
 
 
 age_partitioned_prevalence <-  function(overall_prevalence1,
-                                       overall_prevalence2,
-                                       sigma_prevalence,
-                                       cluster_number,
-                                       cluster_size,
-                                       ages
+                                        overall_prevalence2,
+                                        sigma_prevalence,
+                                        cluster_number,
+                                        cluster_size,
+                                        ages
 ){
 
-  #functions takes in two vectors of prevalences from time 1 and 2, partitions prevalences to
+  #functions takes in two vectors of prevalences at various ages from time 1 and 2, partitions prevalences to
   #the number of regions. This is a wrapper function to partition_prevalence
   #runs a loop  through a vector of prevalences.
 
-  partitioned_age_prevalance <-  as.list(rep(NA, length(ages)))
+  if (length(overall_prevalence1) == 1){
 
-  counter = 1
-
-  for (counter in 1:length(ages)){
-
-
-    partitioned_age_prevalance[[counter]] <- partition_prevalence(overall_prevalence1 = overall_prevalence1[counter],
-                                                                  overall_prevalence2 = overall_prevalence1[counter],
-                                                                  sigma_prevalence = sigma_prevalence[counter],
+    partitioned_age_prevalance <- partition_prevalence(overall_prevalence1 = overall_prevalence1,
+                                                                  overall_prevalence2 = overall_prevalence1,
+                                                                  sigma_prevalence = sigma_prevalence,
                                                                   cluster_number = (1:length(cluster_size)),
                                                                   cluster_size)[[2]]
+  }else{
 
-    partitioned_age_prevalance[[counter]] <- cbind(age = rep(ages[counter], length(cluster_size)),
-                                                   partitioned_age_prevalance[[counter]])
+    partitioned_age_prevalance <-  as.list(rep(NA, length(ages)))
 
-    counter = counter + 1
+    counter = 1
 
-  }
+    for (counter in 1:length(ages)){
 
 
-  partitioned_age_prevalance <- dplyr::bind_rows(partitioned_age_prevalance)
+      partitioned_age_prevalance[[counter]] <- partition_prevalence(overall_prevalence1 = overall_prevalence1[counter],
+                                                                    overall_prevalence2 = overall_prevalence1[counter],
+                                                                    sigma_prevalence = sigma_prevalence[counter],
+                                                                    cluster_number = (1:length(cluster_size)),
+                                                                    cluster_size)[[2]]
+
+      partitioned_age_prevalance[[counter]] <- cbind(age = rep(ages[counter], length(cluster_size)),
+                                                     partitioned_age_prevalance[[counter]])
+
+      counter = counter + 1
+
+    }
+
+    partitioned_age_prevalance <- dplyr::bind_rows(partitioned_age_prevalance)
+
+    }
 
   return(partitioned_age_prevalance)
 

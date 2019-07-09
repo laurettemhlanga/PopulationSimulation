@@ -17,5 +17,5 @@ a array
 Values stored in the matrix are numeric double, from 0-1, which represent the natural mortality rate at given age and time
 }
 \description{
-a function that returns an array and the data structure into a compact structure
+a function that returns an array
 }
