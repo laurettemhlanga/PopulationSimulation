@@ -4,12 +4,12 @@
 \alias{calculate_prevalence}
 \title{calculate_prevalence}
 \usage{
-calculate_prevalence(population_at_date, infection_time = NULL)
+calculate_prevalence(population_at_date, keeping_infection_time = FALSE)
 }
 \arguments{
 \item{population_at_date}{a matrix of age and times since infection at a specified calender date.}
 
-\item{infection_time}{specifies the output of interest wether or not its the total prevalence per age group or
+\item{keeping_infection_time}{specifies the output of interest wether or not its the total prevalence per age group or
 prevalence per specified age and time since infection.
 total prevalence for all ranges at the current date.}
 }

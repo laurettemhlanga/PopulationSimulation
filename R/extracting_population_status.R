@@ -25,11 +25,15 @@ extract_population_status <- function(survey_date,
   # current date. it utilises the which function to provide the indices of the population[,, tau] matrix
   # entries with the same index number can easily indexed below tis one are related functions.
 
+  # considerations on the most appropriate output a matrix of the eexact dimensions with some columns NAs throughout vs
+  # tracking the columns lost by removing columns with NAs only  depending on the value of the anchor.
+
+
 {
   anchor <- floor((survey_date - first_birth_date)/time_step)
 
 
-  index <- row(population[,,1])+col(population[,,1])
+  index <- (row(population[,,1]) + col(population[,,1])) - 1
 
   columns <- 1:length(which(index == anchor))
 
@@ -38,14 +42,16 @@ extract_population_status <- function(survey_date,
   for (row in 1:dim(population)[3]){
 
 
-    populationdate[row, ] <-   population[, , row][index == anchor]
-
-    #populationdate <- cbind(populationdate, populationdate1)
+    populationdate[row, ] <-   population[, , row][index == anchor ]
 
 
   }
 
-  return(populationdate)
+  age_index_column1 = ifelse (anchor <= dim(population)[1], 1 ,(anchor - dim(population)[1])+1)
+
+  age_column1 = age_index_column1 * time_step
+
+  return(list(populationdate, age_column1))
 
 }
 
