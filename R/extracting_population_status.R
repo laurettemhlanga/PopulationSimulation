@@ -16,6 +16,8 @@
 #' @export
 
 
+
+
 extract_population_status <- function(survey_date,
                                       first_birth_date,
                                       time_step,
@@ -47,16 +49,77 @@ extract_population_status <- function(survey_date,
 
   }
 
-  age_index_column1 = ifelse (anchor <= dim(population)[1], 1 ,(anchor - dim(population)[1])+1)
+  if (anchor > dim(population)[1]){
 
-  age_column1 = age_index_column1 * time_step
+    age_column1 = (anchor - dim(population)[1]) * time_step
 
-  return(list(populationdate, age_column1))
+    skipped_ages <- matrix(NA, nrow = dim(population)[3], ncol = length(seq(time_step, age_column1, time_step)))
+
+    populationdate <- cbind(skipped_ages, populationdate)
+
+  }
+
+
+  return(populationdate)
 
 }
 
 
 
+
+
+
+
+
+
+
+
+##previous code
+
+
+
+
+# extract_population_status <- function(survey_date,
+#                                       first_birth_date,
+#                                       time_step,
+#                                       population)
+#
+#   # meant to extract the the corresponding states of the population from the susceptible to the infected at the specified
+#   # current date. it utilises the which function to provide the indices of the population[,, tau] matrix
+#   # entries with the same index number can easily indexed below tis one are related functions.
+#
+#   # considerations on the most appropriate output a matrix of the eexact dimensions with some columns NAs throughout vs
+#   # tracking the columns lost by removing columns with NAs only  depending on the value of the anchor.
+#
+#
+# {
+#   anchor <- floor((survey_date - first_birth_date)/time_step)
+#
+#
+#   index <- (row(population[,,1]) + col(population[,,1])) - 1
+#
+#   columns <- 1:length(which(index == anchor))
+#
+#   populationdate <- matrix(NA, nrow = dim(population)[3], ncol = length(columns))
+#
+#   for (row in 1:dim(population)[3]){
+#
+#
+#     populationdate[row, ] <-   population[, , row][index == anchor ]
+#
+#
+#   }
+#
+#   age_index_column1 = ifelse (anchor <= dim(population)[1], 1 ,(anchor - dim(population)[1])+1)
+#
+#   age_column1 = age_index_column1 * time_step
+#
+#   return(list(populationdate, age_column1))
+#
+# }
+#
+#
+#
 
 
 

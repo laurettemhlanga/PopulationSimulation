@@ -4,18 +4,28 @@
 \alias{probability_recent_among_positive}
 \title{probability_recent_among_positive}
 \usage{
-probability_recent_among_positive(time_step, population_at_date)
+probability_recent_among_positive(time_step, type, population_at_date,
+  probability_of_recent_infection, keeping_infection_time = FALSE)
 }
 \arguments{
 \item{time_step}{the time step between consecurtive dates or the length of the time between date of births of cohorts.}
 
+\item{type}{type of function to be utilised in the probability of infection function}
+
 \item{population_at_date}{Status of the popuation in the population.}
+
+\item{probability_of_recent_infection}{a function that takes in possible  time since infection in years and calculates the probability
+of being infected for that amount of years}
+
+\item{keeping_infection_time}{if TRUE the function returns the probability of being recently infected among the positives for
+given ages and times since infection, else it returns the sum of the columns. Which is the probability of being recently infected
+among the positives at a specified age summing over time since infection.}
 }
 \value{
-bl bl bl
+a matrix with the probability of testing recently infected among the positive.
 }
 \description{
-Takes in any numeric value and squares it
+calculates the probability of being recently infected given that you already HIV positive.
 }
 \details{
 a function that returns an array of probabilities of surviving in the infected state for each age, time and time since infection.
