@@ -21,13 +21,10 @@
 #' @export
 
 probability_of_recently_infected <- function(time_in_years,
-                                             type,
-                                             shape = 2,
-                                             scale = 0.476,
-                                             intercept = 1,
-                                             gradient = -0.5,
-                                             cutoff = 2,
-                                             value = 1){
+                                             type , shape = 2,
+                                             scale = 0.476, intercept = 1,
+                                             gradient = -0.5, cutoff = 2,
+                                             value = 0.5){
 
   if(type == "weibull"){
 

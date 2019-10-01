@@ -6,7 +6,7 @@
 \usage{
 probability_of_recently_infected(time_in_years, type, shape = 2,
   scale = 0.476, intercept = 1, gradient = -0.5, cutoff = 2,
-  value = 1)
+  value = 0.5)
 }
 \arguments{
 \item{time_in_years}{a vector of times since infection.}

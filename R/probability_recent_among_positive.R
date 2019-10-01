@@ -28,7 +28,8 @@ probability_recent_among_positive <- function(time_step,
                                               probability_of_recent_infection,
                                               keeping_infection_time = FALSE)
   {
-  # calculates the probability of being recently infected among the positive, it takes the population at the date of interest
+  # calculates the probability of being recently infected among the positive,
+  # it takes the population at the date of interest
   #
 
     population_infected <- population_at_date[-1, ]
@@ -37,16 +38,16 @@ probability_recent_among_positive <- function(time_step,
 
     recent_among_positive <- matrix(NA, ncol = ncol(population_infected), nrow = nrow(population_infected))
 
-    for (age_index in (1:ncol( population_infected))){
+    for (age_index in (1:ncol(population_infected))){
 
-        age_prevalence <- population_infected[ ,age_index] / sum(population_infected[  ,age_index], na.rm = T)
+        age_prevalence <- population_infected[ ,age_index] / sum(population_at_date[  ,age_index], na.rm = T)
 
         #recent_among_positive[ ,age_index] <- age_prevalence *  probability_of_recently_infected(time_in_years)
 
         recent_among_positive[ ,age_index] <- age_prevalence *  probability_of_recent_infection(time_in_years, type)
       }
 
-   if ( keeping_infection_time){
+     if (keeping_infection_time){
 
         return(recent_among_positive)
 

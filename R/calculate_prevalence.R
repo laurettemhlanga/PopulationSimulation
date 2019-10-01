@@ -24,6 +24,9 @@
 calculate_prevalence <- function(population_at_date,
                                  keeping_infection_time = FALSE)
 
+ # Consider using the apply function around the for loop. is this neccessary
+  #or we can produce a list through recency calculation.
+
 
 {
   if (keeping_infection_time){
@@ -37,6 +40,7 @@ calculate_prevalence <- function(population_at_date,
     }
 
  }else{
+
 
     age_prevalence <- colSums(population_at_date[-1,], na.rm = T) / colSums(population_at_date,  na.rm = T)
 

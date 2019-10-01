@@ -1,4 +1,4 @@
-#' Survey_pps
+#' pps_survey_selfweighting_structured
 #'
 #' conducts surveys using Probability propotional to size (pps) in given regions.
 #'
@@ -9,6 +9,7 @@
 #' @param  cluster_size sizes of the clusters
 #' @param  ind_per_cluster individuals to sample per cluster
 #' @param  num_cluster_sample the number of people in the cluster
+#' @param ages ages of the birth cohorts at time one of the survey
 #'
 #'
 #'
@@ -18,17 +19,19 @@
 
 
 
-Survey_pps <- function(cluster_number,
-                       cluster_size ,
-                       num_cluster_sample,
-                       ind_per_cluster,
-                       overall_prevalence1,
-                       overall_prevalence2,
-                       sigma_prevalence
+pps_survey_selfweighting_structured <- function(cluster_number,
+                                                cluster_size ,
+                                                num_cluster_sample,
+                                                ind_per_cluster,
+                                                overall_prevalence1,
+                                                overall_prevalence2,
+                                                sigma_prevalence,
+                                                ages
 ){
 
-  #Steps in appling Probability propotional to size(pps) and ways to ensure equal sampling weights
-  #individual (calculation of basic weights)
+  # applies Probability propotional to size(pps) and  ensures equal sampling weights
+  # per individual (calculation of basic weights)
+  ##### provide survey data vs calling the age partitioned fuction within here
 
   survey_data = data.frame(cluster_id = cluster_number,
                            cluster_population = cluster_size)
@@ -36,11 +39,12 @@ Survey_pps <- function(cluster_number,
   survey_data$cumulative_sum = cumsum(survey_data$cluster_population)
 
 
-  survey_data = merge(survey_data, partition_prevalence(overall_prevalence1 = overall_prevalence1,
+  survey_data = merge(survey_data, age_partitioned_prevalence(overall_prevalence1 = overall_prevalence1,
                                                         overall_prevalence2 = overall_prevalence2,
                                                         sigma_prevalence = sigma_prevalence,
                                                         cluster_number = cluster_number,
-                                                        cluster_size = cluster_size)[[2]])
+                                                        cluster_size = cluster_size,
+                                                        ages = ages))
 
 
   sampling_interval = survey_data$cumulative_sum[length(cluster_number)] / num_cluster_sample
@@ -52,7 +56,7 @@ Survey_pps <- function(cluster_number,
 
   random_number = sample(1 : threshold, 1)
 
-  cluster_series = cumsum(c(random_number, rep(sampling_interval, num_cluster_sample-1)))
+  cluster_series = cumsum(c(random_number, rep(sampling_interval, num_cluster_sample - 1)))
 
   id_clusters_sampled = as.vector(rep(NA, num_cluster_sample))
 

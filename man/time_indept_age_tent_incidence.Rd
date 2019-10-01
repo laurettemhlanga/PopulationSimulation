@@ -5,7 +5,7 @@
 \title{time_indept_age_tent_incidence}
 \usage{
 time_indept_age_tent_incidence(matrix_of_ages, matrix_of_times,
-  constant = 0, age_min = 0, age_max = 50, age_peak = 25,
+  constant = 0, age_min = 15, age_max = 50, age_peak = 25,
   Imin = 0.01, Ipeak = 0.05, Ifin = 0.02)
 }
 \arguments{

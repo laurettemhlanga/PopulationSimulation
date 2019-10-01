@@ -33,6 +33,18 @@ susceptible_population <- function(cumulative_survival_matrix,
 }
 
 
+#
+# suspt_pop <- susceptible_population(cumulative_survival_matrix = prob,
+#                                     birth_counts = births[-c(1,2)],
+#                                     pmtct_birthcount = rep(5,5))
+
+
+
+# susceptible_population(cumulative_survival_matrix = prob,
+#                        birth_counts = births[-c(1,2)],
+#                        pmtct_birthcount = pmtct_birth_count[-c(1,2)])
+
+
 
 
 # susceptible_population_fun <- function(cumulative_survival_matrix,

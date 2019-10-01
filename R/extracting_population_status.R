@@ -1,5 +1,5 @@
 
-#' extract_population_status
+#' extract_population_status_chunk
 #'
 #' A function that extracts the population status at the specified survey date
 #'
@@ -14,6 +14,31 @@
 #'
 #'
 #' @export
+
+extract_population_status_chunk <- function(survey_date,
+                                            first_birth_date,
+                                            time_step,
+                                            population)
+
+  # meant to extract the the corresponding states of the population from the susceptible to the infected at the specified
+  # current date. it utilises the which function to provide the indices of the population[,, tau] matrix
+  # entries with the same index number can easily indexed below tis one are related functions.
+
+  # considerations on the most appropriate output a matrix of the eexact dimensions with some columns NAs throughout vs
+  # tracking the columns lost by removing columns with NAs only  depending on the value of the anchor.
+{
+  population_state_chunk <- list()
+
+  for (index in 1:length(survey_date)){
+
+    population_state_chunk[[index]] <- extract_population_status(survey_date[index],
+                                                                 first_birth_date,
+                                                                 time_step,
+                                                                 population)
+  }
+  return(population_state_chunk)
+
+}
 
 
 
@@ -35,7 +60,7 @@ extract_population_status <- function(survey_date,
   anchor <- floor((survey_date - first_birth_date)/time_step)
 
 
-  index <- (row(population[,,1]) + col(population[,,1])) - 1
+  index <- (row(population[,,1]) + col(population[,,1])) - 2
 
   columns <- 1:length(which(index == anchor))
 
@@ -67,6 +92,33 @@ extract_population_status <- function(survey_date,
 
 
 
+
+
+#
+# extract_population_status_chunk <- function(survey_date,
+#                                             first_birth_date,
+#                                             time_step,
+#                                             population)
+#
+#   # meant to extract the the corresponding states of the population from the susceptible to the infected at the specified
+#   # current date. it utilises the which function to provide the indices of the population[,, tau] matrix
+#   # entries with the same index number can easily indexed below tis one are related functions.
+#
+#   # considerations on the most appropriate output a matrix of the eexact dimensions with some columns NAs throughout vs
+#   # tracking the columns lost by removing columns with NAs only  depending on the value of the anchor.
+# {
+#   population_state_chunk <- list()
+#
+#   for (index in 1:length(survey_date)){
+#
+#     population_state_chunk[[index]] <- extract_population_status(survey_date[index],
+#                                                                  first_birth_date,
+#                                                                  time_step,
+#                                                                  population)
+#     }
+#    return(population_state_chunk)
+#
+# }
 
 
 

@@ -1,4 +1,38 @@
 
+#' infected_cumulative_survival_prob
+#'
+#' a function that returns a matrix of probabilities of mortality for each age and time step of the simulation
+#'
+#' @param prob_surviving   probability matrix of infected
+#' @return returns an array of dimensions time, age and time since infection - tau
+#'
+#' @export
+#'
+#'
+#
+
+
+infected_cumulative_survival_prob <- function(prob_surviving ){
+
+  cum_surv_infected <- matrix(NA, ncol(prob_surviving), nrow = nrow(prob_surviving))
+
+  cum_surv_infected[1,] <- 1
+
+  tau_indices <- 2:nrow(prob_surviving)
+  age_indices <- 2:ncol(prob_surviving)
+
+  for( tau_index in tau_indices){
+    for(age_index in age_indices){
+
+      cum_surv_infected[tau_index, age_index] <- cum_surv_infected[tau_index -1, age_index - 1] * prob_surviving[tau_index -1, age_index - 1]
+
+    }
+  }
+
+  return(cum_surv_infected)
+}
+
+
 
 
 #' cumulative_probability_surviving_infected
@@ -52,6 +86,35 @@ cumulative_probability_surviving_infected <- function(probability_surviving_infe
 
 
 #cum_prob_survival_i <- cumulative_probability_surviving_infected(probability_surviving_infected_array = y)
+
+
+
+#
+# infected_cumulative_survival_prob <- function(prob_surviving = prob_surviv){
+#
+#   cum_surv_infected <- matrix(NA, ncol(prob_surviving), nrow = nrow(prob_surviving))
+#
+#   cum_surv_infected[1,] <- 1
+#
+#   tau_indices <- 2:nrow(prob_surviving)
+#   age_indices <- 2:ncol(prob_surviving)
+#
+#   for( tau_index in tau_indices){
+#     for(age_index in age_indices){
+#
+#       cum_surv_infected[tau_index, age_index] <- cum_surv_infected[tau_index -1, age_index - 1] * prob_surviving[tau_index -1, age_index - 1]
+#
+#     }
+#   }
+#
+#   return(cum_surv_infected)
+# }
+
+
+#cum_prob <- infected_cumulative_survival_prob()
+
+
+
 
 
 

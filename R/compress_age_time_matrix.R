@@ -23,6 +23,8 @@ compress_age_time_matrix <- function(age_time_matrix )
 
   matrix_index_seq <- 1:number_of_rows_new_data
 
+#t(sapply(seq_along(matrix_index_seq), function(x) age_time_matrix[matrix_index == x - 1]))
+
   for (ii in matrix_index_seq){
 
 

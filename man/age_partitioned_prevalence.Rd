@@ -24,5 +24,5 @@ age_partitioned_prevalence(overall_prevalence1, overall_prevalence2,
 returns an array of dimensions time t , age a and time since infection - tau
 }
 \description{
-a functions that partitions realised prevalence per age into the regions of a stipulated.
+a functions that partitions prevalences of given birth cohorts at time 1 and time 2 to m clusters
 }

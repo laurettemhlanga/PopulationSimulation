@@ -19,7 +19,7 @@
 #' @export
 
 
-time_indept_age_tent_incidence <- function(matrix_of_ages, matrix_of_times, constant = 0, age_min = 0,
+time_indept_age_tent_incidence <- function(matrix_of_ages, matrix_of_times, constant = 0, age_min = 15,
                                age_max = 50,  age_peak= 25,
                                Imin =0.01,  Ipeak =0.05,
                                Ifin =0.02)
@@ -101,7 +101,7 @@ incidence_mahiane <- function(matrix_of_ages, matrix_of_times, age_debut = 0,
 
   norm_fac <- sqrt(2 * pi* sigm2) *(exp((beta - ((sigm2)/2)) * maximum_inc()))
 
-  incidence <- 0.1 * ((norm_fac / ((matrix_of_ages - age_debut) * sqrt(2 * pi * sigm2))) *
+  incidence <- 0.2 * ((norm_fac / ((matrix_of_ages - age_debut) * sqrt(2 * pi * sigm2))) *
                         exp(-(((log(matrix_of_ages - age_debut) - beta)^2) / (2 * sigm2))))
 
   return(incidence)

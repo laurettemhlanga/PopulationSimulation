@@ -27,29 +27,23 @@ tau_linear_excess_mortality  <- function(matrix_of_ages, matrix_of_times, value_
 # user has to supply what they believe the intercept and slope is.
 
   tau <- value_of_tau
-  ncols <- ncol(matrix_of_ages)
-  nrows <- nrow(matrix_of_ages)
-  # requires sensible thought
+  ncols <- length(matrix_of_ages)
+  nrows <- length(matrix_of_ages)
 
-  if (is.matrix(matrix_of_ages) == T){
 
-    ex_mort_tau <-  matrix(rep(intercept + (slope * tau) , ncols *nrows),
-                         ncol = ncols,
-                         nrow = nrows)
-  }else{
+    ex_mort_tau <- rep(intercept + (slope * tau), length(matrix_of_ages))
 
-    ex_mort_tau <- intercept + (slope * tau)}
 
   return(ex_mort_tau)
 }
 
 
 
-tau_linear_excess_mortality(matrix_of_ages = 5,
-                            matrix_of_times = 4,
+tau_linear_excess_mortality(matrix_of_ages = 5:10,
+                            matrix_of_times = 1980:1985,
                             value_of_tau = 2,
-                            intercept = 0.1,
-                            slope = 0.5)
+                            intercept = 0.01,
+                            slope = 0)
 
 
 
@@ -106,8 +100,11 @@ excess_mahiane <- function(matrix_of_ages,
 
 
 
-
-
+excess_mahiane(matrix_of_ages = 5:10,
+               matrix_of_times = 1980:1985,
+               times_since_i = 2, shape = 2,
+               max_survival = 16, min_survival = 6.6,
+               age_max = 50, age_min = 0)
 
 
 
