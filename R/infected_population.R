@@ -1,5 +1,5 @@
 
-#' infected_population_vector
+#' infected_population_natrix
 #'
 #' a function that returns a matrix that returns the infected population for a given birthcohort at specified age and time steps
 #'
@@ -15,25 +15,26 @@
 #' @export
 
 
-infected_population_vector <- function(incidence_mat, base_mortality_mat, time_step,
+infected_population_matrix <- function(incidence_mat, base_mortality_mat, time_step,
                                        susceptible, pmtct_birthcount,
                                        cumulative_infected_survival){
 
 
-  infected <- susceptible * incidence_mat * time_step * exp(-base_mortality_mat * time_step) * cumulative_infected_survival[1,]
+  infected <- (susceptible * incidence_mat * time_step * exp(-base_mortality_mat * time_step) * cumulative_infected_survival[1,])
 
 
   infectedpop <- matrix(NA, ncol = ncol(cumulative_infected_survival), nrow = nrow(cumulative_infected_survival))
 
-  infectedpop[1,] <- c(pmtct_birthcount, infected)
+  infectedpop[1,] <- c(pmtct_birthcount, infected[-length(infected)])
 
   tau_indices = 2:ncol(infectedpop)
-  age_indices = 2:ncol(infectedpop)
+  age_indices = 1:ncol(infectedpop)
 
 
-  for (age_index in age_indices){
+  for (tau_index in tau_indices){
 
-    for (tau_index in tau_indices){
+    for (age_index in age_indices){
+
 
       if(age_index - tau_index < 0){
 
@@ -42,10 +43,11 @@ infected_population_vector <- function(incidence_mat, base_mortality_mat, time_s
       }else{
 
         infectedpop[tau_index, age_index] <- infectedpop[1, age_index - (tau_index - 1)] * cumulative_infected_survival[tau_index, age_index]
-      }
+       }
     }
-    return(infectedpop)
+
   }
+  return(infectedpop)
 }
 
 

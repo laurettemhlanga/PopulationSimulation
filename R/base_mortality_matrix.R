@@ -27,7 +27,7 @@ base_mortality_vector <- function(max_age,
   # populates a base mortality matrix  based on the base mortality function supplied
   # the maximum ages, list of times and the required time-step. Note the approximation
   # of being infected in the interval in question is calculated at mid point.
-  ages <- seq(time_step, max_age, time_step)
+  ages <- seq(0, max_age, time_step)
 
   mortality_vector  =   base_mortality(matrix_of_ages = ages + 0.5 * time_step, matrix_of_times = list_of_times + (ages + 0.5 * time_step))
 

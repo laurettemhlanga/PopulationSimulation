@@ -14,12 +14,12 @@
 
 infected_cumulative_survival_prob <- function(prob_surviving ){
 
-  cum_surv_infected <- matrix(NA, ncol(prob_surviving), nrow = nrow(prob_surviving))
+  cum_surv_infected <- matrix(NA, ncol(prob_surviving) + 1, nrow = nrow(prob_surviving) + 1)
 
   cum_surv_infected[1,] <- 1
 
-  tau_indices <- 2:nrow(prob_surviving)
-  age_indices <- 2:ncol(prob_surviving)
+  tau_indices <- 2:nrow(cum_surv_infected)
+  age_indices <- 2:ncol(cum_surv_infected)
 
   for( tau_index in tau_indices){
     for(age_index in age_indices){

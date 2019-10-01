@@ -27,7 +27,7 @@ wedge_excess_mortality_matrix <- function(max_age, list_of_times, time_step,
 
 
   ages  <- seq(time_step, max_age, time_step)
-  taus  <- seq(time_step, max_age, time_step)
+  taus  <- ages
 
   excess_mort <- matrix(NA, ncol = length(ages), nrow = length(taus))
 

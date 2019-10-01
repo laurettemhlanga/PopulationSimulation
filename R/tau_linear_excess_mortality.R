@@ -100,11 +100,11 @@ excess_mahiane <- function(matrix_of_ages,
 
 
 
-excess_mahiane(matrix_of_ages = 5:10,
-               matrix_of_times = 1980:1985,
-               times_since_i = 2, shape = 2,
-               max_survival = 16, min_survival = 6.6,
-               age_max = 50, age_min = 0)
+# excess_mahiane(matrix_of_ages = 5:10,
+#                matrix_of_times = 1980:1985,
+#                times_since_i = 2, shape = 2,
+#                max_survival = 16, min_survival = 6.6,
+#                age_max = 50, age_min = 0)
 
 
 
