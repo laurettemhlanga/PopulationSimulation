@@ -4,8 +4,8 @@
 \alias{probability_of_recently_infected}
 \title{probability_of_recently_infected}
 \usage{
-probability_of_recently_infected(time_in_years, type, shape = 2,
-  scale = 0.476, intercept = 1, gradient = -0.5, cutoff = 2,
+probability_of_recently_infected(time_in_years, type, shape = 5,
+  scale = 0.5, intercept = 1, gradient = -0.5, cutoff = 2,
   value = 0.5)
 }
 \arguments{

@@ -50,6 +50,33 @@ time_indep_age_linear_base_mortality <- function(matrix_of_ages, matrix_of_times
 
 ###################################
 
+#' step_mortality
+#'
+#' a function that takes as arguments age and time and returns a numeric vector of length equivelent to the number of times indicated by the simulation
+#' representing a rate of mortality at the indicated age and time
+#' The generate_mortality function is required as an argument for the package's do_simulation function
+#' The function may be user defined and stored as an R object. Otherwise a default value - entered as "default" - is provided by the package
+#'
+#'
+#' @param matrix_of_times numeric, indicates time or times at which the incidence rate is desired
+#' @param matrix_of_ages  numeric, indicates age or ages at which the incidence rate is desired
+#' @return a numeric vector that represents the mortality rate at t.
+#'
+#' @export
+
+#Option 1
+
+
+
+
+step_mortality <- function(matrix_of_ages,
+                           matrix_of_times){
+
+  mortality =  0.01 + 0.001 * matrix_of_ages
+
+  return(mortality)
+}
+
 
 
 

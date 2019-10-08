@@ -27,7 +27,7 @@ incidence_vector <- function(max_age, list_of_times,
   ages  <- seq(0, max_age, time_step)
 
 
-  incidence_vector =  incidence(matrix_of_ages = ages + 0.5 * time_step ,
+  incidence_vector =  incidence(matrix_of_ages = ages + (0.5 * time_step) ,
                                 matrix_of_times = list_of_times + (ages + 0.5 * time_step))
 
 
@@ -71,8 +71,8 @@ incidence_matrix <- function(max_age, list_of_birth_times,
 
  for (age in age_index){
 
-    incidence_matrix =  incidence(matrix_of_ages = ages + 0.5 * time_step ,
-                                                        matrix_of_times = list_of_birth_times + (ages + 0.5 * time_step))
+    incidence_matrix =  incidence(matrix_of_ages = ages + (0.5 * time_step) ,
+                                  matrix_of_times = list_of_birth_times + (ages + (0.5 * time_step)))
 
 
   }

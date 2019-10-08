@@ -27,7 +27,7 @@ pmtct_birthcounts <- function(dates_needing_birth_counts,
 
   return((pmtct_birth_rate(dates_needing_birth_counts) * birth_count)* time_step)
 
-
+#return(0)
 }
 
 # pmtct_birthcounts(dates_needing_birth_counts = 1:5,

@@ -39,12 +39,12 @@ tau_linear_excess_mortality  <- function(matrix_of_ages, matrix_of_times, value_
 
 
 
-tau_linear_excess_mortality(matrix_of_ages = 5:10,
-                            matrix_of_times = 1980:1985,
-                            value_of_tau = 2,
-                            intercept = 0.01,
-                            slope = 0)
-
+# tau_linear_excess_mortality(matrix_of_ages = 5:10,
+#                             matrix_of_times = 1980:1985,
+#                             value_of_tau = 2,
+#                             intercept = 0.01,
+#                             slope = 0)
+#
 
 
 
@@ -97,7 +97,82 @@ excess_mahiane <- function(matrix_of_ages,
 
 
 
+#' step_excess_mortality
+#'
+#' a function that takes as arguments age,time and tau - which indicates the average time since infection among the infected population - and returns a numeric vector of length equivelent to the number of times indicated by the simulation
+#' representing a rate of excess mortality -i.e. among infected population relative to non-infected population - at the indicated age and time
+#' The generate_mortality function is required as an argument for the package's do_simulation function
+#' The function may be user defined and stored as an R object. Otherwise a default value - entered as "default" - is provided by the package
+#'
+#' @param matrix_of_times numeric, indicates time or times at which the incidence rate is desired
+#' @param matrix_of_ages  numeric, indicates age or ages at which the incidence rate is desired
+#' @param times_since_i umeric, indicates time since infection among the infected poplation.
+#'
+#' @export
 
+
+
+
+step_excess_mortality <- function(matrix_of_ages,
+                                  matrix_of_times,
+                                  times_since_i){
+
+
+  mortality = rep( 0.01, length(matrix_of_ages))
+
+  return(mortality)
+}
+
+
+
+#' weibull_hazard
+#'
+#' a function that takes as arguments age,time and tau - which indicates the average time since infection among the infected population - and returns a numeric vector of length equivelent to the number of times indicated by the simulation
+#' representing a rate of excess mortality -i.e. among infected population relative to non-infected population - at the indicated age and time
+#' The generate_mortality function is required as an argument for the package's do_simulation function
+#' The function may be user defined and stored as an R object. Otherwise a default value - entered as "default" - is provided by the package
+#'
+#' @param matrix_of_times numeric, indicates time or times at which the incidence rate is desired
+#' @param matrix_of_ages  numeric, indicates age or ages at which the incidence rate is desired
+#' @param times_since_i umeric, indicates time since infection among the infected poplation.
+#' @param shape numeric, indicates minimum age to be included in the simulation
+#' @param scale numeric, indicates minimum mortality, which is at age_min
+#' @param base allows generic use as a hazard function excess mort or base mortality
+#' @param ... extra parameters
+#' @return a numeric vector that represents the mortality rate at
+#'
+#' @export
+
+# weibull_hazard
+
+weibull_hazard <- function(matrix_of_ages,
+                           matrix_of_times,
+                           times_since_i, shape = 2,
+                           scale = 5, base = T, ...)
+                         # max_survival = 16, min_survival = 6.6
+                         # age_max = 50, age_min = 0, ...)
+{
+  # scale <- max_survival -
+  #   ((max_survival - min_survival)/(age_min - age_max)) * matrix_of_ages
+  if (base == T){
+
+    excess_mortality <-  ((1/scale) * shape ) * (matrix_of_ages/ scale) ^ (shape)
+
+    }else{
+
+    excess_mortality <-  ((1/scale) * shape ) * (times_since_i / scale) ^ (shape - 1)
+
+   }
+
+  return(excess_mortality)
+
+}
+
+
+
+# @param min_survival numeric, indicates maximum/final mortality at age_max, unless otherwise specified by user defined function
+# @param age_max numeric, indicates maximum age to be included in the simulation
+# @param age_min umeric, indicates minimum age to be included in the simulation
 
 
 # excess_mahiane(matrix_of_ages = 5:10,

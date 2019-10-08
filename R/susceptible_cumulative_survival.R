@@ -43,6 +43,8 @@ susceptible_cumulative_survival_vector <- function(incidence_vector,
   return(susceptible_cumulative_survival_vector)
 }
 
+
+
 #
 # prob <- susceptible_cumulative_survival(incidence_vector = incidence,
 #                                 base_mortality_vector = mortality,

@@ -21,8 +21,8 @@
 #' @export
 
 probability_of_recently_infected <- function(time_in_years,
-                                             type , shape = 2,
-                                             scale = 0.476, intercept = 1,
+                                             type , shape = 5,
+                                             scale = 0.5, intercept = 1,
                                              gradient = -0.5, cutoff = 2,
                                              value = 0.5){
 
@@ -86,7 +86,7 @@ PRT_linear <- function(time_in_years,
 
 
 PRT_step <- function(time_in_years,
-                     value,
+                     value = 0,
                      cutoff ){
 
 

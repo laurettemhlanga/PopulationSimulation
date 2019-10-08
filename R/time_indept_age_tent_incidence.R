@@ -109,6 +109,31 @@ incidence_mahiane <- function(matrix_of_ages, matrix_of_times, age_debut = 0,
 
 
 
+#' step_incidence
+#'
+#' a function that takes as arguments age and time and returns a numeric vector of length 1
+#' representing a rate of incidence at the indicated age and time
+#' The generate_incidence function is required as an argument for the do_simulation function
+#' The function may be user defined and stored as an R object. Otherwise a default value - entered as "default" - is provided by the package
+#'
+#' @param matrix_of_times numeric, indicates time or times at which the incidence rate is desired
+#' @param matrix_of_ages  numeric, indicates age or ages at which the incidence rate is desired
+#'
+#' @export
+#'
+
+
+
+step_incidence <- function(matrix_of_ages,
+                           matrix_of_times){
+
+
+  incidence = ifelse(matrix_of_ages <= 15, 0.01, 0.02)
+
+  return(incidence)
+}
+
+
 
 
 

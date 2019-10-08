@@ -26,7 +26,7 @@ probability_surviving_infected_matrix <- function(excess_mortality_matrix,
 
   for (tau_index in seq_along(taus_indices)){
 
-    prob_survival[tau_index, ] <- exp(-(excess_mortality_matrix[tau_index, ] + base_mortality_vector))
+    prob_survival[tau_index, ] <- exp(-(excess_mortality_matrix[tau_index, ] + base_mortality_vector) * time_step)
 
   }
 

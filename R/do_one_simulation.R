@@ -22,18 +22,6 @@
 
 
 
-
-#
-# date_of_birth = 1990
-# time_step = 1
-# max_age = 3
-# birth_rate = constant_birth_rate
-# pmtct_birth_rate = constant_pmtct_rate
-# base_mortality = time_indep_age_linear_base_mortality
-# incidence  = incidence_mahiane
-# excess_mortality = excess_mahiane
-
-
 birth_cohort_simulation <- function(date_of_birth,
                               time_step, max_age,
                               birth_rate,
@@ -47,9 +35,7 @@ birth_cohort_simulation <- function(date_of_birth,
   # the rates stated or the user can use the rates that come with the package.
   # The user-defined or package default function should be called by name when included as an argument.
 
-
- list_of_times <- seq(from  = date_of_birth, to = date_of_birth + max_age, by = time_step)
-
+  list_of_times <- seq(from  = date_of_birth, to = (date_of_birth + max_age), by = time_step)
 
   birth_count <- birth_counts(dates_needing_birth_counts = date_of_birth,
                               birth_rate = birth_rate, time_step = time_step)
@@ -61,7 +47,6 @@ birth_cohort_simulation <- function(date_of_birth,
                                   list_of_times = list_of_times,
                                   incidence = incidence, time_step = time_step)
 
-
   base_mortality_m <- base_mortality_vector(max_age = max_age,
                                             list_of_times = list_of_times,
                                             base_mortality = base_mortality,
@@ -70,7 +55,6 @@ birth_cohort_simulation <- function(date_of_birth,
   susceptible_survival_prob <- susceptible_cumulative_survival_vector(incidence_vector = incidence_m,
                                                                base_mortality_vector = base_mortality_m,
                                                                time_step = time_step)
-
 
   excess_mortality_a <- wedge_excess_mortality_matrix(max_age = max_age,
                                                     list_of_times = list_of_times,
@@ -83,14 +67,9 @@ birth_cohort_simulation <- function(date_of_birth,
 
   cum_prob_survival_i <- infected_cumulative_survival_prob(infected_survival_prob)
 
-
-
-
   susceptible_pop_counts <- susceptible_population(cumulative_survival_matrix = susceptible_survival_prob,
                                                    birth_counts = birth_count,
                                                    pmtct_birthcount = pmtct_birth_count)
-
-
 
   infected_pop_counts <-  infected_population_matrix(susceptible = susceptible_pop_counts,
                                                       pmtct_birthcount = pmtct_birth_count,
@@ -102,14 +81,21 @@ birth_cohort_simulation <- function(date_of_birth,
 
   population <- compact_birthcohort(susceptible = susceptible_pop_counts, infected = infected_pop_counts)
 
-
   return(population)
 
 
 }
 
 
-
+#
+# date_of_birth = 1990
+# time_step = 1
+# max_age = 3
+# birth_rate = constant_birth_rate
+# pmtct_birth_rate = constant_pmtct_rate
+# base_mortality = time_indep_age_linear_base_mortality
+# incidence  = incidence_mahiane
+# excess_mortality = excess_mahiane
 
 
 

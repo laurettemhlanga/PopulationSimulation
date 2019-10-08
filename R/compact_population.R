@@ -23,7 +23,7 @@ compact_birthcohort <- function(susceptible, infected){
   full_pupolation <- matrix(NA, nrow = nrow( infected)+1,  ncol = length(susceptible))
   full_pupolation[ 1, ] <- susceptible
 
-  full_pupolation[-1, ] <- infected
+  full_pupolation[2:nrow(full_pupolation), ] <- infected
 
   #full_pupolation[ , ,1] <- rowSums(full_pupolation, dims = 2, na.rm = T)
 
