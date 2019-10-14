@@ -4,20 +4,20 @@
 \alias{extract_cohort_status_surveydate}
 \title{extract_cohort_status_surveydate}
 \usage{
-extract_cohort_status_surveydate(date_of_birth, max_age, date_survey,
-  time_step, age_cohort_status)
+extract_cohort_status_surveydate(date_of_birth, max_age, survey_dates,
+  time_step, population)
 }
 \arguments{
 \item{date_of_birth}{the date of birth of the cohort.}
 
 \item{max_age}{maximum age of the birth cohort.}
 
-\item{date_survey}{dates with which the survey are to be conducted}
+\item{survey_dates}{dates with which the survey are to be conducted}
 
 \item{time_step}{the time or age difference between to consecutive times or ages the probability of surving infection or
 death in the susceptible statemi.e it is uniform in all values supplied}
 
-\item{age_cohort_status}{the cohort status for the length of the simulation}
+\item{population}{dates with which the survey are to be conducted}
 }
 \value{
 a vector which denotes being the probability of testing recently infected  being recently infected fo

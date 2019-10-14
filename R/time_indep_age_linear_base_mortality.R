@@ -6,8 +6,8 @@
 #' The function may be user defined and stored as an R object. Otherwise a default value - entered as "default" - is provided by the package
 #'
 #'
-#' @param matrix_of_times numeric, indicates time or times at which the incidence rate is desired
-#' @param matrix_of_ages  numeric, indicates age or ages at which the incidence rate is desired
+#' @param vector_of_times numeric, indicates time or times at which the incidence rate is desired
+#' @param vector_of_ages  numeric, indicates age or ages at which the incidence rate is desired
 #' @param constant numeric, indicates a constant rate of mortality when
 #' @param age_min numeric, indicates minimum age to be included in the simulation
 #' @param age_max numeric, indicates maximum age to be included in the simulation
@@ -24,7 +24,7 @@
 
 
 
-time_indep_age_linear_base_mortality <- function(matrix_of_ages, matrix_of_times, constant = 0, age_min = 0,
+time_indep_age_linear_base_mortality <- function(vector_of_ages, vector_of_times, constant = 0, age_min = 0,
                                age_max = 50, mort_min = 0, mort_max = 0.01)
   {
 
@@ -32,7 +32,7 @@ time_indep_age_linear_base_mortality <- function(matrix_of_ages, matrix_of_times
   # linear function of age. Note if a non zero value is provided for the variable constant then a
   # constant base mortality rate is obtatined i.e.  base mortality (age, time) = constant.
 
-  age <- matrix_of_ages
+  age <- vector_of_ages
 
   if (constant > 0) {
 
@@ -40,9 +40,9 @@ time_indep_age_linear_base_mortality <- function(matrix_of_ages, matrix_of_times
 
   } else {
 
-    base_mortality = ifelse(matrix_of_ages <= age_min, 0,
-                            ifelse(matrix_of_ages <= age_max,
-                                   mort_min + ((mort_max - mort_min)/(age_max - age_min)) * (matrix_of_ages - age_min), 0))
+    base_mortality = ifelse(age <= age_min, 0,
+                            ifelse(age <= age_max,
+                                   mort_min + ((mort_max - mort_min)/(age_max - age_min)) * (age - age_min), 0))
 
     return(base_mortality)
   }
@@ -58,8 +58,8 @@ time_indep_age_linear_base_mortality <- function(matrix_of_ages, matrix_of_times
 #' The function may be user defined and stored as an R object. Otherwise a default value - entered as "default" - is provided by the package
 #'
 #'
-#' @param matrix_of_times numeric, indicates time or times at which the incidence rate is desired
-#' @param matrix_of_ages  numeric, indicates age or ages at which the incidence rate is desired
+#' @param vector_of_times numeric, indicates time or times at which the incidence rate is desired
+#' @param vector_of_ages  numeric, indicates age or ages at which the incidence rate is desired
 #' @return a numeric vector that represents the mortality rate at t.
 #'
 #' @export
@@ -69,10 +69,10 @@ time_indep_age_linear_base_mortality <- function(matrix_of_ages, matrix_of_times
 
 
 
-step_mortality <- function(matrix_of_ages,
-                           matrix_of_times){
+step_mortality <- function(vector_of_ages,
+                           vector_of_times){
 
-  mortality =  0.01 + 0.001 * matrix_of_ages
+  mortality =  0.01 + 0.001 * vector_of_ages
 
   return(mortality)
 }

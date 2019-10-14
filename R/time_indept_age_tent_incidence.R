@@ -5,8 +5,8 @@
 #' The generate_incidence function is required as an argument for the do_simulation function
 #' The function may be user defined and stored as an R object. Otherwise a default value - entered as "default" - is provided by the package
 #'
-#' @param matrix_of_times numeric, indicates time or times at which the incidence rate is desired
-#' @param matrix_of_ages  numeric, indicates age or ages at which the incidence rate is desired
+#' @param vector_of_times numeric, indicates time or times at which the incidence rate is desired
+#' @param vector_of_ages  numeric, indicates age or ages at which the incidence rate is desired
 #' @param constant numeric, indicates a constant rate of incidence
 #' @param age_min numeric, indicates minimum age to be included in the simulation
 #' @param age_max numeric, indicates maximum age to be included in the simulation
@@ -19,7 +19,7 @@
 #' @export
 
 
-time_indept_age_tent_incidence <- function(matrix_of_ages, matrix_of_times, constant = 0, age_min = 15,
+time_indept_age_tent_incidence <- function(vector_of_ages, vector_of_times, constant = 0, age_min = 0.01,
                                age_max = 50,  age_peak= 25,
                                Imin =0.01,  Ipeak =0.05,
                                Ifin =0.02)
@@ -29,7 +29,7 @@ time_indept_age_tent_incidence <- function(matrix_of_ages, matrix_of_times, cons
   # for the variable constant then a constant incidence is obtatined i.e. incidence(age, time) = constant.
 
 
-  age <- matrix_of_ages
+  age <- vector_of_ages
 
   if (constant > 0) {
 
@@ -128,7 +128,7 @@ step_incidence <- function(matrix_of_ages,
                            matrix_of_times){
 
 
-  incidence = ifelse(matrix_of_ages <= 15, 0.01, 0.02)
+  incidence = ifelse(matrix_of_ages <= 15, 0, 0.02)
 
   return(incidence)
 }

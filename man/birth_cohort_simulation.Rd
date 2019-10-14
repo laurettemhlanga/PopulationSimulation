@@ -4,8 +4,9 @@
 \alias{birth_cohort_simulation}
 \title{birth_cohort_simulation}
 \usage{
-birth_cohort_simulation(date_of_birth, time_step, max_age, birth_rate,
-  pmtct_birth_rate, base_mortality, incidence, excess_mortality)
+birth_cohort_simulation(date_of_birth, time_step, max_age, survey_dates,
+  birth_rate, pmtct_birth_rate, base_mortality_function,
+  incidence_function, excess_mortality_function)
 }
 \arguments{
 \item{date_of_birth}{the minimum date of birth for the birth cohorts}
@@ -14,15 +15,17 @@ birth_cohort_simulation(date_of_birth, time_step, max_age, birth_rate,
 
 \item{max_age}{maximum age attained by each birth cohort}
 
+\item{survey_dates}{dates for conducting surveys}
+
 \item{birth_rate}{the birth rate in the hypothetical population at the specified times}
 
 \item{pmtct_birth_rate}{the birth rate newborns who are infecteds.}
 
-\item{base_mortality}{a function that specifies  the rate of occurence of natural deaths with arguments age and time.}
+\item{base_mortality_function}{a function that specifies  the rate of occurence of natural deaths with arguments age and time.}
 
-\item{incidence}{a function that specifies  the rate of occurence of the infections with arguments age and time.}
+\item{incidence_function}{a function that specifies  the rate of occurence of the infections with arguments age and time.}
 
-\item{excess_mortality}{a function that specifies  the rate of occurence ofdisease induced deaths with arguments age and time.}
+\item{excess_mortality_function}{a function that specifies  the rate of occurence ofdisease induced deaths with arguments age and time.}
 }
 \value{
 a matrix of column length max_age and row length list_of_birth_times,

@@ -4,14 +4,15 @@
 \alias{base_mortality_vector}
 \title{base_mortality_vector}
 \usage{
-base_mortality_vector(max_age, list_of_times, base_mortality, time_step)
+base_mortality_vector(n_age_steps, date_of_birth, base_mortality_function,
+  time_step)
 }
 \arguments{
-\item{max_age}{The maximum age attained by each birth cohort (aging steps).}
+\item{n_age_steps}{The maximum age attained by each birth cohort (aging steps).}
 
-\item{list_of_times}{a numeric vectors indicating the dates in simulation. Note that date format is not used.}
+\item{date_of_birth}{a numeric vectors indicating the dates in simulation. Note that date format is not used.}
 
-\item{base_mortality}{a function which takes as arguments age and time and returns a numberic rate of mortality for each age and time included in the simulation.
+\item{base_mortality_function}{a function which takes as arguments age and time and returns a numberic rate of mortality for each age and time included in the simulation.
 This function can be defined by user or can be selected from several default options included in the package.
 The user-defined or package default function should be called by name when included as an argument in the base_mortality_matrix function}
 

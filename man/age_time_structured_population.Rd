@@ -6,8 +6,8 @@
 \usage{
 age_time_structured_population(survey_dates, max_birth_date,
   min_birth_date, time_step, max_age, type, birth_rate,
-  probability_of_recent_infection, base_mortality, pmtct_birth_rate,
-  incidence, excess_mortality)
+  probability_of_recent_infection, base_mortality_function,
+  pmtct_birth_rate, incidence_function, excess_mortality_function)
 }
 \arguments{
 \item{survey_dates}{dates the surveys are to be conducted}
@@ -26,13 +26,13 @@ age_time_structured_population(survey_dates, max_birth_date,
 
 \item{probability_of_recent_infection}{function in use in calculating  probability of being recently infected}
 
-\item{base_mortality}{base mortality rate ata a given age and time}
+\item{base_mortality_function}{base mortality rate ata a given age and time}
 
 \item{pmtct_birth_rate}{rate of babies/proportion of the population born HIV positive}
 
-\item{incidence}{Incidence rate at a given time}
+\item{incidence_function}{Incidence rate at a given time}
 
-\item{excess_mortality}{excess  mortality rate ata a given age and time}
+\item{excess_mortality_function}{excess  mortality rate ata a given age and time}
 }
 \description{
 age_time_structured_population

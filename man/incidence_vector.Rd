@@ -4,12 +4,12 @@
 \alias{incidence_vector}
 \title{incidence_vector}
 \usage{
-incidence_vector(max_age, list_of_times, incidence, time_step)
+incidence_vector(n_age_steps, date_of_birth, incidence, time_step)
 }
 \arguments{
-\item{max_age}{The maximuma age attained by each birth cohort (aging steps).}
+\item{n_age_steps}{The maximuma age attained by each birth cohort (aging steps).}
 
-\item{list_of_times}{a numeric vectors indicating the dates in simulation. Note that date format is not used.}
+\item{date_of_birth}{a numeric vectors indicating the dates in simulation. Note that date format is not used.}
 
 \item{incidence}{a function which takes as arguments age and time and returns a numberic rate of incidence for each age and time included in the simulation.
 This function can be defined by user or can be selected from among several default options included in the package.

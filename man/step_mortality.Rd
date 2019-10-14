@@ -4,12 +4,12 @@
 \alias{step_mortality}
 \title{step_mortality}
 \usage{
-step_mortality(matrix_of_ages, matrix_of_times)
+step_mortality(vector_of_ages, vector_of_times)
 }
 \arguments{
-\item{matrix_of_ages}{numeric, indicates age or ages at which the incidence rate is desired}
+\item{vector_of_ages}{numeric, indicates age or ages at which the incidence rate is desired}
 
-\item{matrix_of_times}{numeric, indicates time or times at which the incidence rate is desired}
+\item{vector_of_times}{numeric, indicates time or times at which the incidence rate is desired}
 }
 \value{
 a numeric vector that represents the mortality rate at t.

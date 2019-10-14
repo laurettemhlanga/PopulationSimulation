@@ -8,6 +8,7 @@
 #' @param population_at_date Status of the popuation in the population.
 #' @param probability_of_recent_infection a function that takes in possible  time since infection in years and calculates the probability
 #' of being infected for that amount of years
+#' @param n_age_steps type of function to be utilised in the probability of infection function
 #' @param type type of function to be utilised in the probability of infection function
 #'
 #'
@@ -18,7 +19,7 @@
 
 
 prevalences_calculation <- function(time_step ,type ,
-                                    population_at_date,
+                                    population_at_date, n_age_steps,
                                     probability_of_recent_infection)
 {
   # calculates the prevalences of recency, hiv status and of tau and age
@@ -26,9 +27,11 @@ prevalences_calculation <- function(time_step ,type ,
   #
 
   #population_infected <- population_at_date[-1, ]
+
+
   if( is.vector(population_at_date) == T){
 
-    time_in_years <- seq(time_step, (length(population_at_date[-1 ]) * time_step), time_step)
+    time_in_years <-  seq(from = time_step, to = length(population_at_date[-1]),  by = time_step)
 
     overall_age_prevalence <- sum(population_at_date[-1], na.rm = T) / sum(population_at_date,  na.rm = T)
 
@@ -38,9 +41,11 @@ prevalences_calculation <- function(time_step ,type ,
 
     prevalence_R <- sum(recent_infections, na.rm = TRUE) / (overall_age_prevalence * sum(population_at_date,  na.rm = T))
 
-  }else{
+  }else {
 
-    time_in_years <- seq(time_step, (nrow(population_at_date[-1, ]) * time_step), time_step)
+    time_in_years <- seq(from = time_step, to = (nrow(population_at_date[-1, ]) * time_step), by = time_step)
+    #time_in_years <-  seq(from = time_step/2, by = time_step, length.out = n_age_steps)
+    #time_in_years <- seq(from = time_step)
 
     overall_age_prevalence <- colSums(population_at_date[-1,], na.rm = T) / colSums(population_at_date,  na.rm = T)
 
@@ -58,10 +63,12 @@ prevalences_calculation <- function(time_step ,type ,
 
      prevalence_R <- colSums(recent_infections, na.rm = TRUE) / (overall_age_prevalence * colSums(population_at_date,  na.rm = T))
 
-     }
+  }
 
   return(list( prevalence_H = overall_age_prevalence, prevalence_R = prevalence_R, prevalence_T = prevalence_T))
   }
+
+
 
 
 # x <-  matrix(c(c(100, 80, 60, 50),

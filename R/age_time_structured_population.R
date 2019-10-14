@@ -8,10 +8,10 @@
 #' @param type the type of function to be used in estimating the probability of testing recently infected
 #' @param probability_of_recent_infection function in use in calculating  probability of being recently infected
 #' @param birth_rate bith rate at the the give date
-#' @param base_mortality base mortality rate ata a given age and time
-#' @param excess_mortality excess  mortality rate ata a given age and time
+#' @param base_mortality_function base mortality rate ata a given age and time
+#' @param excess_mortality_function excess  mortality rate ata a given age and time
 #' @param pmtct_birth_rate rate of babies/proportion of the population born HIV positive
-#' @param incidence  Incidence rate at a given time
+#' @param incidence_function  Incidence rate at a given time
 #'
 #'
 #' @export
@@ -21,59 +21,42 @@
 age_time_structured_population <- function(survey_dates, max_birth_date, min_birth_date,
                                            time_step, max_age, type,  birth_rate,
                                            probability_of_recent_infection,
-                                           base_mortality, pmtct_birth_rate, incidence,
-                                           excess_mortality
+                                           base_mortality_function, pmtct_birth_rate,
+                                           incidence_function, excess_mortality_function
                                            ){
 
  # browser()
 
   birth_dates <- seq(from = min_birth_date, to = max_birth_date, time_step)
 
-#populationprevalences <- data.table::data.table(date_birth = NA, dates = NA, age = NA, prevalence_H = NA, prevalence_R = NA)
-  populationprevalences <- data.frame(date_birth = numeric(),
-                                    dates = numeric(), age = numeric(),
-                                    prevalence_H = numeric(), prevalence_R = numeric())
+  populationprevalences <- data.frame(date_birth = numeric(), dates = numeric(), age = numeric(),
+                                      prevalence_H = numeric(), prevalence_R = numeric())
 
   for (dob in seq_along(birth_dates)){
 
-    #dob = length(birth_dates)
-    #dob = 3
-
-    population = birth_cohort_simulation(date_of_birth = birth_dates[dob],
+    population = birth_cohort_simulation(date_of_birth = birth_dates[dob], survey_dates = survey_dates,
                                 time_step = time_step, max_age = max_age,  birth_rate = birth_rate,
-                                base_mortality =  base_mortality,
+                                base_mortality_function =  base_mortality_function,
                                 pmtct_birth_rate = pmtct_birth_rate,
-                                incidence =  incidence,
-                                excess_mortality = excess_mortality)
+                                incidence_function =  incidence_function,
+                                excess_mortality_function = excess_mortality_function)
 
-    survey_status <- extract_cohort_status_surveydate(date_of_birth = birth_dates[dob], max_age = max_age,
-                                                      date_survey = survey_dates, time_step = time_step,
-                                                      age_cohort_status = population)
+   if (any(is.na(population) == T)) next
 
-    # if(survey_status[[2]][2] == 0 ){
-    #
-    #   print ("error no infected counts to calculate prevalences")
-    #
-    #   } else{
 
     surveydates_prevalences <- prevalences_calculation(time_step = time_step, type = type,
-                                                       population_at_date = survey_status[[2]],
+                                                       population_at_date = population$survey_status,
                                                        probability_of_recent_infection = probability_of_recent_infection)
 
 
-    # populationprevalence <- data.table::data.table(date_birth = birth_dates[dob],dates = survey_status[[1]]$times, age = survey_status[[1]]$ages,
-    #                                                 prevalence_H =  surveydates_prevalences$prevalence_H,
-    #                                                 prevalence_R = surveydates_prevalences$prevalence_H)
-
-    populationprevalence <- data.frame(date_birth = birth_dates[dob],dates = survey_status[[1]]$times, age = survey_status[[1]]$ages,
-                                                   prevalence_H =  surveydates_prevalences$prevalence_H,
-                                                   prevalence_R = surveydates_prevalences$prevalence_R)
+    populationprevalence <- data.frame(date_birth = birth_dates[dob], dates = birth_dates[dob] + population$age_at_survey,
+                                        age = population$age_at_survey, prevalence_H =  surveydates_prevalences$prevalence_H,
+                                        prevalence_R = surveydates_prevalences$prevalence_R)
 
     populationprevalences <- rbind(populationprevalences, populationprevalence)
 
-    #}
 
-  }
+    }
 
   return(populationprevalences)
 }
