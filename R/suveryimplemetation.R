@@ -2,7 +2,7 @@
 #'
 #' a function that returns an array of probabilities of surviving in the infected state for each age, time and time since infection.
 #'
-#' @param survey_status demographic specifications of the survey.
+#' @param survey_specs demographic specifications of the survey.
 #' @param prevalencesdata output from the simulation with ages, HIV prevalence, and prevalence of recency.
 #' @param time_step the time step between consecurtive dates or the length of the time between date of births of cohorts
 #'
@@ -16,7 +16,7 @@
 
 
 
-suveryimplemetation <- function(survey_status,
+suveryimplemetation <- function(survey_specs,
                                 prevalencesdata,
                                 time_step)
   # takes the survey specifications, prevalence data from the simulation, and time step,
@@ -29,9 +29,9 @@ suveryimplemetation <- function(survey_status,
 
   overallcombinedsurvey <- data.frame()
 
-  for (surveyindex in 1:dim(survey_status)[1]){
+  for (surveyindex in 1:dim(survey_specs)[1]){
 
-    agespecifications <- survey_status[surveyindex, ]
+    agespecifications <- survey_specs[surveyindex, ]
     agebin <- seq(agespecifications[,2],(agespecifications[,3]- time_step), time_step)
 
     age <-  sample(agespecifications[,1], x = agebin , prob = rep(1/length(agebin), length(agebin)), replace = T)
@@ -67,7 +67,7 @@ suveryimplemetation <- function(survey_status,
 
 
 
- # suveryimplemetation <- function(survey_status,
+ # suveryimplemetation <- function(survey_specs,
  #                                 prevalencesdata,
  #                                 time_step)
  #
@@ -75,9 +75,9 @@ suveryimplemetation <- function(survey_status,
  #
  #   overallcombinedsurvey <- data.frame()
  #
- #   for (surveyindex in 1:dim(survey_status)[1]){
+ #   for (surveyindex in 1:dim(survey_specs)[1]){
  #
- #      agespecifications <- survey_status[surveyindex, ]
+ #      agespecifications <- survey_specs[surveyindex, ]
  #      agebin <- seq(agespecifications[,2],(agespecifications[,3]- time_step), time_step)
  #
  #      age = sample(agespecifications[,1], x = agebin , prob = rep(1/length(agebin), length(agebin)), replace = T)
@@ -104,7 +104,7 @@ suveryimplemetation <- function(survey_status,
  #
 
 
- # suveryimplemetation(survey_status = ,
+ # suveryimplemetation(survey_specs = ,
  #                     prevalencesdata = populationstatus_survey,
  #                     time_step = )
  #

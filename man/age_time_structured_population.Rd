@@ -4,13 +4,13 @@
 \alias{age_time_structured_population}
 \title{age_time_structured_population}
 \usage{
-age_time_structured_population(survey_dates, max_birth_date,
-  min_birth_date, time_step, max_age, type, birth_rate,
-  probability_of_recent_infection, base_mortality_function,
-  pmtct_birth_rate, incidence_function, excess_mortality_function)
+age_time_structured_population(time_slice, max_birth_date, min_birth_date,
+  time_step, max_age, type, birth_rate, probability_of_recent_infection,
+  base_mortality_function, pmtct_birth_rate, incidence_function,
+  excess_mortality_function)
 }
 \arguments{
-\item{survey_dates}{dates the surveys are to be conducted}
+\item{time_slice}{dates the surveys are to be conducted}
 
 \item{max_birth_date}{minimum date of birth of the cohorts}
 

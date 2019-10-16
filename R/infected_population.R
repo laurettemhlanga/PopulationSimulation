@@ -21,11 +21,12 @@ infected_population_matrix <- function(incidence_mat, base_mortality_mat, time_s
 
   # infected <- (susceptible * incidence_mat * time_step * exp(-base_mortality_mat * time_step) * cumulative_infected_survival[1,])
 
-  infected <- (susceptible * (1 - exp(-incidence_mat)) * time_step * exp(-base_mortality_mat * time_step) * cumulative_infected_survival[1,])
+  infected <- (susceptible[-length(susceptible)] * (1 - exp(-incidence_mat)) * time_step * exp(-base_mortality_mat * time_step) *
+                 cumulative_infected_survival[1,-ncol(cumulative_infected_survival)])
 
   infectedpop <- matrix(NA, ncol = ncol(cumulative_infected_survival), nrow = nrow(cumulative_infected_survival))
 
-  infectedpop[1,] <- c(pmtct_birthcount, infected[-length(infected)])
+  infectedpop[1,] <- c(pmtct_birthcount, infected)
 
   tau_indices = 2:ncol(infectedpop)
   age_indices = 1:ncol(infectedpop)

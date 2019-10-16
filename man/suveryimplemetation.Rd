@@ -4,10 +4,10 @@
 \alias{suveryimplemetation}
 \title{suveryimplemetation}
 \usage{
-suveryimplemetation(survey_status, prevalencesdata, time_step)
+suveryimplemetation(survey_specs, prevalencesdata, time_step)
 }
 \arguments{
-\item{survey_status}{demographic specifications of the survey.}
+\item{survey_specs}{demographic specifications of the survey.}
 
 \item{prevalencesdata}{output from the simulation with ages, HIV prevalence, and prevalence of recency.}
 

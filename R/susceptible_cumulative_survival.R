@@ -30,7 +30,7 @@ susceptible_cumulative_survival_vector <- function(incidence_vector,
   susceptible_survival_rate_vector <-  exp( - ((incidence_vector +  base_mortality_vector) * time_step))
 
 
-  susceptible_cumulative_survival_vector <- as.vector(rep(NA, length(incidence_vector)))
+  susceptible_cumulative_survival_vector <- as.vector(rep(NA, length(incidence_vector) + 1))
   susceptible_cumulative_survival_vector[1] <-  1
 
   for  (age in 2: length(susceptible_cumulative_survival_vector)){

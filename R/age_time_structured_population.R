@@ -1,6 +1,6 @@
 #' age_time_structured_population
 #'
-#' @param survey_dates dates the surveys are to be conducted
+#' @param time_slice dates the surveys are to be conducted
 #' @param max_age the maximum age of each cohort
 #' @param min_birth_date minimum date of birth of the cohorts
 #' @param max_birth_date minimum date of birth of the cohorts
@@ -18,7 +18,7 @@
 
 
 
-age_time_structured_population <- function(survey_dates, max_birth_date, min_birth_date,
+age_time_structured_population <- function(time_slice, max_birth_date, min_birth_date,
                                            time_step, max_age, type,  birth_rate,
                                            probability_of_recent_infection,
                                            base_mortality_function, pmtct_birth_rate,
@@ -28,18 +28,21 @@ age_time_structured_population <- function(survey_dates, max_birth_date, min_bir
  # browser()
 
   birth_dates <- seq(from = min_birth_date, to = max_birth_date, time_step)
+  #birth_dates <- seq(from = (date_of_birth + time_step/2), by = time_step, length.out = n_age_steps)
+
 
   populationprevalences <- data.frame(date_birth = numeric(), dates = numeric(), age = numeric(),
                                       prevalence_H = numeric(), prevalence_R = numeric())
 
   for (dob in seq_along(birth_dates)){
 
-    population = birth_cohort_simulation(date_of_birth = birth_dates[dob], survey_dates = survey_dates,
+    population = birth_cohort_simulation(date_of_birth = birth_dates[dob], time_slice = time_slice,
                                 time_step = time_step, max_age = max_age,  birth_rate = birth_rate,
                                 base_mortality_function =  base_mortality_function,
                                 pmtct_birth_rate = pmtct_birth_rate,
                                 incidence_function =  incidence_function,
-                                excess_mortality_function = excess_mortality_function)
+                                excess_mortality_function = excess_mortality_function,
+                                compact = FALSE)
 
    if (any(is.na(population) == T)) next
 

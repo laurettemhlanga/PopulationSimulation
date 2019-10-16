@@ -54,14 +54,15 @@ extract_cohort_status_surveydate <- function(date_of_birth, max_age,
   # takes a population history and extracts the status of the population at specified survey dates
   # returns #date_of_birth = min(times)
 
+  survey_dates <- survey_dates[survey_dates >= date_of_birth]
   valid_index <- numeric()
 
   for(surveydate_index in  seq_along(survey_dates)){
 
-
+    #index <- round((survey_dates[surveydate_index] - date_of_birth)/time_step)
     index <- round((survey_dates[surveydate_index] - date_of_birth)/time_step) +1
 
-    if (index <= 0|index > round(max(survey_dates) / time_step)) next
+    if (index <= 0|index > round(((max(survey_dates) - date_of_birth) / time_step) + 1)) next
 
     valid_index[surveydate_index] <- index
 
@@ -69,9 +70,10 @@ extract_cohort_status_surveydate <- function(date_of_birth, max_age,
 
   ages <- seq(from = 0 , to = max_age, by = time_step)
 
-if ( (length(valid_index) == 0) == 1){
+if (isTRUE(length(valid_index) == 0)){
 
     cohort = NA
+
   }else{
 
     cohort <- list(survey_status = population[ ,valid_index], age_at_survey = ages[valid_index])
@@ -82,6 +84,8 @@ if ( (length(valid_index) == 0) == 1){
 
 
 
+
+#all(is.na(population$survey_status[,1]) == T)
 
 
 # extract_cohort_status_surveydate <- function(date_of_birth, max_age,

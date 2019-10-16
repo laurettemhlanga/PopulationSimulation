@@ -4,11 +4,11 @@
 \alias{wedge_excess_mortality_matrix}
 \title{wedge_excess_mortality_matrix}
 \usage{
-wedge_excess_mortality_matrix(max_age, list_of_times, time_step,
+wedge_excess_mortality_matrix(n_age_steps, list_of_times, time_step,
   excess_mortality)
 }
 \arguments{
-\item{max_age}{the optimal age each birth cohort is reaches}
+\item{n_age_steps}{the optimal age each birth cohort is reaches}
 
 \item{list_of_times}{a numeric vectors of length min:max; indicates the range of ages to be included in simulation. Note that date format is not used.}
 
