@@ -48,11 +48,11 @@ age_time_structured_population <- function(time_slice, max_birth_date, min_birth
 
 
     surveydates_prevalences <- prevalences_calculation(time_step = time_step, type = type,
-                                                       population_at_date = population$survey_status,
+                                                       population = population,
                                                        probability_of_recent_infection = probability_of_recent_infection)
 
 
-    populationprevalence <- data.frame(date_birth = birth_dates[dob], dates = birth_dates[dob] + population$age_at_survey,
+    populationprevalence <- data.frame(date_birth = birth_dates[dob], dates = birth_dates[dob] + population$age_at_survey, total = population$total,
                                         age = population$age_at_survey, prevalence_H =  surveydates_prevalences$prevalence_H,
                                         prevalence_R = surveydates_prevalences$prevalence_R)
 

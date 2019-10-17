@@ -2,6 +2,7 @@
 
 export(age_partitioned_prevalence)
 export(age_time_structured_population)
+export(aggregated_survey)
 export(base_mortality_matrix)
 export(base_mortality_vector)
 export(birth_cohort_simulation)

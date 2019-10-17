@@ -76,13 +76,17 @@ if (isTRUE(length(valid_index) == 0)){
 
   }else{
 
-    cohort <- list(survey_status = population[ ,valid_index], age_at_survey = ages[valid_index])
+    total = ifelse(length(valid_index) > 1, colSums(population[ ,valid_index], na.rm = T), sum(population[ ,valid_index], na.rm = T))
+
+    cohort <- list(survey_status = population[ ,valid_index], age_at_survey = ages[valid_index], total = total)
   }
 
   return(cohort)
 }
 
 
+
+#colSums(population[ ,valid_index], na.rm = T)
 
 
 #all(is.na(population$survey_status[,1]) == T)
