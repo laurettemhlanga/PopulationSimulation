@@ -4,13 +4,13 @@
 \alias{weibull_hazard}
 \title{weibull_hazard}
 \usage{
-weibull_hazard(matrix_of_ages, matrix_of_times, times_since_i, shape = 2,
-  scale = 5, base = T, ...)
+weibull_hazard(ages, times, times_since_i, shape = 2, scale = 5,
+  base = T, ...)
 }
 \arguments{
-\item{matrix_of_ages}{numeric, indicates age or ages at which the incidence rate is desired}
+\item{ages}{numeric, indicates age or ages at which the incidence rate is desired}
 
-\item{matrix_of_times}{numeric, indicates time or times at which the incidence rate is desired}
+\item{times}{numeric, indicates time or times at which the incidence rate is desired}
 
 \item{times_since_i}{umeric, indicates time since infection among the infected poplation.}
 

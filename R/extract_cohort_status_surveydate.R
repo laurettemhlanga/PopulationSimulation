@@ -3,7 +3,7 @@
 #'
 #' a function that calculates the probability of testing recently infected at a time since infection tau.
 #'
-#' @param survey_dates dates with which the survey are to be conducted
+#' @param time_slice dates with which the survey are to be conducted
 #' @param population dates with which the survey are to be conducted
 #' @param date_of_birth the date of birth of the cohort.
 #' @param max_age  maximum age of the birth cohort.
@@ -24,7 +24,7 @@
 
 
 # extract_cohort_status_surveydate <- function(date_of_birth, max_age,
-#                                              survey_dates, time_step,
+#                                              time_slice, time_step,
 #                                              population)
 # {
 #
@@ -32,7 +32,7 @@
 #   # returns #date_of_birth = min(times)rvey_dat
 #
 #
-#   index <- round((survey_dates - date_of_birth)/time_step) + 1
+#   index <- round((time_slice - date_of_birth)/time_step) + 1
 #   index <- ifelse(index <= 0 | index > (max_age /time_step), next, index)
 #   index <- index[which(is.na(index)== F)]
 #
@@ -47,41 +47,36 @@
 
 
 extract_cohort_status_surveydate <- function(date_of_birth, max_age,
-                                             survey_dates, time_step,
+                                             time_slice, time_step,
                                              population)
 {
-
   # takes a population history and extracts the status of the population at specified survey dates
   # returns #date_of_birth = min(times)
-
-  survey_dates <- survey_dates[survey_dates >= date_of_birth]
+  time_slice <- time_slice[time_slice >= date_of_birth]
   valid_index <- numeric()
 
-  for(surveydate_index in  seq_along(survey_dates)){
+  for(surveydate_index in  seq_along(time_slice)){
 
-    #index <- round((survey_dates[surveydate_index] - date_of_birth)/time_step)
-    index <- round((survey_dates[surveydate_index] - date_of_birth)/time_step) +1
+    index <- round((time_slice[surveydate_index] - date_of_birth)/time_step) +1
 
-    if (index <= 0|index > round(((max(survey_dates) - date_of_birth) / time_step) + 1)) next
+    if (index <= 0|index > round(((max(time_slice) - date_of_birth) / time_step) + 1)) next
 
     valid_index[surveydate_index] <- index
 
-  }
-
+    }
   ages <- seq(from = 0 , to = max_age, by = time_step)
 
-if (isTRUE(length(valid_index) == 0)){
+  if (isTRUE(length(valid_index) == 0)){
 
     cohort = NA
 
-  }else{
-
-    total = ifelse(length(valid_index) > 1, colSums(population[ ,valid_index], na.rm = T), sum(population[ ,valid_index], na.rm = T))
-
-    cohort <- list(survey_status = population[ ,valid_index], age_at_survey = ages[valid_index], total = total)
+    }else{
+    # total = ifelse(length(valid_index) > 1,
+    # colSums(population[ ,valid_index],
+    # na.rm = T), sum(population[ ,valid_index], na.rm = T))
+    cohort <- list(survey_status = population[ ,valid_index], age_at_survey = ages[valid_index])
   }
-
-  return(cohort)
+ return(cohort)
 }
 
 

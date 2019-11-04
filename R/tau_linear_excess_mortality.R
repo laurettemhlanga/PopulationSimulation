@@ -6,9 +6,9 @@
 #'
 #' The function may be user defined and stored as an R object. Otherwise a default value - entered as "default" - is provided by the package
 #'
-#' @param matrix_of_times numeric, indicates time or times at which the incidence rate is desired
-#' @param matrix_of_ages  numeric, indicates age or ages at which the incidence rate is desired
-#' @param value_of_tau numeric, indicates a constant rate of mortality when
+#' @param times numeric, indicates time or times at which the incidence rate is desired
+#' @param ages  numeric, indicates age or ages at which the incidence rate is desired
+#' @param times_since_i numeric, indicates a constant rate of mortality when
 #' @param intercept numeric, indicates minimum age to be included in the simulation
 #' @param slope numeric, indicates maximum age to be included in the simulation
 #' @return a numeric vector that represents the mortality rate at t.
@@ -17,21 +17,21 @@
 #'
 #' @export
 
-tau_linear_excess_mortality  <- function(matrix_of_ages, matrix_of_times, value_of_tau,
-                                                    intercept = 0.05,
+tau_linear_excess_mortality  <- function(ages, times,
+                                         times_since_i,intercept = 0.05,
                                                     slope = 0)
 {
 
 # calculates the excess mortality rate as a linear function of the time since infcetion
-# user provides the matrix of ages and matrix of times and the time since infection is taken in a value at  time
+# user provides the vector of ages and vector of times and the time since infection is taken in a value at  time
 # user has to supply what they believe the intercept and slope is.
 
-  tau <- value_of_tau
-  ncols <- length(matrix_of_ages)
-  nrows <- length(matrix_of_ages)
+  tau <- times_since_i
+  ncols <- length(ages)
+  nrows <- length(ages)
 
 
-    ex_mort_tau <- rep(intercept + (slope * tau), length(matrix_of_ages))
+    ex_mort_tau <- rep(intercept + (slope * tau), length(ages))
 
 
   return(ex_mort_tau)
@@ -39,8 +39,8 @@ tau_linear_excess_mortality  <- function(matrix_of_ages, matrix_of_times, value_
 
 
 
-# tau_linear_excess_mortality(matrix_of_ages = 5:10,
-#                             matrix_of_times = 1980:1985,
+# tau_linear_excess_mortality(ages = 5:10,
+#                             times = 1980:1985,
 #                             value_of_tau = 2,
 #                             intercept = 0.01,
 #                             slope = 0)
@@ -61,8 +61,8 @@ tau_linear_excess_mortality  <- function(matrix_of_ages, matrix_of_times, value_
 #' The generate_mortality function is required as an argument for the package's do_simulation function
 #' The function may be user defined and stored as an R object. Otherwise a default value - entered as "default" - is provided by the package
 #'
-#' @param matrix_of_times numeric, indicates time or times at which the incidence rate is desired
-#' @param matrix_of_ages  numeric, indicates age or ages at which the incidence rate is desired
+#' @param times numeric, indicates time or times at which the incidence rate is desired
+#' @param ages  numeric, indicates age or ages at which the incidence rate is desired
 #' @param times_since_i umeric, indicates time since infection among the infected poplation
 #' @param shape numeric, indicates minimum age to be included in the simulation
 #' @param max_survival  numeric, indicates minimum mortality, which is at age_min
@@ -78,16 +78,14 @@ tau_linear_excess_mortality  <- function(matrix_of_ages, matrix_of_times, value_
 
 
 
-excess_mahiane <- function(matrix_of_ages,
-                                   matrix_of_times,
-                                   times_since_i,
-                                   shape = 2,
-                                   max_survival = 16, min_survival = 6.6,
-                                   age_max = 50, age_min = 0)
+excess_mahiane <- function(ages,times,
+                           times_since_i, shape = 2,
+                           max_survival = 16, min_survival = 6.6,
+                           age_max = 50, age_min = 0)
 {
 
   scale <- max_survival -
-    ((max_survival - min_survival)/(age_min - age_max)) * matrix_of_ages
+    ((max_survival - min_survival)/(age_min - age_max)) * ages
 
   excess_mortality <-  (times_since_i / scale) ^ shape
 
@@ -104,8 +102,8 @@ excess_mahiane <- function(matrix_of_ages,
 #' The generate_mortality function is required as an argument for the package's do_simulation function
 #' The function may be user defined and stored as an R object. Otherwise a default value - entered as "default" - is provided by the package
 #'
-#' @param matrix_of_times numeric, indicates time or times at which the incidence rate is desired
-#' @param matrix_of_ages  numeric, indicates age or ages at which the incidence rate is desired
+#' @param times numeric, indicates time or times at which the incidence rate is desired
+#' @param ages  numeric, indicates age or ages at which the incidence rate is desired
 #' @param times_since_i umeric, indicates time since infection among the infected poplation.
 #'
 #' @export
@@ -113,12 +111,12 @@ excess_mahiane <- function(matrix_of_ages,
 
 
 
-step_excess_mortality <- function(matrix_of_ages,
-                                  matrix_of_times,
+step_excess_mortality <- function(ages,
+                                  times,
                                   times_since_i){
 
 
-  mortality = rep( 0.01, length(matrix_of_ages))
+  mortality = rep( 0.01, length(ages))
 
   return(mortality)
 }
@@ -132,8 +130,8 @@ step_excess_mortality <- function(matrix_of_ages,
 #' The generate_mortality function is required as an argument for the package's do_simulation function
 #' The function may be user defined and stored as an R object. Otherwise a default value - entered as "default" - is provided by the package
 #'
-#' @param matrix_of_times numeric, indicates time or times at which the incidence rate is desired
-#' @param matrix_of_ages  numeric, indicates age or ages at which the incidence rate is desired
+#' @param times numeric, indicates time or times at which the incidence rate is desired
+#' @param ages  numeric, indicates age or ages at which the incidence rate is desired
 #' @param times_since_i umeric, indicates time since infection among the infected poplation.
 #' @param shape numeric, indicates minimum age to be included in the simulation
 #' @param scale numeric, indicates minimum mortality, which is at age_min
@@ -145,18 +143,18 @@ step_excess_mortality <- function(matrix_of_ages,
 
 # weibull_hazard
 
-weibull_hazard <- function(matrix_of_ages,
-                           matrix_of_times,
+weibull_hazard <- function(ages,
+                           times,
                            times_since_i, shape = 2,
                            scale = 5, base = T, ...)
                          # max_survival = 16, min_survival = 6.6
                          # age_max = 50, age_min = 0, ...)
 {
   # scale <- max_survival -
-  #   ((max_survival - min_survival)/(age_min - age_max)) * matrix_of_ages
+  #   ((max_survival - min_survival)/(age_min - age_max)) * ages
   if (base == T){
 
-    excess_mortality <-  ((1/scale) * shape ) * (matrix_of_ages/ scale) ^ (shape)
+    excess_mortality <-  ((1/scale) * shape ) * (ages/ scale) ^ (shape)
 
     }else{
 
@@ -175,8 +173,8 @@ weibull_hazard <- function(matrix_of_ages,
 # @param age_min umeric, indicates minimum age to be included in the simulation
 
 
-# excess_mahiane(matrix_of_ages = 5:10,
-#                matrix_of_times = 1980:1985,
+# excess_mahiane(ages = 5:10,
+#                times = 1980:1985,
 #                times_since_i = 2, shape = 2,
 #                max_survival = 16, min_survival = 6.6,
 #                age_max = 50, age_min = 0)
@@ -189,7 +187,7 @@ weibull_hazard <- function(matrix_of_ages,
 
 #option A
 
-# excess_mortality_fun <- function(matrix_of_age, matrix_of_time, matrix_of_time_since_i, constant = 0, age_min = 0,
+# excess_mortality_fun <- function(vector_of_age, vector_of_time, vector_of_time_since_i, constant = 0, age_min = 0,
 #                                  age_max = 50,
 #                                  mort_min =0.01,
 #                                  mort_max = 0.05)
@@ -199,12 +197,12 @@ weibull_hazard <- function(matrix_of_ages,
 #   # linear function. Note if a non zero value is provided for the variable constant then a
 #   # constant incidence is obtatined i.e.  base mortality (age, time) = constant.
 #
-#   age <- matrix_of_ages
-#   time_since_i <- matrix_of_time_since_i
+#   age <- ages
+#   time_since_i <- vector_of_time_since_i
 #
 #   if (constant > 0) {
 #
-#     return(matrix(rep(constant,ncol(age) * nrow(age)),  ncol = ncol(age), nrow = nrow(age)))
+#     return(vector(rep(constant,ncol(age) * nrow(age)),  ncol = ncol(age), nrow = nrow(age)))
 #
 #   }else{
 #

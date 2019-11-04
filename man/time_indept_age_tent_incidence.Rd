@@ -4,14 +4,14 @@
 \alias{time_indept_age_tent_incidence}
 \title{time_indept_age_tent_incidence}
 \usage{
-time_indept_age_tent_incidence(vector_of_ages, vector_of_times,
-  constant = 0, age_min = 0.01, age_max = 50, age_peak = 25,
-  Imin = 0.01, Ipeak = 0.05, Ifin = 0.02)
+time_indept_age_tent_incidence(ages, times, constant = 0,
+  age_min = 0.01, age_max = 50, age_peak = 25, Imin = 0.01,
+  Ipeak = 0.05, Ifin = 0.02)
 }
 \arguments{
-\item{vector_of_ages}{numeric, indicates age or ages at which the incidence rate is desired}
+\item{ages}{numeric, indicates age or ages at which the incidence rate is desired}
 
-\item{vector_of_times}{numeric, indicates time or times at which the incidence rate is desired}
+\item{times}{numeric, indicates time or times at which the incidence rate is desired}
 
 \item{constant}{numeric, indicates a constant rate of incidence}
 

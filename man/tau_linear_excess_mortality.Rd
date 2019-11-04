@@ -4,15 +4,15 @@
 \alias{tau_linear_excess_mortality}
 \title{tau_linear_excess_mortality}
 \usage{
-tau_linear_excess_mortality(matrix_of_ages, matrix_of_times, value_of_tau,
-  intercept = 0.05, slope = 0)
+tau_linear_excess_mortality(ages, times, times_since_i, intercept = 0.05,
+  slope = 0)
 }
 \arguments{
-\item{matrix_of_ages}{numeric, indicates age or ages at which the incidence rate is desired}
+\item{ages}{numeric, indicates age or ages at which the incidence rate is desired}
 
-\item{matrix_of_times}{numeric, indicates time or times at which the incidence rate is desired}
+\item{times}{numeric, indicates time or times at which the incidence rate is desired}
 
-\item{value_of_tau}{numeric, indicates a constant rate of mortality when}
+\item{times_since_i}{numeric, indicates a constant rate of mortality when}
 
 \item{intercept}{numeric, indicates minimum age to be included in the simulation}
 

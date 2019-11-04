@@ -5,8 +5,8 @@
 #' The generate_incidence function is required as an argument for the do_simulation function
 #' The function may be user defined and stored as an R object. Otherwise a default value - entered as "default" - is provided by the package
 #'
-#' @param vector_of_times numeric, indicates time or times at which the incidence rate is desired
-#' @param vector_of_ages  numeric, indicates age or ages at which the incidence rate is desired
+#' @param times numeric, indicates time or times at which the incidence rate is desired
+#' @param ages  numeric, indicates age or ages at which the incidence rate is desired
 #' @param constant numeric, indicates a constant rate of incidence
 #' @param age_min numeric, indicates minimum age to be included in the simulation
 #' @param age_max numeric, indicates maximum age to be included in the simulation
@@ -19,7 +19,7 @@
 #' @export
 
 
-time_indept_age_tent_incidence <- function(vector_of_ages, vector_of_times, constant = 0, age_min = 0.01,
+time_indept_age_tent_incidence <- function(ages, times, constant = 0, age_min = 0.01,
                                age_max = 50,  age_peak= 25,
                                Imin =0.01,  Ipeak =0.05,
                                Ifin =0.02)
@@ -29,17 +29,17 @@ time_indept_age_tent_incidence <- function(vector_of_ages, vector_of_times, cons
   # for the variable constant then a constant incidence is obtatined i.e. incidence(age, time) = constant.
 
 
-  age <- vector_of_ages
+ # age <- ages
 
   if (constant > 0) {
 
-    return(matrix(rep(constant,ncol(age)*nrow(age)),  ncol = ncol(age), nrow = nrow(age) ))
+    return(matrix(rep(constant,ncol(ages)*nrow(ages)),  ncol = ncol(ages), nrow = nrow(ages) ))
 
   } else {
 
-    incidence = ifelse(age <= age_min, 0,
-                       ifelse(age <= age_peak, Imin + ((Ipeak - Imin)/(age_peak - age_min)) * (age - age_min),
-                              ifelse(age <= age_max, Ipeak + ((Ifin - Ipeak )/(age_max - age_peak)) * (age - age_peak), 0)))
+    incidence = ifelse(ages <= age_min, 0,
+                       ifelse(ages <= age_peak, Imin + ((Ipeak - Imin)/(age_peak - age_min)) * (ages - age_min),
+                              ifelse(ages <= age_max, Ipeak + ((Ifin - Ipeak )/(age_max - age_peak)) * (ages - age_peak), 0)))
 
     return(incidence)
   }
@@ -58,8 +58,8 @@ time_indept_age_tent_incidence <- function(vector_of_ages, vector_of_times, cons
 #' The generate_incidence function is required as an argument for the do_simulation function
 #' The function may be user defined and stored as an R object. Otherwise a default value - entered as "default" - is provided by the package
 #'
-#' @param matrix_of_times numeric, indicates time or times at which the incidence rate is desired
-#' @param matrix_of_ages  numeric, indicates age or ages at which the incidence rate is desired
+#' @param times numeric, indicates time or times at which the incidence rate is desired
+#' @param ages  numeric, indicates age or ages at which the incidence rate is desired
 #' @param age_debut age at which individuals get HIV infected
 #' @param beta shape parameter for the log normal distribution
 #' @param sigm2 scale parameter for the log normal distribution
@@ -72,37 +72,37 @@ time_indept_age_tent_incidence <- function(vector_of_ages, vector_of_times, cons
 # maximum_inc <- function()
 # {
 #
-#   return( ifelse(matrix_of_times <= 0, 0.006,
-#                  ifelse( matrix_of_times <= 18, 0.006 + 0.123 * (matrix_of_times - 12),
-#                          ifelse(matrix_of_times <= 24, 0.8,
-#                                 ifelse(matrix_of_times <= 31, 0.8 - (0.05 * (matrix_of_times -24)), 0)))))
+#   return( ifelse(times <= 0, 0.006,
+#                  ifelse( times <= 18, 0.006 + 0.123 * (times - 12),
+#                          ifelse(times <= 24, 0.8,
+#                                 ifelse(times <= 31, 0.8 - (0.05 * (times -24)), 0)))))
 # }
 
 
 
 
-incidence_mahiane <- function(matrix_of_ages, matrix_of_times, age_debut = 0,
+incidence_mahiane <- function(ages, times, age_debut = 0,
                               beta = 2.3,
                               sigm2 = 0.5)
 {
 
 
-  maximum_inc <- function()
-  {
+  # maximum_inc <- function()
+  # {
     #shape defining function for the incidence.
-    ifelse(matrix_of_times <= 0, 0.006,
-           ifelse( matrix_of_times <= 18, 0.006 + 0.123 * (matrix_of_times - 12),
-                   ifelse(matrix_of_times <= 24, 0.8,
-                          ifelse(matrix_of_times <= 31, 0.8 - (0.05 * (matrix_of_times -24)), 0))))
-  }
+  maximum_inc <- ifelse(times <= 0, 0.006,
+                   ifelse(times <= 18, 0.006 + 0.123 * (times - 12),
+                    ifelse(times <= 24, 0.8,
+                      ifelse(times <= 31, 0.8 - (0.05 * (times -24)), 0))))
+  #}
 
 
-  # to get reasonable prevalence multiply the realised incidence by 0.1
+  # to get reasonable incidence multiply the realised incidence by 0.1
 
-  norm_fac <- sqrt(2 * pi* sigm2) *(exp((beta - ((sigm2)/2)) * maximum_inc()))
+  norm_fac <- sqrt(2 * pi* sigm2) *(exp((beta - ((sigm2)/2)) * maximum_inc))
 
-  incidence <- 0.2 * ((norm_fac / ((matrix_of_ages - age_debut) * sqrt(2 * pi * sigm2))) *
-                        exp(-(((log(matrix_of_ages - age_debut) - beta)^2) / (2 * sigm2))))
+  incidence <- ifelse(ages <= age_debut, 0, 0.2 * ((norm_fac / ((ages - age_debut) * sqrt(2 * pi * sigm2))) *
+                        exp(-(((log(ages - age_debut) - beta)^2) / (2 * sigm2)))))
 
   return(incidence)
 }
@@ -116,19 +116,19 @@ incidence_mahiane <- function(matrix_of_ages, matrix_of_times, age_debut = 0,
 #' The generate_incidence function is required as an argument for the do_simulation function
 #' The function may be user defined and stored as an R object. Otherwise a default value - entered as "default" - is provided by the package
 #'
-#' @param matrix_of_times numeric, indicates time or times at which the incidence rate is desired
-#' @param matrix_of_ages  numeric, indicates age or ages at which the incidence rate is desired
+#' @param times numeric, indicates time or times at which the incidence rate is desired
+#' @param ages  numeric, indicates age or ages at which the incidence rate is desired
 #'
 #' @export
 #'
 
 
 
-step_incidence <- function(matrix_of_ages,
-                           matrix_of_times){
+step_incidence <- function(ages,
+                           times){
 
 
-  incidence = ifelse(matrix_of_ages <= 15, 0, 0.02)
+  incidence = ifelse(ages <= 15, 0, 0.02)
 
   return(incidence)
 }

@@ -4,13 +4,13 @@
 \alias{incidence_mahiane}
 \title{incidence_mahiane}
 \usage{
-incidence_mahiane(matrix_of_ages, matrix_of_times, age_debut = 0,
-  beta = 2.3, sigm2 = 0.5)
+incidence_mahiane(ages, times, age_debut = 0, beta = 2.3,
+  sigm2 = 0.5)
 }
 \arguments{
-\item{matrix_of_ages}{numeric, indicates age or ages at which the incidence rate is desired}
+\item{ages}{numeric, indicates age or ages at which the incidence rate is desired}
 
-\item{matrix_of_times}{numeric, indicates time or times at which the incidence rate is desired}
+\item{times}{numeric, indicates time or times at which the incidence rate is desired}
 
 \item{age_debut}{age at which individuals get HIV infected}
 

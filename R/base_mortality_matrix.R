@@ -29,7 +29,7 @@ base_mortality_vector <- function(n_age_steps, date_of_birth,
   times <- seq(from = (date_of_birth + time_step/2), by = time_step, length.out = n_age_steps)
 
 
-  mortality_vector =  base_mortality_function(vector_of_ages = ages, vector_of_times = times)
+  mortality_vector =  base_mortality_function(ages = ages, times = times)
 
   return(mortality_vector)
 

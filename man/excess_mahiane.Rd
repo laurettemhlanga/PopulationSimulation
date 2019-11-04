@@ -4,13 +4,13 @@
 \alias{excess_mahiane}
 \title{survival_prob_infected_mahiane}
 \usage{
-excess_mahiane(matrix_of_ages, matrix_of_times, times_since_i, shape = 2,
+excess_mahiane(ages, times, times_since_i, shape = 2,
   max_survival = 16, min_survival = 6.6, age_max = 50, age_min = 0)
 }
 \arguments{
-\item{matrix_of_ages}{numeric, indicates age or ages at which the incidence rate is desired}
+\item{ages}{numeric, indicates age or ages at which the incidence rate is desired}
 
-\item{matrix_of_times}{numeric, indicates time or times at which the incidence rate is desired}
+\item{times}{numeric, indicates time or times at which the incidence rate is desired}
 
 \item{times_since_i}{umeric, indicates time since infection among the infected poplation}
 

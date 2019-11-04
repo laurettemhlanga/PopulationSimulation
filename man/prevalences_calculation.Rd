@@ -4,7 +4,7 @@
 \alias{prevalences_calculation}
 \title{prevalences_calculation}
 \usage{
-prevalences_calculation(time_step, type, population, n_age_steps,
+prevalences_calculation(time_step, type, cohort, n_age_steps,
   probability_of_recent_infection)
 }
 \arguments{
@@ -12,7 +12,7 @@ prevalences_calculation(time_step, type, population, n_age_steps,
 
 \item{type}{type of function to be utilised in the probability of infection function}
 
-\item{population}{Status of the popuation in the population.}
+\item{cohort}{Status of the popuation in the cohort.}
 
 \item{n_age_steps}{type of function to be utilised in the probability of infection function}
 

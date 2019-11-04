@@ -4,12 +4,12 @@
 \alias{step_incidence}
 \title{step_incidence}
 \usage{
-step_incidence(matrix_of_ages, matrix_of_times)
+step_incidence(ages, times)
 }
 \arguments{
-\item{matrix_of_ages}{numeric, indicates age or ages at which the incidence rate is desired}
+\item{ages}{numeric, indicates age or ages at which the incidence rate is desired}
 
-\item{matrix_of_times}{numeric, indicates time or times at which the incidence rate is desired}
+\item{times}{numeric, indicates time or times at which the incidence rate is desired}
 }
 \description{
 a function that takes as arguments age and time and returns a numeric vector of length 1

@@ -6,8 +6,8 @@
 #' The function may be user defined and stored as an R object. Otherwise a default value - entered as "default" - is provided by the package
 #'
 #'
-#' @param vector_of_times numeric, indicates time or times at which the incidence rate is desired
-#' @param vector_of_ages  numeric, indicates age or ages at which the incidence rate is desired
+#' @param times numeric, indicates time or times at which the incidence rate is desired
+#' @param ages  numeric, indicates age or ages at which the incidence rate is desired
 #' @param constant numeric, indicates a constant rate of mortality when
 #' @param age_min numeric, indicates minimum age to be included in the simulation
 #' @param age_max numeric, indicates maximum age to be included in the simulation
@@ -24,7 +24,7 @@
 
 
 
-time_indep_age_linear_base_mortality <- function(vector_of_ages, vector_of_times, constant = 0, age_min = 0,
+time_indep_age_linear_base_mortality <- function(ages, times, constant = 0, age_min = 0,
                                age_max = 50, mort_min = 0, mort_max = 0.01)
   {
 
@@ -32,7 +32,7 @@ time_indep_age_linear_base_mortality <- function(vector_of_ages, vector_of_times
   # linear function of age. Note if a non zero value is provided for the variable constant then a
   # constant base mortality rate is obtatined i.e.  base mortality (age, time) = constant.
 
-  age <- vector_of_ages
+  age <- ages
 
   if (constant > 0) {
 
@@ -58,8 +58,8 @@ time_indep_age_linear_base_mortality <- function(vector_of_ages, vector_of_times
 #' The function may be user defined and stored as an R object. Otherwise a default value - entered as "default" - is provided by the package
 #'
 #'
-#' @param vector_of_times numeric, indicates time or times at which the incidence rate is desired
-#' @param vector_of_ages  numeric, indicates age or ages at which the incidence rate is desired
+#' @param times numeric, indicates time or times at which the incidence rate is desired
+#' @param ages  numeric, indicates age or ages at which the incidence rate is desired
 #' @return a numeric vector that represents the mortality rate at t.
 #'
 #' @export
@@ -69,10 +69,10 @@ time_indep_age_linear_base_mortality <- function(vector_of_ages, vector_of_times
 
 
 
-step_mortality <- function(vector_of_ages,
-                           vector_of_times){
+step_mortality <- function(ages,
+                           times){
 
-  mortality =  0.01 + 0.001 * vector_of_ages
+  mortality =  0.01 + 0.001 * ages
 
   return(mortality)
 }

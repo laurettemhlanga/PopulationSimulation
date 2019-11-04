@@ -10,7 +10,7 @@ wedge_excess_mortality_matrix(n_age_steps, list_of_times, time_step,
 \arguments{
 \item{n_age_steps}{the optimal age each birth cohort is reaches}
 
-\item{list_of_times}{a numeric vectors of length min:max; indicates the range of ages to be included in simulation. Note that date format is not used.}
+\item{list_of_times}{a numeric vector of length min:max; indicates the range of ages to be included in simulation. Note that date format is not used.}
 
 \item{time_step}{the time step between consecurtivelist_of_birth_times}
 

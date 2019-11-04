@@ -4,14 +4,13 @@
 \alias{time_indep_age_linear_base_mortality}
 \title{time_indep_age_linear_base_mortality}
 \usage{
-time_indep_age_linear_base_mortality(vector_of_ages, vector_of_times,
-  constant = 0, age_min = 0, age_max = 50, mort_min = 0,
-  mort_max = 0.01)
+time_indep_age_linear_base_mortality(ages, times, constant = 0,
+  age_min = 0, age_max = 50, mort_min = 0, mort_max = 0.01)
 }
 \arguments{
-\item{vector_of_ages}{numeric, indicates age or ages at which the incidence rate is desired}
+\item{ages}{numeric, indicates age or ages at which the incidence rate is desired}
 
-\item{vector_of_times}{numeric, indicates time or times at which the incidence rate is desired}
+\item{times}{numeric, indicates time or times at which the incidence rate is desired}
 
 \item{constant}{numeric, indicates a constant rate of mortality when}
 

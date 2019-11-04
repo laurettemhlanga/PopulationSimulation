@@ -14,4 +14,7 @@ Suggests:
     roxygen2
 Imports: 
     dplyr,
-    stats
+    stats,
+    glm2,
+    tidyverse, 
+    magrittr
