@@ -5,9 +5,9 @@
 \title{age_time_structured_population}
 \usage{
 age_time_structured_population(time_slice, max_birth_date, min_birth_date,
-  time_step, max_age, type, birth_rate, probability_of_recent_infection,
-  base_mortality_function, pmtct_birth_rate, incidence_function,
-  excess_mortality_function, reporting_bin = NA)
+  time_step, max_age, recency_type, birth_rate, base_mortality_function,
+  pmtct_birth_rate, incidence_function, excess_mortality_function,
+  reporting_bin = NA)
 }
 \arguments{
 \item{time_slice}{dates the surveys are to be conducted}
@@ -20,11 +20,9 @@ age_time_structured_population(time_slice, max_birth_date, min_birth_date,
 
 \item{max_age}{the maximum age of each cohort}
 
-\item{type}{the type of function to be used in estimating the probability of testing recently infected}
+\item{recency_type}{the type of function to be used in estimating the probability of testing recently infected}
 
 \item{birth_rate}{bith rate at the the give date}
-
-\item{probability_of_recent_infection}{function in use in calculating  probability of being recently infected}
 
 \item{base_mortality_function}{base mortality rate ata a given age and time}
 

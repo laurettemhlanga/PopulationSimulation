@@ -7,8 +7,7 @@
 #' @param time_step  the time step between consecurtive dates or the length of the time between date of births of cohorts
 #' @param reporting_bin the size of the reporting bin if NA is specified the calculation defaults
 #' to calculations based on the time step
-#' @param type the type of function to be used in estimating the probability of testing recently infected
-#' @param probability_of_recent_infection function in use in calculating  probability of being recently infected
+#' @param recency_type the type of function to be used in estimating the probability of testing recently infected
 #' @param birth_rate bith rate at the the give date
 #' @param base_mortality_function base mortality rate ata a given age and time
 #' @param excess_mortality_function excess  mortality rate ata a given age and time
@@ -22,8 +21,7 @@
 
 
 age_time_structured_population <- function(time_slice, max_birth_date, min_birth_date,
-                                           time_step, max_age, type,  birth_rate,
-                                           probability_of_recent_infection,
+                                           time_step, max_age, recency_type,  birth_rate,
                                            base_mortality_function, pmtct_birth_rate,
                                            incidence_function, excess_mortality_function,
                                            reporting_bin = NA){
@@ -51,10 +49,8 @@ age_time_structured_population <- function(time_slice, max_birth_date, min_birth
 
     if (any(is.na(population) == T)) next
 
-
-    surveydates_prevalences <- prevalences_calculation(time_step = time_step, type = type,
-                                                       cohort = population,
-                                                       probability_of_recent_infection = probability_of_recent_infection)
+    surveydates_prevalences <- prevalences_calculation(time_step = time_step, recency_type = recency_type,
+                                                       cohort = population)
 
 
     populationprevalence <- data.frame(date_birth = birth_dates[dob], dates = birth_dates[dob] + population$age_at_survey,
@@ -67,7 +63,7 @@ age_time_structured_population <- function(time_slice, max_birth_date, min_birth
 
   }
 
-  return(populationprevalences)
+  return(population)
 }
 
 

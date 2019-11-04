@@ -4,20 +4,14 @@
 \alias{prevalences_calculation}
 \title{prevalences_calculation}
 \usage{
-prevalences_calculation(time_step, type, cohort, n_age_steps,
-  probability_of_recent_infection)
+prevalences_calculation(time_step, recency_type, cohort)
 }
 \arguments{
 \item{time_step}{the time step between consecurtive dates or the length of the time between date of births of cohorts.}
 
-\item{type}{type of function to be utilised in the probability of infection function}
+\item{recency_type}{type of function to be utilised in the probability of infection function}
 
 \item{cohort}{Status of the popuation in the cohort.}
-
-\item{n_age_steps}{type of function to be utilised in the probability of infection function}
-
-\item{probability_of_recent_infection}{a function that takes in possible  time since infection in years and calculates the probability
-of being infected for that amount of years}
 }
 \value{
 a list of prevalences i.e. prevalence of HIV status, prevalence of recency,and prevelance of HIV age and tau .

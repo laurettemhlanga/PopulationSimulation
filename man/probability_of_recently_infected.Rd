@@ -4,14 +4,14 @@
 \alias{probability_of_recently_infected}
 \title{probability_of_recently_infected}
 \usage{
-probability_of_recently_infected(time_in_years, type, shape = 5,
+probability_of_recently_infected(time_in_years, recency_type, shape = 5,
   scale = 0.5, intercept = 1, gradient = -0.5, cutoff = 2,
   value = 0.5)
 }
 \arguments{
 \item{time_in_years}{a vector of times since infection.}
 
-\item{type}{a vector of times since infection.}
+\item{recency_type}{a vector of times since infection.}
 
 \item{shape}{as defined by the weibull shape parameter, determines/affects the shape of a distribution}
 
