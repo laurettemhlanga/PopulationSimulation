@@ -29,26 +29,31 @@ prevalences_calculation <- function(time_step ,recency_type ,
 
     totalcohort <- sum(cohort_at_date,  na.rm = T)
 
-    overall_age_prevalence <- (totalcohort - cohort_at_date[1]) / totalcohort
+    totalptve <- (totalcohort - cohort_at_date[1])
+
+    overall_age_prevalence <-  totalptve / totalcohort
 
     tau_values <-  seq(from = time_step/2, by = time_step, length.out = n_tau_steps)
 
-
     recent_infections <- cohort_at_date[-1] * probability_of_recently_infected(tau_values, recency_type)
 
-    prevalence_R <- sum(recent_infections, na.rm = TRUE) / (overall_age_prevalence * totalcohort)
+    totalrec <- sum(recent_infections, na.rm = TRUE)
+
+    prevalence_R <- totalrec / (overall_age_prevalence * totalcohort)
 
   }else{
 
     totalcohort <- colSums(cohort_at_date,  na.rm = T)
 
-    overall_age_prevalence <-  (totalcohort - cohort_at_date[1,]) / totalcohort
+    totalptve <- (totalcohort - cohort_at_date[1,])
+
+    overall_age_prevalence <-  totalptve / totalcohort
 
     recent_infections <- matrix(NA, ncol = ncol(cohort_at_date[-1, ]), nrow = nrow(cohort_at_date[-1, ]))
 
     for (timeslice_index in (1:ncol(cohort_at_date))){
 
-      if( n_tau_steps == 0){
+      if(any(n_tau_steps == 0)){
 
         tau_values = 0
 
@@ -60,11 +65,13 @@ prevalences_calculation <- function(time_step ,recency_type ,
       recent_infections[ ,timeslice_index] <- cohort_at_date[-1, timeslice_index ] * probability_of_recently_infected(tau_values, recency_type)
 
     }
-    prevalence_R <- colSums(recent_infections, na.rm = TRUE) / (overall_age_prevalence * totalcohort)
+    totalrec <- colSums(recent_infections, na.rm = TRUE)
+    prevalence_R <- totalrec / (overall_age_prevalence * totalcohort)
 
   }
 
-  return(data.frame(totalcohort = totalcohort,
+  return(data.frame(totalcohort = totalcohort,  totalngtve  = (totalcohort - totalptve),
+                    totalrec =  totalrec, totalnonrec = (totalptve - totalrec),
                     prevalence_H = overall_age_prevalence,
                     prevalence_R = prevalence_R ))
   }

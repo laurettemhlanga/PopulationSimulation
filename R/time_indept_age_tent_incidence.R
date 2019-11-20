@@ -128,11 +128,37 @@ step_incidence <- function(ages,
                            times){
 
 
-  incidence = ifelse(ages <= 15, 0, 0.02)
+  incidence = ifelse(ages <= 0, 0, 0.01)
 
   return(incidence)
 }
 
+
+
+
+#' constant_incidence
+#'
+#' a function that takes as arguments age and time and returns a numeric vector of length 1
+#' representing a rate of incidence at the indicated age and time
+#' The generate_incidence function is required as an argument for the do_simulation function
+#' The function may be user defined and stored as an R object. Otherwise a default value - entered as "default" - is provided by the package
+#'
+#' @param times numeric, indicates time or times at which the incidence rate is desired
+#' @param ages  numeric, indicates age or ages at which the incidence rate is desired
+#'
+#' @export
+#'
+
+
+
+constant_incidence <- function(ages,
+                              times){
+
+
+  incidence = rep( 0.5, length(ages))
+
+  return(incidence)
+}
 
 
 

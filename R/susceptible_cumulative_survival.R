@@ -27,7 +27,7 @@ susceptible_cumulative_survival_vector <- function(incidence_vector,
   # First the function calculates the probabilty of surviving in the specified time space
   # P_ss(t,a) and then the CP_ss(t,a) = CP_ss(t -1,a - 1)*P_ss(t,a)
 
-  susceptible_survival_rate_vector <-  exp( - ((incidence_vector +  base_mortality_vector) * time_step))
+  susceptible_survival_rate_vector <-  exp( - ((incidence_vector +  base_mortality_vector)* time_step))
 
 
   susceptible_cumulative_survival_vector <- as.vector(rep(NA, length(incidence_vector) + 1))

@@ -4,20 +4,22 @@
 \alias{probability_of_recently_infected}
 \title{probability_of_recently_infected}
 \usage{
-probability_of_recently_infected(time_in_years, recency_type, shape = 5,
-  scale = 0.5, intercept = 1, gradient = -0.5, cutoff = 2,
-  value = 0.5)
+probability_of_recently_infected(time_in_years, recency_type = "weibull",
+  q = 0.0167, shape = 5, intercept = 1, scale = 0.5,
+  gradient = -0.5, cutoff = 7, value = 0.5)
 }
 \arguments{
 \item{time_in_years}{a vector of times since infection.}
 
 \item{recency_type}{a vector of times since infection.}
 
+\item{q}{a vector of times since infection.}
+
 \item{shape}{as defined by the weibull shape parameter, determines/affects the shape of a distribution}
 
-\item{scale}{as defined by the weibull scale parameter, determines the scale and determines how spread out the distribution is}
-
 \item{intercept}{as defined by the weibull scale parameter, determines the scale and determines how spread out the distribution is}
+
+\item{scale}{as defined by the weibull scale parameter, determines the scale and determines how spread out the distribution is}
 
 \item{gradient}{default value which is zero and is interpretated as .}
 

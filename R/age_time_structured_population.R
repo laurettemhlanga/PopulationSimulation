@@ -34,7 +34,8 @@ age_time_structured_population <- function(time_slice, max_birth_date, min_birth
       birth_dates <- seq(from = min_birth_date, to = max_birth_date, time_step)
     }
 
-  populationprevalences <- data.frame(date_birth = numeric(), dates = numeric(), age = numeric(),
+  populationprevalences <- data.frame(date_birth = numeric(), dates = numeric(), age = numeric(), total = numeric(),
+                                      hivngtve = numeric(), hivptve_rec = numeric(), hivptve_nonrec = numeric(),
                                       prevalence_H = numeric(), prevalence_R = numeric())
 
   for (dob in seq_along(birth_dates)){
@@ -55,6 +56,8 @@ age_time_structured_population <- function(time_slice, max_birth_date, min_birth
 
     populationprevalence <- data.frame(date_birth = birth_dates[dob], dates = birth_dates[dob] + population$age_at_survey,
                                        age = population$age_at_survey,  total = surveydates_prevalences$totalcohort,
+                                       hivngtve = surveydates_prevalences$totalngtve, hivptve_rec = surveydates_prevalences$totalrec,
+                                       hivptve_nonrec = surveydates_prevalences$totalnonrec,
                                        prevalence_H =  surveydates_prevalences$prevalence_H,
                                        prevalence_R = surveydates_prevalences$prevalence_R)
 
@@ -63,7 +66,7 @@ age_time_structured_population <- function(time_slice, max_birth_date, min_birth
 
   }
 
-  return(population)
+  return(populationprevalences)
 }
 
 

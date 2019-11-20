@@ -30,9 +30,7 @@ birth_cohort_simulation <- function(date_of_birth,
                                     incidence_function,
                                     excess_mortality_function,
                                     detailed = FALSE)
-{
-
-  # The function do_one_simulation takes user defined functions of
+{# The function do_one_simulation takes user defined functions of
   # the rates stated or the user can use the rates that come with the package.
   # The user-defined or package default function should be called by name when included as an argument.
 

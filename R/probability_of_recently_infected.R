@@ -7,6 +7,7 @@
 #' @param scale as defined by the weibull scale parameter, determines the scale and determines how spread out the distribution is
 #' @param shape as defined by the weibull shape parameter, determines/affects the shape of a distribution
 #' @param cutoff a vector of times since infection.
+#' @param q a vector of times since infection.
 #' @param gradient default value which is zero and is interpretated as .
 #' @param intercept as defined by the weibull scale parameter, determines the scale and determines how spread out the distribution is
 #' @param value as defined by the weibull shape parameter, determines/affects the shape of a distribution
@@ -20,31 +21,36 @@
 
 #' @export
 
-probability_of_recently_infected <- function(time_in_years,
-                                             recency_type , shape = 5,
-                                             scale = 0.5, intercept = 1,
-                                             gradient = -0.5, cutoff = 2,
+probability_of_recently_infected <- function(time_in_years, recency_type  = "weibull",
+                                             q = 0.0167, shape = 5,
+                                             intercept = 1, scale = 0.5 ,
+                                             gradient = -0.5, cutoff = 7,
                                              value = 0.5){
+  # time_in_years, scale =  0.4707,
+  # q = 0.0167,#0.476,
+  # shape = 3.7183
+
 
   if(recency_type == "weibull"){
 
-    recent <- PRT_weibull(time_in_years = time_in_years,
-                          scale = scale,
-                          shape = shape)
+    # recent <- PRT_weibull(time_in_years = time_in_years,
+    #                       scale = scale,
+    #                       shape = shape)
+
+    recent <-  exp(-(time_in_years / scale) ^ shape)
+
   }else if(recency_type == "linear"){
 
 
-    recent <- PRT_linear(time_in_years = time_in_years ,
-                         gradient = gradient,
-                         intercept = intercept,
-                         cutoff = cutoff)
+    recent <-  ifelse(time_in_years > cutoff, 0, (gradient * time_in_years) + intercept)
 
-  }else {
+  }else if (recency_type == "Kassanjee"){
+
+    recent <- ((1 - q) * exp(-(time_in_years / scale) ^ shape)) +  q
+  } else{
 
 
-    recent <- PRT_step(time_in_years= time_in_years,
-                       value = value,
-                       cutoff = cutoff)
+    recent <- ifelse(time_in_years > cutoff, 0, value)
 
   }
 
@@ -54,50 +60,31 @@ probability_of_recently_infected <- function(time_in_years,
 
 
 
-PRT_weibull <- function(time_in_years,
-                        scale = 0.476,
-                        shape = 2)
-  {
-
-  #should we
-
-  recent <-  exp(-(time_in_years / scale) ^ shape)
 
 
-  return(recent)
+#' calculate_MDRI
+#'
+#' @param function_prt dates the surveys are to be conducted
+#' @param big_Tyears the maximum age of each cohort
+
+#'
+#'
+#' @export
+
+
+
+calculate_MDRI <- function(function_prt = probability_of_recently_infected , big_Tyears){
+
+  return(stats::integrate(lower = 0,
+                   upper = big_Tyears,
+                   f = function_prt)$value)
 }
 
 
+# usage
+# calculate_MDRI(f =probability_of_recently_infected, big_T = 2)
 
-PRT_linear <- function(time_in_years,
-                        gradient ,
-                        intercept,
-                        cutoff )
-{
-
-
-  recent <- ifelse(time_in_years > cutoff, 0, (gradient * time_in_years) + intercept)
-
-
-  return(recent)
-}
-
-
-
-
-PRT_step <- function(time_in_years,
-                     value = 0,
-                     cutoff ){
-
-
-
-  recent <-  ifelse(time_in_years > cutoff, 0, value)
-
-
-  return(recent)
-}
-
-
+# 161.7364/365
 
 # probability_of_recently_infected(time_in_years = seq(0, 4, 1/12),
 #                                  recency_type = "step")
