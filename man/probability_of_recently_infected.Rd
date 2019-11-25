@@ -5,8 +5,8 @@
 \title{probability_of_recently_infected}
 \usage{
 probability_of_recently_infected(time_in_years, recency_type = "weibull",
-  q = 0.0167, shape = 5, intercept = 1, scale = 0.5,
-  gradient = -0.5, cutoff = 7, value = 0.5)
+  q = 0.0167, shape = 5, gradient = -0.5, intercept = 0.5,
+  scale = 0.5, big_tyears = 2, value = 1)
 }
 \arguments{
 \item{time_in_years}{a vector of times since infection.}
@@ -17,13 +17,13 @@ probability_of_recently_infected(time_in_years, recency_type = "weibull",
 
 \item{shape}{as defined by the weibull shape parameter, determines/affects the shape of a distribution}
 
+\item{gradient}{default value which is zero and is interpretated as .}
+
 \item{intercept}{as defined by the weibull scale parameter, determines the scale and determines how spread out the distribution is}
 
 \item{scale}{as defined by the weibull scale parameter, determines the scale and determines how spread out the distribution is}
 
-\item{gradient}{default value which is zero and is interpretated as .}
-
-\item{cutoff}{a vector of times since infection.}
+\item{big_tyears}{a vector of times since infection.}
 
 \item{value}{as defined by the weibull shape parameter, determines/affects the shape of a distribution}
 }

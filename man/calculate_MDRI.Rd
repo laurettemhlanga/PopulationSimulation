@@ -4,8 +4,7 @@
 \alias{calculate_MDRI}
 \title{calculate_MDRI}
 \usage{
-calculate_MDRI(function_prt = probability_of_recently_infected,
-  big_Tyears)
+calculate_MDRI(function_prt, big_Tyears)
 }
 \arguments{
 \item{function_prt}{dates the surveys are to be conducted}

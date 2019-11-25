@@ -6,7 +6,7 @@
 #' @param recency_type  a vector of times since infection.
 #' @param scale as defined by the weibull scale parameter, determines the scale and determines how spread out the distribution is
 #' @param shape as defined by the weibull shape parameter, determines/affects the shape of a distribution
-#' @param cutoff a vector of times since infection.
+#' @param big_tyears a vector of times since infection.
 #' @param q a vector of times since infection.
 #' @param gradient default value which is zero and is interpretated as .
 #' @param intercept as defined by the weibull scale parameter, determines the scale and determines how spread out the distribution is
@@ -14,18 +14,15 @@
 #'
 #'
 #' @return a vector which denotes being the probability of testing recently infected  being recently infected fo
-#'
-#'
-#'
+
 
 
 #' @export
 
-probability_of_recently_infected <- function(time_in_years, recency_type  = "weibull",
-                                             q = 0.0167, shape = 5,
-                                             intercept = 1, scale = 0.5 ,
-                                             gradient = -0.5, cutoff = 7,
-                                             value = 0.5){
+probability_of_recently_infected <- function(time_in_years, recency_type = "weibull",
+                                             q = 0.0167, shape = 5, gradient = -0.5,
+                                             intercept = 0.5, scale = 0.5 ,
+                                             big_tyears =2, value = 1){
   # time_in_years, scale =  0.4707,
   # q = 0.0167,#0.476,
   # shape = 3.7183
@@ -41,8 +38,9 @@ probability_of_recently_infected <- function(time_in_years, recency_type  = "wei
 
   }else if(recency_type == "linear"){
 
+    # gradient = -(1/big_tyears)
 
-    recent <-  ifelse(time_in_years > cutoff, 0, (gradient * time_in_years) + intercept)
+    recent <-  ifelse(time_in_years > big_tyears, 0, ((gradient/big_tyears) * time_in_years) + intercept)
 
   }else if (recency_type == "Kassanjee"){
 
@@ -50,7 +48,7 @@ probability_of_recently_infected <- function(time_in_years, recency_type  = "wei
   } else{
 
 
-    recent <- ifelse(time_in_years > cutoff, 0, value)
+    recent <- ifelse(time_in_years > 0.5, 0, value)
 
   }
 
@@ -73,7 +71,7 @@ probability_of_recently_infected <- function(time_in_years, recency_type  = "wei
 
 
 
-calculate_MDRI <- function(function_prt = probability_of_recently_infected , big_Tyears){
+calculate_MDRI <- function(function_prt , big_Tyears){
 
   return(stats::integrate(lower = 0,
                    upper = big_Tyears,
@@ -82,7 +80,7 @@ calculate_MDRI <- function(function_prt = probability_of_recently_infected , big
 
 
 # usage
-# calculate_MDRI(f =probability_of_recently_infected, big_T = 2)
+# calculate_MDRI(f = probability_of_recently_infected, recency_type, big_T = 2)
 
 # 161.7364/365
 
@@ -90,4 +88,5 @@ calculate_MDRI <- function(function_prt = probability_of_recently_infected , big
 #                                  recency_type = "step")
 
 
-
+# 1/(1-gamma8)*0.5
+#

@@ -15,7 +15,7 @@
 #' @export
 
 
-prevalences_calculation <- function(time_step ,recency_type ,
+prevalences_calculation <- function(time_step, recency_type ,
                                     cohort)
 {
   # calculates the prevalences of recency, and
@@ -23,7 +23,7 @@ prevalences_calculation <- function(time_step ,recency_type ,
 
   cohort_at_date <- cohort$survey_status
 
-  n_tau_steps <- ((cohort$age_at_survey)/time_step) + 1
+  n_tau_steps <- ((cohort$age_at_survey)/time_step)
 
   if(is.vector(cohort_at_date) == T){
 
@@ -59,7 +59,7 @@ prevalences_calculation <- function(time_step ,recency_type ,
 
         }else{
 
-        tau_values <-  seq(from = time_step/2, by = time_step, length.out = n_tau_steps[timeslice_index])
+        tau_values <-  seq(from = time_step/2, by = time_step, length.out = (n_tau_steps[timeslice_index]))
       }
 
       recent_infections[ ,timeslice_index] <- cohort_at_date[-1, timeslice_index ] * probability_of_recently_infected(tau_values, recency_type)

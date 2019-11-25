@@ -5,7 +5,7 @@
 \title{time_indep_age_linear_base_mortality}
 \usage{
 time_indep_age_linear_base_mortality(ages, times, constant = 0,
-  age_min = 0, age_max = 50, mort_min = 0, mort_max = 0.01)
+  age_min = 0, age_max = 50, mort_min = 0.01, mort_max = 0.03)
 }
 \arguments{
 \item{ages}{numeric, indicates age or ages at which the incidence rate is desired}

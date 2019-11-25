@@ -27,11 +27,11 @@ age_time_structured_population <- function(time_slice, max_birth_date, min_birth
                                            reporting_bin = NA){
   if (is.na(reporting_bin) == T){
 
-      birth_dates <- seq(from = min_birth_date, to = max_birth_date, by = reporting_bin)
+      birth_dates <- seq(from = min_birth_date, to = max_birth_date, by = time_step)
 
     } else{
 
-      birth_dates <- seq(from = min_birth_date, to = max_birth_date, time_step)
+      birth_dates <- seq(from = min_birth_date, to = max_birth_date, by = reporting_bin)
     }
 
   populationprevalences <- data.frame(date_birth = numeric(), dates = numeric(), age = numeric(), total = numeric(),

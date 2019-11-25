@@ -128,7 +128,7 @@ step_incidence <- function(ages,
                            times){
 
 
-  incidence = ifelse(ages <= 0, 0, 0.01)
+  incidence = ifelse(ages <= 14, 0, 0.01)
 
   return(incidence)
 }
@@ -152,10 +152,10 @@ step_incidence <- function(ages,
 
 
 constant_incidence <- function(ages,
-                              times){
+                               times){
 
 
-  incidence = rep( 0.5, length(ages))
+  incidence = rep(0.001, length(ages))
 
   return(incidence)
 }

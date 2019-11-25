@@ -154,15 +154,15 @@ weibull_hazard <- function(ages,
   #   ((max_survival - min_survival)/(age_min - age_max)) * ages
   if (base == T){
 
-    excess_mortality <-  ((1/scale) * shape ) * (ages/ scale) ^ (shape)
+    mortality <-  ((1/scale) * shape ) * (ages/ scale) ^ (shape)
 
     }else{
 
-    excess_mortality <-  ((1/scale) * shape ) * (times_since_i / scale) ^ (shape - 1)
+    mortality <-  ((1/scale) * shape ) * (times_since_i / scale) ^ (shape - 1)
 
    }
 
-  return(excess_mortality)
+  return(mortality)
 
 }
 
