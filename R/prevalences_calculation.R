@@ -71,7 +71,7 @@ prevalences_calculation <- function(time_step, recency_type ,
   }
 
   return(data.frame(totalcohort = totalcohort,  totalngtve  = (totalcohort - totalptve),
-                    totalrec =  totalrec, totalnonrec = (totalptve - totalrec),
+                    totalrec =  totalrec, totalnonrec = (totalptve -round(totalrec, digits = 8)),
                     prevalence_H = overall_age_prevalence,
                     prevalence_R = prevalence_R ))
   }

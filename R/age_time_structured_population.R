@@ -57,7 +57,7 @@ age_time_structured_population <- function(time_slice, max_birth_date, min_birth
     populationprevalence <- data.frame(date_birth = birth_dates[dob], dates = birth_dates[dob] + population$age_at_survey,
                                        age = population$age_at_survey,  total = surveydates_prevalences$totalcohort,
                                        hivngtve = surveydates_prevalences$totalngtve, hivptve_rec = surveydates_prevalences$totalrec,
-                                       hivptve_nonrec = surveydates_prevalences$totalnonrec,
+                                       hivptve_nonrec = round(surveydates_prevalences$totalnonrec, digits = 9),
                                        prevalence_H =  surveydates_prevalences$prevalence_H,
                                        prevalence_R = surveydates_prevalences$prevalence_R)
 
