@@ -30,12 +30,15 @@ age_time_structured_population <- function(time_slice, max_birth_date, min_birth
       birth_dates <- seq(from = min_birth_date, to = max_birth_date, by = time_step)
 
     } else{
+      #adding the 0.5 to conduct the survey at mid points.
 
-      birth_dates <- seq(from = min_birth_date, to = max_birth_date, by = reporting_bin)
+      birth_dates <- seq(from = min_birth_date +(reporting_bin/2), to = max_birth_date #+ (reporting_bin/2)
+                         , by = reporting_bin)
     }
 
-  populationprevalences <- data.frame(date_birth = numeric(), dates = numeric(), age = numeric(), total = numeric(),
-                                      hivngtve = numeric(), hivptve_rec = numeric(), hivptve_nonrec = numeric(),
+  populationprevalences <- data.frame(# date_birth = numeric(),
+                                      dates = numeric(), age = numeric(), total = numeric(),
+                                      # hivngtve = numeric(), hivptve_rec = numeric(), hivptve_nonrec = numeric(),
                                       prevalence_H = numeric(), prevalence_R = numeric())
 
   for (dob in seq_along(birth_dates)){
@@ -48,16 +51,18 @@ age_time_structured_population <- function(time_slice, max_birth_date, min_birth
                                          excess_mortality_function = excess_mortality_function,
                                          detailed = FALSE)
 
-    if (any(is.na(population) == T)) next
+    # if (any(is.na(population) == T)) next
+    # look at the best way to deal with the case of the extreme case of NA..............
 
     surveydates_prevalences <- prevalences_calculation(time_step = time_step, recency_type = recency_type,
                                                        cohort = population)
 
 
-    populationprevalence <- data.frame(date_birth = birth_dates[dob], dates = birth_dates[dob] + population$age_at_survey,
+    populationprevalence <- data.frame(# date_birth = birth_dates[dob],
+                                       dates = birth_dates[dob] + population$age_at_survey,
                                        age = population$age_at_survey,  total = surveydates_prevalences$totalcohort,
-                                       hivngtve = surveydates_prevalences$totalngtve, hivptve_rec = surveydates_prevalences$totalrec,
-                                       hivptve_nonrec = round(surveydates_prevalences$totalnonrec, digits = 9),
+                                       # hivngtve = surveydates_prevalences$totalngtve, hivptve_rec = surveydates_prevalences$totalrec,
+                                       # hivptve_nonrec = round(surveydates_prevalences$totalnonrec, digits = 9),
                                        prevalence_H =  surveydates_prevalences$prevalence_H,
                                        prevalence_R = surveydates_prevalences$prevalence_R)
 

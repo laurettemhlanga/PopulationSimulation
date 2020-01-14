@@ -155,7 +155,7 @@ constant_incidence <- function(ages,
                                times){
 
 
-  incidence = rep(0.001, length(ages))
+  incidence = rep(0.01, length(ages))
 
   return(incidence)
 }

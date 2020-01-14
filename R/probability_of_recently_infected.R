@@ -21,8 +21,8 @@
 
 probability_of_recently_infected <- function(time_in_years, recency_type = "weibull",
                                              q = 0.0167, shape = 5, gradient = -0.5,
-                                             intercept = 0.5, scale = 0.5 ,
-                                             big_tyears =2, value = 1){
+                                             intercept = 0.5, scale = 0.545,
+                                             big_tyears = 2, value = 1){
   # time_in_years, scale =  0.4707,
   # q = 0.0167,#0.476,
   # shape = 3.7183
@@ -80,12 +80,14 @@ calculate_MDRI <- function(function_prt , big_Tyears){
 
 
 # usage
-# calculate_MDRI(f = probability_of_recently_infected, recency_type, big_T = 2)
+# calculate_MDRI(f = probability_of_recently_infected,  big_T = 2)
 
 # 161.7364/365
 
 # probability_of_recently_infected(time_in_years = seq(0, 4, 1/12),
-#                                  recency_type = "step")
+#                                  recency_type = "")L
+
+# integrate(upper = 730, lower = 0, f = probability_of_recently_infected(x, recency_type = "weibull"))
 
 
 # 1/(1-gamma8)*0.5
