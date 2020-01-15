@@ -27,12 +27,12 @@ age_time_structured_population <- function(time_slice, max_birth_date, min_birth
                                            reporting_bin = NA){
   if (is.na(reporting_bin) == T){
 
-      birth_dates <- seq(from = min_birth_date, to = max_birth_date, by = time_step)
+      birth_dates <- seq(from = min_birth_date + (time_step/2), to = max_birth_date, by = time_step)
 
     } else{
       #adding the 0.5 to conduct the survey at mid points.
 
-      birth_dates <- seq(from = min_birth_date +(reporting_bin/2), to = max_birth_date #+ (reporting_bin/2)
+      birth_dates <- seq(from = min_birth_date + (reporting_bin/2), to = max_birth_date #+ (reporting_bin/2)
                          , by = reporting_bin)
     }
 
@@ -51,8 +51,10 @@ age_time_structured_population <- function(time_slice, max_birth_date, min_birth
                                          excess_mortality_function = excess_mortality_function,
                                          detailed = FALSE)
 
-    # if (any(is.na(population) == T)) next
-    # look at the best way to deal with the case of the extreme case of NA..............
+    if ((is.na(population) == T)) next
+    # this line is required to ensure that the if the population(surveystatus
+    # and age at survey) is NA the loop skips to the next iteration
+    # and not break..............
 
     surveydates_prevalences <- prevalences_calculation(time_step = time_step, recency_type = recency_type,
                                                        cohort = population)
