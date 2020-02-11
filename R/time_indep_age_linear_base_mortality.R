@@ -48,6 +48,34 @@ time_indep_age_linear_base_mortality <- function(ages, times, constant = 0, age_
   }
 }
 
+
+
+###################################
+
+#' constant_basemortality
+#'
+#' a function that takes as arguments age and time and returns a numeric vector of length equivelent to the number of times indicated by the simulation
+#' representing a rate of mortality at the indicated age and time
+#' The generate_mortality function is required as an argument for the package's do_simulation function
+#' The function may be user defined and stored as an R object. Otherwise a default value - entered as "default" - is provided by the package
+#'
+#' @param times numeric, indicates time or times at which the incidence rate is desired
+#' @param ages  numeric, indicates age or ages at which the incidence rate is desired
+#' @return a numeric vector that represents the mortality rate at t.
+#'
+#' @export
+
+#Option 1
+
+constant_basemortality <- function(ages,
+                                  times){
+
+  mortality =  rep(0.01 , length(ages))
+
+  return(mortality)
+}
+
+
 ###################################
 
 #' step_mortality
@@ -72,7 +100,7 @@ time_indep_age_linear_base_mortality <- function(ages, times, constant = 0, age_
 step_mortality <- function(ages,
                            times){
 
-  mortality =   0.01#0.01 + 0.001 * ages
+  mortality = ifelse(ages <= 14, 0, 0.01)
 
   return(mortality)
 }

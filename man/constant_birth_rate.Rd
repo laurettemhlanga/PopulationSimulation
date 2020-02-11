@@ -4,7 +4,7 @@
 \alias{constant_birth_rate}
 \title{constant_birth_rate}
 \usage{
-constant_birth_rate(dates_as_float, constant_value = 1000)
+constant_birth_rate(dates_as_float, constant_value = 10000)
 }
 \arguments{
 \item{dates_as_float}{is a double/vector of times the birth rate is to be evaluated at.}

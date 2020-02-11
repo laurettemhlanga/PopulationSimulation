@@ -4,7 +4,7 @@
 \alias{incidence_mahiane}
 \title{incidence_mahiane}
 \usage{
-incidence_mahiane(ages, times, age_debut = 0, beta = 2.3,
+incidence_mahiane(ages, times, age_debut = 14, beta = 2.3,
   sigm2 = 0.5)
 }
 \arguments{

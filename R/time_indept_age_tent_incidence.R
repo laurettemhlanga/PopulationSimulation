@@ -81,12 +81,12 @@ time_indept_age_tent_incidence <- function(ages, times, constant = 0, age_min = 
 
 
 
-incidence_mahiane <- function(ages, times, age_debut = 0,
+incidence_mahiane <- function(ages, times, age_debut = 14,
                               beta = 2.3,
                               sigm2 = 0.5)
 {
 
-
+times <- times - times[1]
   # maximum_inc <- function()
   # {
     #shape defining function for the incidence.

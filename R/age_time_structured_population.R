@@ -41,6 +41,8 @@ age_time_structured_population <- function(time_slice, max_birth_date, min_birth
                                       # hivngtve = numeric(), hivptve_rec = numeric(), hivptve_nonrec = numeric(),
                                       prevalence_H = numeric(), prevalence_R = numeric())
 
+  taupopulation <- list()
+
   for (dob in seq_along(birth_dates)){
 
     population = birth_cohort_simulation(date_of_birth = birth_dates[dob], time_slice = time_slice,
@@ -50,8 +52,7 @@ age_time_structured_population <- function(time_slice, max_birth_date, min_birth
                                          incidence_function =  incidence_function,
                                          excess_mortality_function = excess_mortality_function,
                                          detailed = FALSE)
-
-    if ((is.na(population) == T)) next
+  if ((is.na(population) == T)) next
     # this line is required to ensure that the if the population(surveystatus
     # and age at survey) is NA the loop skips to the next iteration
     # and not break..............
@@ -59,6 +60,9 @@ age_time_structured_population <- function(time_slice, max_birth_date, min_birth
     surveydates_prevalences <- prevalences_calculation(time_step = time_step, recency_type = recency_type,
                                                        cohort = population)
 
+    taupopulation[[dob]] <- extactcohorttau_distribution(birth_date = birth_dates[dob],
+                                                         population = population)
+    # discuss how we want to extract and save the output
 
     populationprevalence <- data.frame(# date_birth = birth_dates[dob],
                                        dates = birth_dates[dob] + population$age_at_survey,
@@ -67,11 +71,15 @@ age_time_structured_population <- function(time_slice, max_birth_date, min_birth
                                        # hivptve_nonrec = round(surveydates_prevalences$totalnonrec, digits = 9),
                                        prevalence_H =  surveydates_prevalences$prevalence_H,
                                        prevalence_R = surveydates_prevalences$prevalence_R)
+   populationprevalences <- rbind(populationprevalences, populationprevalence)
 
-    populationprevalences <- rbind(populationprevalences, populationprevalence)
+   }
 
-
-  }
+   mortality <- estimate_excessmortality(populationdistribution = taupopulation,
+                                         reporting_bin = reporting_bin,
+                                         base_mortality = base_mortality_function,
+                                         excess_mortality = excess_mortality_function)[,3]
+   populationprevalences <- cbind(populationprevalences, mortality)
 
   return(populationprevalences)
 }

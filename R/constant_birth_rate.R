@@ -15,7 +15,7 @@
 
 # #' @param delta the time step between consecurtive birth_dates
 
-constant_birth_rate <- function(dates_as_float, constant_value = 1000)
+constant_birth_rate <- function(dates_as_float, constant_value = 10000)
 {
   # births per year, evaluated at the list of dates in the vector 'dates_as_float'
 

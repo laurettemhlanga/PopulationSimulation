@@ -104,19 +104,19 @@ excess_mahiane <- function(ages,times,
 #'
 #' @param times numeric, indicates time or times at which the incidence rate is desired
 #' @param ages  numeric, indicates age or ages at which the incidence rate is desired
-#' @param times_since_i umeric, indicates time since infection among the infected poplation.
+#' @param times_since_i/taus umeric, indicates time since infection among the infected poplation.
 #'
 #' @export
 
 
 
 
-step_excess_mortality <- function(ages,
-                                  times,
+step_excess_mortality <- function(ages, tau_step = 1,
+                                  times, mortality_step = 0.001,
                                   times_since_i){
 
 
-  mortality = rep( 0, length(ages))
+  mortality <- ifelse(times_since_i < tau_step, 0, mortality_step)
 
   return(mortality)
 }
