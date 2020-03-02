@@ -6,7 +6,8 @@
 #'
 #' @param time_step the time step between consecurtive dates or the length of the time between date of births of cohorts.
 #' @param cohort Status of the popuation in the cohort.
-#' @param recency_type type of function to be utilised in the probability of infection function
+#' @param recency_function the recent function that describes the recency aspect
+#' @paramrecency_function type of function to be utilised in the probability of infection function
 #'
 #'
 #'
@@ -15,7 +16,7 @@
 #' @export
 
 
-prevalences_calculation <- function(time_step, recency_type ,
+prevalences_calculation <- function(time_step, recency_function,
                                     cohort)
 {
   # calculates the prevalences of recency, and
@@ -35,7 +36,7 @@ prevalences_calculation <- function(time_step, recency_type ,
 
     tau_values <-  seq(from = time_step/2, by = time_step, length.out = n_tau_steps)
 
-    recent_infections <- cohort_at_date[-1] * probability_of_recently_infected(tau_values, recency_type)
+    recent_infections <- cohort_at_date[-1] * recency_function(tau_values)
 
     totalrec <- sum(recent_infections, na.rm = TRUE)
 
@@ -62,7 +63,7 @@ prevalences_calculation <- function(time_step, recency_type ,
         tau_values <-  seq(from = time_step/2, by = time_step, length.out = (n_tau_steps[timeslice_index]))
       }
 
-      recent_infections[ ,timeslice_index] <- cohort_at_date[-1, timeslice_index ] * probability_of_recently_infected(tau_values, recency_type)
+      recent_infections[ ,timeslice_index] <- cohort_at_date[-1, timeslice_index ] * recency_function(tau_values)
 
     }
     totalrec <- colSums(recent_infections, na.rm = TRUE)
@@ -80,6 +81,6 @@ prevalences_calculation <- function(time_step, recency_type ,
 
 
 
-# prevalences_calculation(cohort = populationstatus, time_step = 1/12, recency_type = "weibull")
+# prevalences_calculation(cohort = populationstatus, time_step = 1/12,recency_function = "weibull")
 
 # remove the dob, totalptve, totalngtve, totalrec

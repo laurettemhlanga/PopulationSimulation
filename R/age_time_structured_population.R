@@ -7,7 +7,7 @@
 #' @param time_step  the time step between consecurtive dates or the length of the time between date of births of cohorts
 #' @param reporting_bin the size of the reporting bin if NA is specified the calculation defaults
 #' to calculations based on the time step
-#' @param recency_type the type of function to be used in estimating the probability of testing recently infected
+#' @param recency_function the type of function to be used in estimating the probability of testing recently infected
 #' @param birth_rate bith rate at the the give date
 #' @param base_mortality_function base mortality rate ata a given age and time
 #' @param excess_mortality_function excess  mortality rate ata a given age and time
@@ -21,7 +21,7 @@
 
 
 age_time_structured_population <- function(time_slice, max_birth_date, min_birth_date,
-                                           time_step, max_age, recency_type,  birth_rate,
+                                           time_step, max_age, recency_function,  birth_rate,
                                            base_mortality_function, pmtct_birth_rate,
                                            incidence_function, excess_mortality_function,
                                            reporting_bin = NA){
@@ -57,7 +57,7 @@ age_time_structured_population <- function(time_slice, max_birth_date, min_birth
     # and age at survey) is NA the loop skips to the next iteration
     # and not break..............
 
-    surveydates_prevalences <- prevalences_calculation(time_step = time_step, recency_type = recency_type,
+    surveydates_prevalences <- prevalences_calculation(time_step = time_step, recency_function = recency_function,
                                                        cohort = population)
 
     taupopulation[[dob]] <- extactcohorttau_distribution(birth_date = birth_dates[dob],
@@ -86,3 +86,25 @@ age_time_structured_population <- function(time_slice, max_birth_date, min_birth
 
 
 
+
+# download_input_function
+#
+# @param url the link to the online script with all the global functions
+
+
+# cacheEnv <- new.env()
+#
+# download_input_function <- function(url){
+#   if (exists(url, envir = cacheEnv)){
+#
+#     return(get(url, envir=cacheEnv))
+#
+#     file <- content(GET(url))
+#     assign(url, file, envir=cacheEnv)
+#
+#     file
+#     }
+#   }
+
+
+# download_input_function("https://github.com/laurettemhlanga/utility/blob/master/global_params_template.R")

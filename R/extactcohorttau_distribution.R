@@ -17,36 +17,36 @@
 
 extactcohorttau_distribution <- function(birth_date,
                                          population)
-  {
-    populationtau <- population$survey_status
-    ages <- population$age_at_survey
+{
+  populationtau <- population$survey_status
+  ages <- population$age_at_survey
 
-    if (is.vector(populationtau)){
-      sub_divide <- (length(populationtau[-1]) - 2)/max(ages)
-      population_dist <- populationtau[-1]
-      splitcohort <- split(populationtau[-1], ceiling(seq_along(populationtau[-1])/sub_divide))
-      populationdist <- sapply(splitcohort, sum, na.rm = TRUE)
-      # corresponding_ages <-  data.frame( dates = birth_date + ages,
-      #                                    age = ages)
-      }else{
-      sub_divide <- (nrow(populationtau[-1,]) - 1)/max(ages)
-      populationdist <- matrix(NA, nrow = max(ceiling(ages)), ncol = length(ages) )
+  if (is.vector(populationtau)){
+    sub_divide <- (length(populationtau[-1]) - 2)/max(ages)
+    population_dist <- populationtau[-1]
+    splitcohort <- split(populationtau[-1], ceiling(seq_along(populationtau[-1])/sub_divide))
+    populationdist <- sapply(splitcohort, sum, na.rm = TRUE)
+    # corresponding_ages <-  data.frame( dates = birth_date + ages,
+    #                                    age = ages)
+  }else{
+    sub_divide <- (nrow(populationtau[-1,]) - 1)/max(ages)
+    populationdist <- matrix(NA, nrow = max(ceiling(ages)), ncol = length(ages) )
 
-      # corresponding_ages <-  data.frame( dates = numeric(),
-      #                                    age = numeric())
+    # corresponding_ages <-  data.frame( dates = numeric(),
+    #                                    age = numeric())
 
-      for (columnindex in 1:ncol(populationtau)){
-        population_dist <- populationtau[,columnindex][-1]
-        splitcohort <- split(populationtau[,columnindex][-1], ceiling(seq_along(populationtau[,columnindex][-1])/sub_divide))
-        populationdist[, columnindex] <- sapply(splitcohort, sum, na.rm = TRUE)
+    for (columnindex in 1:ncol(populationtau)){
+      population_dist <- populationtau[,columnindex][-1]
+      splitcohort <- split(populationtau[,columnindex][-1], ceiling(seq_along(populationtau[,columnindex][-1])/sub_divide))
+      populationdist[, columnindex] <- sapply(splitcohort, sum, na.rm = TRUE)
 
-        }
-      # corresponding_ages <-  rbind(corresponding_ages, corresponding_age)
-      }
-    corresponding_age <- data.frame( dates = birth_date + ages, age = ages)
-    return(list(populationdist,
-                corresponding_age))
+    }
+    # corresponding_ages <-  rbind(corresponding_ages, corresponding_age)
   }
+  corresponding_age <- data.frame( dates = birth_date + ages, age = ages)
+  return(list(populationdist,
+              corresponding_age))
+}
 
 
 
@@ -68,14 +68,14 @@ extactcohorttau_distribution <- function(birth_date,
 #' @export
 #'
 
- estimate_excessmortality <- function(populationdistribution,
-                                      excess_mortality, base_mortality,
-                                      reporting_bin) {
+estimate_excessmortality <- function(populationdistribution,
+                                     excess_mortality, base_mortality,
+                                     reporting_bin) {
 
-   aggregatedexcess_mort <- data.frame(dates = numeric(), ages = numeric(),
-                                    excessmortality = numeric())
+  aggregatedexcess_mort <- data.frame(dates = numeric(), ages = numeric(),
+                                      excessmortality = numeric())
 
-   for (ageindex in seq_along(populationdistribution)){
+  for (ageindex in seq_along(populationdistribution)){
 
     tau_populationdist = populationdistribution[[ageindex]]
 
@@ -113,10 +113,10 @@ extactcohorttau_distribution <- function(birth_date,
                            times_since_i = seq(reporting_bin/2, datesages$age[columnindex], reporting_bin))
 
         excessmortality <- round(((sum(mortality * tau_distribution ,na.rm = T)/sum(tau_distribution,na.rm = T)) -
-          base_mortality(ages =  ages, times = times)), digits = 10)
+                                    base_mortality(ages =  ages, times = times)), digits = 10)
 
         excessmortality_data <- data.frame(dates = times, ages = ages,
-                                          excessmortality = excessmortality)
+                                           excessmortality = excessmortality)
 
         excessmortalitydata <- rbind(excessmortalitydata, excessmortality_data)
 
@@ -124,7 +124,7 @@ extactcohorttau_distribution <- function(birth_date,
     }
     aggregatedexcess_mort <- rbind(aggregatedexcess_mort, excessmortalitydata)
   }
-   return(aggregatedexcess_mort)
+  return(aggregatedexcess_mort)
 
 }
 
@@ -133,4 +133,3 @@ extactcohorttau_distribution <- function(birth_date,
 #                            excess_mortality = excess_mahiane)
 #
 # View( mortalitydata)
-
