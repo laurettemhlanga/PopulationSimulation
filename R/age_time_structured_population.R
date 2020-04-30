@@ -32,7 +32,7 @@ age_time_structured_population <- function(time_slice, max_birth_date, min_birth
     } else{
       #adding the 0.5 to conduct the survey at mid points.
 
-      birth_dates <- seq(from = min_birth_date + (reporting_bin/2), to = max_birth_date #+ (reporting_bin/2)
+      birth_dates <- seq(from = min_birth_date + (reporting_bin/2), to = max_birth_date + (reporting_bin/2)
                          , by = reporting_bin)
     }
 
@@ -79,7 +79,10 @@ age_time_structured_population <- function(time_slice, max_birth_date, min_birth
                                          reporting_bin = reporting_bin,
                                          base_mortality = base_mortality_function,
                                          excess_mortality = excess_mortality_function)[,3]
+
    populationprevalences <- cbind(populationprevalences, mortality)
+
+   populationprevalences <- populationprevalences[populationprevalences$age <= max_age, ]
 
   return(populationprevalences)
 }

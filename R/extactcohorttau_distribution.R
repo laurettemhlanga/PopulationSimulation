@@ -90,7 +90,7 @@ estimate_excessmortality <- function(populationdistribution,
 
       mortality <- base_mortality(ages =  ages, times = times) +
         excess_mortality(ages = ages, times = times,
-                         times_since_i = seq(reporting_bin/2, datesages$age, reporting_bin))
+                         times_since_i = seq(reporting_bin/2, datesages$age + reporting_bin/2, reporting_bin))
 
       excessmortality <- (sum(mortality * tau_distribution ,na.rm = T)/sum(tau_distribution,na.rm = T)) -
         base_mortality(ages =  ages, times = times)
@@ -110,7 +110,7 @@ estimate_excessmortality <- function(populationdistribution,
 
         mortality <- base_mortality(ages =  ages, times = times) +
           excess_mortality(ages = ages, times = times,
-                           times_since_i = seq(reporting_bin/2, datesages$age[columnindex], reporting_bin))
+                           times_since_i = seq(reporting_bin/2, datesages$age[columnindex] + reporting_bin/2, reporting_bin))
 
         excessmortality <- round(((sum(mortality * tau_distribution ,na.rm = T)/sum(tau_distribution,na.rm = T)) -
                                     base_mortality(ages =  ages, times = times)), digits = 10)
