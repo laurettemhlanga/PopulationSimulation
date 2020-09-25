@@ -2,19 +2,21 @@
 % Please edit documentation in R/extactcohorttau_distribution.R
 \name{estimate_excessmortality}
 \alias{estimate_excessmortality}
-\title{calculate_excessmortality}
+\title{estimate_excessmortality}
 \usage{
-estimate_excessmortality(populationdistribution, excess_mortality,
-  base_mortality, reporting_bin)
+estimate_excessmortality(populationdistribution, time_step,
+  excess_mortality, birth_dates, base_mortality)
 }
 \arguments{
 \item{populationdistribution}{the cohort distribution of taus since infection}
 
+\item{time_step}{the size of the reporting bin default is 1}
+
 \item{excess_mortality}{excess mortality resulting from the infection}
 
-\item{base_mortality}{natural causes of death}
+\item{birth_dates}{the size of the reporting bin default is 1}
 
-\item{reporting_bin}{the size of the reporting bin default is 1}
+\item{base_mortality}{natural causes of death}
 }
 \value{
 a data frame of ages, times and the corresponding excess mortality rate

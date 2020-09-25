@@ -34,7 +34,9 @@ prevalences_calculation <- function(time_step, recency_function,
 
     overall_age_prevalence <-  totalptve / totalcohort
 
-    tau_values <-  seq(from = time_step/2, by = time_step, length.out = n_tau_steps)
+    # tau_values <-  seq(from = time_step/2, by = time_step, length.out = n_tau_steps)
+    tau_values <-  seq(from = 0, by = time_step/2, length.out = n_tau_steps)
+
 
     recent_infections <- cohort_at_date[-1] * recency_function(tau_values)
 
@@ -60,7 +62,8 @@ prevalences_calculation <- function(time_step, recency_function,
 
         }else{
 
-        tau_values <-  seq(from = time_step/2, by = time_step, length.out = (n_tau_steps[timeslice_index]))
+           tau_values <-  seq(from = 0, by = time_step/2, length.out = (n_tau_steps[timeslice_index]))
+          # tau_values <-  seq(from = time_step/2, by = time_step, length.out = (n_tau_steps[timeslice_index]))
       }
 
       recent_infections[ ,timeslice_index] <- cohort_at_date[-1, timeslice_index ] * recency_function(tau_values)

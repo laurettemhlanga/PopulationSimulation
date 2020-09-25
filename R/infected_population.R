@@ -1,7 +1,7 @@
 
 #' infected_population_natrix
 #'
-#' a function that returns a matrix that returns the infected population for a given birthcohort at specified age and time steps
+#' a function that returns a matrix of the infected population for a given birthcohort
 #'
 #' @param susceptible the susceptible population counts
 #' @param incidence_mat associated incidence rates
@@ -10,7 +10,8 @@
 #' @param cumulative_infected_survival the survival probability of  being aged a at time t having been infected for tau years.
 #' @param base_mortality_mat associated excess mortality survivial rates
 #' the probability of surving infection or death in the susceptible state
-#' @return returns an array of dimensions time t , age a and time since infection - tau
+#'
+#' @return returns an matrix of dimensions time t , age a and time since infection - tau
 #'
 #' @export
 
