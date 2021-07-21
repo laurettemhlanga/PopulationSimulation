@@ -4,8 +4,11 @@
 \alias{probability_surviving_infected_array}
 \title{probability_of_surviving_infected_array}
 \usage{
-probability_surviving_infected_array(wedge_of_excess_mortality_array,
-  matrix_of_base_mortality, time_step)
+probability_surviving_infected_array(
+  wedge_of_excess_mortality_array,
+  matrix_of_base_mortality,
+  time_step
+)
 }
 \arguments{
 \item{wedge_of_excess_mortality_array}{array containing excess mortality rates for a given time space.}

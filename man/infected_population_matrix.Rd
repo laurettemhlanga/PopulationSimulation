@@ -4,8 +4,14 @@
 \alias{infected_population_matrix}
 \title{infected_population_natrix}
 \usage{
-infected_population_matrix(incidence_mat, base_mortality_mat, time_step,
-  susceptible, pmtct_birthcount, cumulative_infected_survival)
+infected_population_matrix(
+  incidence_mat,
+  base_mortality_mat,
+  time_step,
+  susceptible,
+  pmtct_birthcount,
+  cumulative_infected_survival
+)
 }
 \arguments{
 \item{incidence_mat}{associated incidence rates}

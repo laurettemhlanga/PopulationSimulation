@@ -4,8 +4,11 @@
 \alias{probability_surviving_infected_matrix}
 \title{probability_of_surviving_infected}
 \usage{
-probability_surviving_infected_matrix(excess_mortality_matrix, time_step,
-  base_mortality_vector)
+probability_surviving_infected_matrix(
+  excess_mortality_matrix,
+  time_step,
+  base_mortality_vector
+)
 }
 \arguments{
 \item{excess_mortality_matrix}{matrix containing excess mortality rates for a given time space.}

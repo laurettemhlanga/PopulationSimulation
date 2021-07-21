@@ -7,6 +7,8 @@
 #' @param time_step  the time step between consecurtive dates or the length of the time between date of births of cohorts
 #' @param reporting_bin the size of the reporting bin if NA is specified the calculation defaults
 #' to calculations based on the time step
+#' @param tau_cutoff switch parameter that enables cutting off/not the  prevelances of rececny calculated beyond big T
+#' @param BigT the point to cut off of all points that are beyond recency classification mark
 #' @param recency_function the type of function to be used in estimating the probability of testing recently infected
 #' @param birth_rate bith rate at the the give date
 #' @param base_mortality_function base mortality rate ata a given age and time
@@ -19,6 +21,7 @@
 
 age_time_structured_population <- function(time_slice, max_birth_date, min_birth_date,
                                            time_step, max_age, recency_function,  birth_rate,
+                                           tau_cutoff, BigT = BigT,
                                            base_mortality_function, pmtct_birth_rate,
                                            incidence_function, excess_mortality_function,
                                            reporting_bin = NA){
@@ -56,6 +59,7 @@ age_time_structured_population <- function(time_slice, max_birth_date, min_birth
     # and not break..............
 
     surveydates_prevalences <- prevalences_calculation(time_step = time_step, recency_function = recency_function,
+                                                       tau_cutoff = tau_cutoff, BigT = BigT,
                                                        cohort = population)
 
     mortalitydata <-  estimate_excessmortality(populationdistribution = population,

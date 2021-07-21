@@ -4,8 +4,12 @@
 \alias{pmtct_birthcounts}
 \title{PMTCT_birthcounts}
 \usage{
-pmtct_birthcounts(dates_needing_birth_counts, pmtct_birth_rate,
-  birth_count, time_step)
+pmtct_birthcounts(
+  dates_needing_birth_counts,
+  pmtct_birth_rate,
+  birth_count,
+  time_step
+)
 }
 \arguments{
 \item{dates_needing_birth_counts}{a vector of births dates to be assigned the birth count}

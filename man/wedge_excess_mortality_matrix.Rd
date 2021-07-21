@@ -4,8 +4,12 @@
 \alias{wedge_excess_mortality_matrix}
 \title{wedge_excess_mortality_matrix}
 \usage{
-wedge_excess_mortality_matrix(n_age_steps, list_of_times, time_step,
-  excess_mortality)
+wedge_excess_mortality_matrix(
+  n_age_steps,
+  list_of_times,
+  time_step,
+  excess_mortality
+)
 }
 \arguments{
 \item{n_age_steps}{the optimal age each birth cohort is reaches}

@@ -4,8 +4,12 @@
 \alias{base_mortality_vector}
 \title{base_mortality_vector}
 \usage{
-base_mortality_vector(n_age_steps, date_of_birth, base_mortality_function,
-  time_step)
+base_mortality_vector(
+  n_age_steps,
+  date_of_birth,
+  base_mortality_function,
+  time_step
+)
 }
 \arguments{
 \item{n_age_steps}{The maximum age attained by each birth cohort (aging steps).}

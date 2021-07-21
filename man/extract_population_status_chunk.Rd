@@ -4,8 +4,12 @@
 \alias{extract_population_status_chunk}
 \title{extract_population_status_chunk}
 \usage{
-extract_population_status_chunk(survey_date, first_birth_date, time_step,
-  population)
+extract_population_status_chunk(
+  survey_date,
+  first_birth_date,
+  time_step,
+  population
+)
 }
 \arguments{
 \item{survey_date}{date at which prevalences are required}

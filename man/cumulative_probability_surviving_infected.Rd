@@ -4,8 +4,7 @@
 \alias{cumulative_probability_surviving_infected}
 \title{cumulative_probability_surviving_infected}
 \usage{
-
-  cumulative_probability_surviving_infected(probability_surviving_infected_array)
+cumulative_probability_surviving_infected(probability_surviving_infected_array)
 }
 \arguments{
 \item{probability_surviving_infected_array}{3 dimensional probability matrix}

@@ -4,8 +4,13 @@
 \alias{extract_cohort_status_surveydate}
 \title{extract_cohort_status_surveydate}
 \usage{
-extract_cohort_status_surveydate(date_of_birth, max_age, time_slice,
-  time_step, population)
+extract_cohort_status_surveydate(
+  date_of_birth,
+  max_age,
+  time_slice,
+  time_step,
+  population
+)
 }
 \arguments{
 \item{date_of_birth}{the date of birth of the cohort.}

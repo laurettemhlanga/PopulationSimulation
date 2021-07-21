@@ -4,10 +4,22 @@
 \alias{age_time_structured_population}
 \title{age_time_structured_population}
 \usage{
-age_time_structured_population(time_slice, max_birth_date, min_birth_date,
-  time_step, max_age, recency_function, birth_rate,
-  base_mortality_function, pmtct_birth_rate, incidence_function,
-  excess_mortality_function, reporting_bin = NA)
+age_time_structured_population(
+  time_slice,
+  max_birth_date,
+  min_birth_date,
+  time_step,
+  max_age,
+  recency_function,
+  birth_rate,
+  tau_cutoff,
+  BigT = BigT,
+  base_mortality_function,
+  pmtct_birth_rate,
+  incidence_function,
+  excess_mortality_function,
+  reporting_bin = NA
+)
 }
 \arguments{
 \item{time_slice}{dates the surveys are to be conducted}
@@ -23,6 +35,10 @@ age_time_structured_population(time_slice, max_birth_date, min_birth_date,
 \item{recency_function}{the type of function to be used in estimating the probability of testing recently infected}
 
 \item{birth_rate}{bith rate at the the give date}
+
+\item{tau_cutoff}{switch parameter that enables cutting off/not the rececny prevelances calculated beyond big T}
+
+\item{BigT}{the point to cut off fo all points that are beyond recency classification mark}
 
 \item{base_mortality_function}{base mortality rate ata a given age and time}
 

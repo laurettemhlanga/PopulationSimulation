@@ -4,12 +4,16 @@
 \alias{prevalences_calculation}
 \title{prevalences_calculation}
 \usage{
-prevalences_calculation(time_step, recency_function, cohort)
+prevalences_calculation(time_step, recency_function, tau_cutoff, BigT, cohort)
 }
 \arguments{
 \item{time_step}{the time step between consecurtive dates or the length of the time between date of births of cohorts.}
 
 \item{recency_function}{the recent function that describes the recency aspect}
+
+\item{tau_cutoff}{switch parameter that enables cutting off/not the rececny prevelances calculated beyond big T}
+
+\item{BigT}{the point to cut off for all points that are beyond recency classification mark in days}
 
 \item{cohort}{Status of the popuation in the cohort.}
 }

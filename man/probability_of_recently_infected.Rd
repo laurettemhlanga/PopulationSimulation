@@ -4,9 +4,17 @@
 \alias{probability_of_recently_infected}
 \title{probability_of_recently_infected}
 \usage{
-probability_of_recently_infected(time_in_years, recency_type = "weibull",
-  q = 0.0167, shape = 5, gradient = -0.5, intercept = 0.5,
-  scale = 0.545, big_tyears = 2, value = 1)
+probability_of_recently_infected(
+  time_in_years,
+  recency_type = "weibull",
+  q = 0.0167,
+  shape = 5,
+  gradient = -0.5,
+  intercept = 0.5,
+  scale = 0.545,
+  big_tyears = 2,
+  value = 1
+)
 }
 \arguments{
 \item{time_in_years}{a vector of times since infection.}

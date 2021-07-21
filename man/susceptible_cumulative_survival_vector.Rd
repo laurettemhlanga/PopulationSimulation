@@ -4,8 +4,11 @@
 \alias{susceptible_cumulative_survival_vector}
 \title{susceptible_cumulative_survival_vector}
 \usage{
-susceptible_cumulative_survival_vector(incidence_vector,
-  base_mortality_vector, time_step)
+susceptible_cumulative_survival_vector(
+  incidence_vector,
+  base_mortality_vector,
+  time_step
+)
 }
 \arguments{
 \item{incidence_vector}{vector of  incidence rates for specified ages and times}

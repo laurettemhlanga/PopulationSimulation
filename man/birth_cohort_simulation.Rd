@@ -4,9 +4,18 @@
 \alias{birth_cohort_simulation}
 \title{birth_cohort_simulation}
 \usage{
-birth_cohort_simulation(date_of_birth, time_step, max_age, time_slice,
-  birth_rate, pmtct_birth_rate, base_mortality_function,
-  incidence_function, excess_mortality_function, detailed = FALSE)
+birth_cohort_simulation(
+  date_of_birth,
+  time_step,
+  max_age,
+  time_slice,
+  birth_rate,
+  pmtct_birth_rate,
+  base_mortality_function,
+  incidence_function,
+  excess_mortality_function,
+  detailed = FALSE
+)
 }
 \arguments{
 \item{date_of_birth}{the minimum date of birth for the birth cohorts}

@@ -4,8 +4,13 @@
 \alias{estimate_excessmortality}
 \title{estimate_excessmortality}
 \usage{
-estimate_excessmortality(populationdistribution, time_step,
-  excess_mortality, birth_dates, base_mortality)
+estimate_excessmortality(
+  populationdistribution,
+  time_step,
+  excess_mortality,
+  birth_dates,
+  base_mortality
+)
 }
 \arguments{
 \item{populationdistribution}{the cohort distribution of taus since infection}

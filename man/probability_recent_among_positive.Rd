@@ -4,8 +4,13 @@
 \alias{probability_recent_among_positive}
 \title{probability_recent_among_positive}
 \usage{
-probability_recent_among_positive(time_step, type, population_at_date,
-  probability_of_recent_infection, keeping_infection_time = FALSE)
+probability_recent_among_positive(
+  time_step,
+  type,
+  population_at_date,
+  probability_of_recent_infection,
+  keeping_infection_time = FALSE
+)
 }
 \arguments{
 \item{time_step}{the time step between consecurtive dates or the length of the time between date of births of cohorts.}

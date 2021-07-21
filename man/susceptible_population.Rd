@@ -4,8 +4,11 @@
 \alias{susceptible_population}
 \title{susceptible_population}
 \usage{
-susceptible_population(cumulative_survival_matrix, birth_counts,
-  pmtct_birthcount)
+susceptible_population(
+  cumulative_survival_matrix,
+  birth_counts,
+  pmtct_birthcount
+)
 }
 \arguments{
 \item{cumulative_survival_matrix}{matrix of cumulative survival probabilities in the susceptible from birth till the specified age and time.}

@@ -4,8 +4,7 @@
 \alias{base_mortality_matrix}
 \title{base_mortality_matrix}
 \usage{
-base_mortality_matrix(max_age, list_of_birth_times, base_mortality,
-  time_step)
+base_mortality_matrix(max_age, list_of_birth_times, base_mortality, time_step)
 }
 \arguments{
 \item{max_age}{The maximum age attained by each birth cohort (aging steps).}
