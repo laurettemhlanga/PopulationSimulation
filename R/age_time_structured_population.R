@@ -40,7 +40,8 @@ age_time_structured_population <- function(time_slice, max_birth_date, min_birth
   populationprevalences <- data.frame(# date_birth = numeric(),
     dates = numeric(), age = numeric(), total = numeric(),
     # hivngtve = numeric(), hivptve_rec = numeric(), hivptve_nonrec = numeric(),
-    prevalence_H = numeric(), prevalence_R = numeric())
+    prevalence_H = numeric(), prevalence_R = numeric(),
+    prevalence_frr = numeric())
 
   # taupopulation <- list()
 
@@ -73,6 +74,7 @@ age_time_structured_population <- function(time_slice, max_birth_date, min_birth
                                        total = surveydates_prevalences$totalcohort,
                                        prevalence_H =  surveydates_prevalences$prevalence_H,
                                        prevalence_R = surveydates_prevalences$prevalence_R,
+                                       prevalence_frr = surveydates_prevalences$prevalence_frr,
                                        mortality = mortalitydata$excessmortality)
 
     populationprevalences <- rbind(populationprevalences, populationprevalence)

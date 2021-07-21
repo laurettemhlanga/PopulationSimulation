@@ -52,7 +52,7 @@ prevalences_calculation <- function(time_step, recency_function,
       }else{
 
       totalrec <- sum(recent_infections, na.rm = TRUE)
-      totalfrr <- sum(recent_infections[cutoff:lenth(recent_infections)], na.rm = TRUE)
+      totalfrr <- sum(recent_infections[cutoff:length(recent_infections)], na.rm = TRUE)
      }
 
     #global variables to ensure that it discards the values
@@ -90,17 +90,18 @@ prevalences_calculation <- function(time_step, recency_function,
     if (tau_cutoff == T & dim(recent_infections)[1] > cutoff){
 
     totalrec <- colSums(recent_infections[1:cutoff, ], na.rm = TRUE)
-    totalfrr <- colSums(recent_infections[cutoff:dim(recent_infections)[1], ], na.rm = TRUE)
+    totalfrr <- 0
     }else{
 
       totalrec <- colSums(recent_infections, na.rm = TRUE)
-      totalfrr <- 0
+      totalfrr <- colSums(recent_infections[cutoff:dim(recent_infections)[1], ], na.rm = TRUE)
+
     }
 
   # }
 
     prevalence_R <- totalrec / (overall_age_prevalence * totalcohort)
-    # prevalence_frr <- ifelse(totalfrr == 0, 0, totalfrr/totalrec)
+    prevalence_frr <- ifelse(totalfrr == 0, 0, totalfrr/totalrec)
   }
 
   return(data.frame(totalcohort = totalcohort,  totalngtve  = (totalcohort - totalptve),

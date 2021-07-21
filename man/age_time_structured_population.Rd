@@ -36,9 +36,9 @@ age_time_structured_population(
 
 \item{birth_rate}{bith rate at the the give date}
 
-\item{tau_cutoff}{switch parameter that enables cutting off/not the rececny prevelances calculated beyond big T}
+\item{tau_cutoff}{switch parameter that enables cutting off/not the  prevelances of rececny calculated beyond big T}
 
-\item{BigT}{the point to cut off fo all points that are beyond recency classification mark}
+\item{BigT}{the point to cut off of all points that are beyond recency classification mark}
 
 \item{base_mortality_function}{base mortality rate ata a given age and time}
 
