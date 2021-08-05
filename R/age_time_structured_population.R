@@ -74,7 +74,7 @@ age_time_structured_population <- function(time_slice, max_birth_date, min_birth
                                        total = surveydates_prevalences$totalcohort,
                                        prevalence_H =  surveydates_prevalences$prevalence_H,
                                        prevalence_R = surveydates_prevalences$prevalence_R,
-                                       prevalence_frr = surveydates_prevalences$prevalence_frr,
+                                       frr = surveydates_prevalences$prevalence_frr,
                                        mortality = mortalitydata$excessmortality)
 
     populationprevalences <- rbind(populationprevalences, populationprevalence)
