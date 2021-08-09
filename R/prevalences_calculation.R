@@ -87,9 +87,9 @@ prevalences_calculation <- function(time_step, recency_function,
 
     }
 
-    if (tau_cutoff == T & dim(recent_infections)[1] > cutoff){
+    if (tau_cutoff == T | dim(recent_infections)[1] < cutoff){
 
-    totalrec <- colSums(recent_infections[1:cutoff, ], na.rm = TRUE)
+    totalrec <- colSums(recent_infections, na.rm = TRUE)
     totalfrr <- 0
     }else{
 
