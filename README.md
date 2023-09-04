@@ -67,6 +67,4 @@ This package is distributed under the [MIT License](LICENSE.md).
 
 We would like to acknowledge the contributions of the research community that have made this package possible. Thank you for your support and feedback.
 
----
 
-Please replace "YourGitHubUsername" in the installation section with your actual GitHub username, and customize the documentation and contributing sections to include specific information about your package. Additionally, consider adding examples and more detailed instructions as needed to assist users in effectively using your package.
