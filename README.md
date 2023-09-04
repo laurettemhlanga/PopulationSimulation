@@ -1,17 +1,72 @@
-# Population Simulation
+# PopulationSimulationR Package
 
-Estimating incidence is of critical importance in epidemiology. In the application to chronic conditions, such as HIV, where there is no simple relationship between incidence and prevalence, the methods are not mature. Of interest, various HIV incidence estimators are in existence, and there is not much consistent evaluation of limitations and optimization of ‘population representative’ surveys. Considering the nature of national cross sectional surveys conducted by various large organisations, we create a simulation platform that mimics the sampling and analysis processes. The motivation of the platform is to serve as a testing, validation, and benchmarking tool for HIV incidence estimators (and other chronic conditions). We present the platform as a budding R package, which simulates an age and time structured population for an HIV epidemic.It is best described by Partial differential equations (PDEs) derived from a susceptible - infected (SI) model. The PDEs are solved using a discretised version of the method of lines, in which both the age variable time share a discretisation step size. Given sufficiently specific (birth, infection and mortality) rates, which are allowed to be functions of time, age, and time since infection, the platform constructs a fully specified age and time structured population.
+## Overview
 
-The platform requires the user to specify the following rate functions to calculate; 
+The **PopulationSimulationR** package is a powerful tool for simulating age and time-structured populations. It is designed primarily for epidemiological research, with a focus on estimating incidence, especially for chronic conditions like HIV. This package allows you to create and manipulate synthetic populations for various modeling and analysis purposes.
 
- * birth rate , 
- * pmtct rate,
- * incidence rate, 
- * base mortality rate, 
- * time step (delta), and 
- * maximum age. 
- 
+## Features
 
-The idea is to use a wrapper function, birth_corhot simulation (calculates the state of the cohort one at a time) or do_one_simulation (calculates the state of a vector of cohorts but cannot exceed certain creation of vectors greater that 2^31 - 1 due to R storage) , to call the sub-functions within the platform. Additionally, the platform allow room for the users to start the simulation at any point. Therefore, by parsing the input parameters and initial conditions the platform approximates the survival probabilities of surviving a given time step, and then the cumulative survival probabilities, and finally the population status (susceptible and infected) of each state at future ages and times. The output of do_one_simulation is an age and time structured population for specified times, ages, and time since infection. Whereas birth_cohort_simulation approximates the 
+- **Population Modeling:** Simulate populations over time with age and time structure.
+- **Customizable Parameters:** Specify key rate functions, including birth rate, PMTCT rate, incidence rate, base mortality rate, time step, and maximum age.
+- **Simulation Control:** Use wrapper functions to control the simulation process and start simulations at different points.
+- **Data Output:** Generate age and time-structured population data for analysis.
+- **Prevalence Estimation:** Calculate prevalence by age and analyze the epidemic's status at specified dates.
+- **Regional/Cluster Analysis:** Partition prevalence into regional or cluster-level prevalence for subpopulation analysis.
 
-Tho output from the do_one_simulation serves as input to the function extract_population_status, which parses the input to the calculated_normilised_prevalence by age. This approach is the first step to conducting cross sectional surveys at a specified date. Modifications maybe implemented by introducing the partion_prevalence function, which sub divides the prevalence into regional/cluster level prevalence, assuming that the former (from do_one_simulation) is the weighted average of the regions/clusters. Partitioning of the prevalence is such that the weighted average of the cluster/regional prevalences is equal to the input prevalence. 
+## Installation
+
+To install the package, you can use the `devtools` package:
+
+```R
+# Install devtools if you haven't already
+install.packages("devtools")
+
+# Install PopulationSimulationR from GitHub
+devtools::install_github("YourGitHubUsername/PopulationSimulationR")
+```
+
+## Getting Started
+
+Here's a quick example of how to use the package:
+
+```R
+# Load the PopulationSimulationR package
+library(PopulationSimulationR)
+
+# Specify your rate functions and parameters
+# (birth rate, PMTCT rate, incidence rate, etc.)
+
+# Run a simulation
+population_data <- birth_cohort_simulation(rate_functions = your_rate_functions, ...)
+
+# Analyze and visualize the simulated population data
+# (e.g., prevalence by age, time series analysis)
+```
+
+## Documentation
+
+For detailed usage instructions and function documentation, please refer to the package vignettes. You can access the vignettes using the following command after loading the package:
+
+```R
+# Load the PopulationSimulationR package
+library(PopulationSimulationR)
+
+# Access package vignettes
+browseVignettes("PopulationSimulationR")
+```
+
+## Contributing
+
+We welcome contributions from the community. If you encounter issues, have ideas for enhancements, or would like to contribute code, please check our [Contributing Guidelines](CONTRIBUTING.md) for more information.
+
+## License
+
+This package is distributed under the [MIT License](LICENSE.md).
+
+## Acknowledgments
+
+We would like to acknowledge the contributions of the research community that have made this package possible. Thank you for your support and feedback.
+
+---
+
+Please replace "YourGitHubUsername" in the installation section with your actual GitHub username, and customize the documentation and contributing sections to include specific information about your package. Additionally, consider adding examples and more detailed instructions as needed to assist users in effectively using your package.
