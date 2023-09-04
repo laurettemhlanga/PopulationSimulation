@@ -22,7 +22,7 @@ To install the package, you can use the `devtools` package:
 install.packages("devtools")
 
 # Install PopulationSimulationR from GitHub
-devtools::install_github("laurettemhlanga/PopulationSimulationR")
+devtools::install_github("laurettemhlanga/PopulationSimulation")
 ```
 
 ## Getting Started
@@ -30,7 +30,7 @@ devtools::install_github("laurettemhlanga/PopulationSimulationR")
 Here's a quick example of how to use the package:
 
 ```R
-# Load the PopulationSimulationR package
+# Load the PopulationSimulation package
 library(PopulationSimulationR)
 
 # Specify your rate functions and parameters
@@ -49,10 +49,10 @@ For detailed usage instructions and function documentation, please refer to the 
 
 ```R
 # Load the PopulationSimulationR package
-library(PopulationSimulationR)
+library(PopulationSimulation)
 
 # Access package vignettes
-browseVignettes("PopulationSimulationR")
+browseVignettes("PopulationSimulation")
 ```
 
 ## Contributing
