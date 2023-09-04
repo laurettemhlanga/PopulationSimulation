@@ -22,7 +22,7 @@ To install the package, you can use the `devtools` package:
 install.packages("devtools")
 
 # Install PopulationSimulationR from GitHub
-devtools::install_github("YourGitHubUsername/PopulationSimulationR")
+devtools::install_github("laurettemhlanga/PopulationSimulationR")
 ```
 
 ## Getting Started
