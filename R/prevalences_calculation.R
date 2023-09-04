@@ -9,7 +9,6 @@
 #' @param recency_function the recent function that describes the recency aspect
 #' @param tau_cutoff switch parameter that enables cutting off/not the rececny prevelances calculated beyond big T
 #' @param BigT the point to cut off for all points that are beyond recency classification mark in days
-#' @paramrecency_function type of function to be utilised in the probability of infection function
 #'
 #'
 #'
